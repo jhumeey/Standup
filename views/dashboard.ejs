@@ -14,11 +14,17 @@
 	<div class="mainContainer">
 		<div class="content">
 			<% include partials/admin/sidebar %>
-			<div class="chart">
-				<input type="hidden" id="result" value="<%= JSON.stringify(result) %>">
-				<canvas id="myChart" width="400" height="400"></canvas>
-
+			<div class="innerContainer">
+				<div class="heading">
+					<h3>Dashboard</h3>
+				</div>
+					<div class="chart">
+						<input type="hidden" id="result" value="<%= JSON.stringify(result) %>">
+						<canvas id="myChart" width="400" height="400"></canvas>
+					
+					</div>
 			</div>
+		
 
 		</div>
 	</div>
@@ -26,8 +32,10 @@
 		let result = JSON.parse(document.getElementById("result").value);
 		console.log(result);
 		let datavalues = [];
-		for (i = 0; i < result.length; i++) {
+		let labelvalues = [];
+			for (i = 0; i < result.length; i++) {
 			datavalues.push(result[i].avgScore);
+			labelvalues.push(result[i].firstname);
 			console.log(datavalues);
 		}
 
@@ -38,7 +46,7 @@
 			data: {
 				labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
 				datasets: [{
-					label: '# of Votes',
+					label: 'Average Score of Quiz',
 					data: datavalues,
 					backgroundColor: [
 						'rgba(255, 99, 132, 0.2)',

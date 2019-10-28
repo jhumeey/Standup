@@ -1,40 +1,53 @@
-html,
-	body,
-	h1,
-	h2,
-	h3,
-	h4,
-	h5 {
-		font-family: 'Raleway', sans-serif!important
-  }
-  nav{
-    position: relative;
-     background-color: #0000001c!important;
-      background:linear-gradient(to bottom, #555553a8, #464849), url('https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-2.32103624.jpg');
-  }
-  nav .active {
-    color: #fff!important;
-    background-color: #4caf50fa!important;
+html, body, h1, h2, h3, h4, h5 {
+  font-family: 'Raleway', sans-serif!important
 }
 
- .alink:hover{
-   color: #4caf50fa!important;
+nav {
+  position: relative;
+  background-color: #0000001c!important;
+  background: linear-gradient(to bottom, #555553a8, #464849), url('https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-2.32103624.jpg');
 }
+
+nav .active {
+  color: #fff!important;
+  background-color: #4caf50fa!important;
+}
+
+.alink:hover {
+  color: #4caf50fa!important;
+}
+
 .w3-white, .w3-hover-white:hover {
-    color: #fff!important;
+  color: #fff!important;
 }
-.logo{
+
+.logo {
   color: #fff;
 }
+
+.alink {
+  font-size: 14px;
+padding: 10px;
+margin-bottom: 10px;
+}
+
+.alink i {
+  font-size: 2rem;
+  margin-right: 20px;
+}
+
 a {
   text-decoration: none;
 }
-a:hover{
+
+a:hover {
   text-decoration: none;
 }
-.wrapper .sidebar:after{
+
+.wrapper .sidebar:after {
   background-color: #1b1b1bde;
 }
+
 .w3-button {
   color: #fff!important;
 }

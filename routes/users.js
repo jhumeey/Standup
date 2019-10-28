@@ -63,4 +63,6 @@ router.post("/edit", [
 //DELETE A USER-------ADMIN ROUTE
 router.get("/delete/:id", redirectLogin, UserController.deleteUser);
 
+router.get("/logout", UserController.logoutUser);
+
 module.exports = router;

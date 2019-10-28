@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title></title>
+	<title>StandUp</title>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<% include partials/links %>
@@ -17,6 +17,7 @@
 		}
 
 		.inner-container {
+			margin-left: 199px;
 			background-color: #4950571c;
 			width: 85%;
 			display: flex;
@@ -128,7 +129,8 @@
 		}
 
 		button:hover {
-			background: #ba7e7e;
+			background: #fff;
+			color: #4caf50fa; 
 			transition: all 0.4s ease-in-out;
 		}
 
@@ -155,7 +157,7 @@
 				<% include partials/sidebar %>
 			<div class="inner-container">
 
-				<div class="events-heading">
+				<div class="heading">
 					<h3>Events</h3>
 				</div>
 				<div class="events-container">
@@ -170,10 +172,10 @@
 							<p class="desc"><%= active_events[key].description %>.</p>
 							<div class="button">
 								<% if (user.event_id.includes(active_events[key]._id.toString())) { %>
-								<button type="button">You are checked in</button>
+								<button type="button">You are checked-in</button>
 								<%} else { %>
 								<form method="post" action="/checkin">
-									<button type="submit">Checkin</button>
+									<button type="submit">Check-in</button>
 									<input type="hidden" name="user_id" value="<%= user._id %>">
 									<input type="hidden" name="event_id" value="<%= active_events[key]._id %>">
 							

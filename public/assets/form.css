@@ -1,5 +1,8 @@
-input[type="text"],
-select {
+.formContainer h3 {
+	margin: 10px 22px;
+}
+
+input[type="text"], select {
 	width: 100%;
 	padding: 8px 10px;
 	margin: 5px 0;
@@ -14,7 +17,7 @@ input[type="submit"] {
 	background-color: #4caf50;
 	color: white;
 	padding: 10px 10px;
-	margin: 8px 0;
+	margin: 8px 14px;
 	border: none;
 	border-radius: 4px;
 	cursor: pointer;
@@ -23,12 +26,13 @@ input[type="submit"] {
 input[type="submit"]:hover {
 	background-color: #45a049;
 }
-form{
+
+form {
 	padding: 8px;
 }
-.formContainer{
+
+.formContainer {
 	background-color: #fff;
 	margin: 10px;
 	padding: 5px;
-
 }

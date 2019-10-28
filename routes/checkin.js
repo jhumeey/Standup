@@ -23,7 +23,8 @@ router.post("/", async (req, res) => {
 			}
 		});
 		let quiz = await Quiz.findOne({ event_id: req.body.event_id });
-		res.render("takequiz", { user, event_id: req.body.event_id, quiz });
+		let quizId = quiz._id;
+		res.render("takequiz", { user, event_id: req.body.event_id, quizId });
 		console.log(quiz)
 	} catch(error){
 		console.log(error.message);

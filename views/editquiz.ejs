@@ -21,10 +21,11 @@
 					<form method="post" action="quiz/edit/<%= quiz._id %>">
 						<label for="Question">Title</label>
 						<br />
-						<input type="text" id="Question" name="Question" placeholder="Question.." value="<%= quiz.title %>" />
+						<input type="text" id="Question" name="Question" placeholder="Question.."
+							value="<%= quiz.title %>" />
 						<br />
 						<input type="hidden" id="event id" name="event_id" value="<%= quiz.event_id %>" />
-						<button type="submit">Submit</button>
+						<button type="submit" class="btn">Submit</button>
 					</form>
 				</div>
 			</div>

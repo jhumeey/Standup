@@ -58,37 +58,7 @@
 			color: #4caf50fa;
 		}
 
-		.inner-container .links a {
-			position: relative;
-			text-decoration: none;
-			background-color: #fff;
-			border-radius: 5px;
-			text-align: center;
-		}
-
-		.view {
-			position: relative;
-			display: inline-block;
-			border-bottom: 1px dotted black;
-		}
-
-		.view .tooltiptext {
-			visibility: hidden;
-			width: 70px;
-			background-color: #fff;
-			color: #4caf50fa;
-			text-align: center;
-			border-radius: 6px;
-			padding: 5px 0;
-
-			/* Position the tooltip */
-			position: absolute;
-			z-index: 1;
-		}
-
-		.view:hover .tooltiptext {
-			visibility: visible;
-		}
+		
 	</style>
 </head>
 
@@ -102,11 +72,12 @@
 				<div class="heading">
 
 					<h3>All Events</h3>
+					<a class="toplink" href="/events/create ">Create Event</a>
 				</div>
 				<div class="tableContainer">
 					<table id="table" style="overflow-x:auto;">
 
-						<a class="create" href="/events/create ">Create Event</a>
+						
 
 						<tr>
 							<th>Name</th>

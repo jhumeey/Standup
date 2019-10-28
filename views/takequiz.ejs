@@ -2,31 +2,33 @@
 <html lang="en">
 
 <head>
-	<title></title>
+	<title>StandUp</title>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<% include partials/links %>
 	<style>
-	.quiz-container{
-		width: 100%;
-		position: relative;
-	}
-	.quiz-container h3{
-		padding: 38px 32px;
-	}
-	.quiz-container a{
-		position: absolute;
-		text-decoration: none;
-		background-color: #4caf50fa;
-		color: white;
-		border-radius: 5px;
-		width: 150px;
-		padding: 10px;
-		margin: 10px;
-		text-align: center;
-		left: 10%;
-		top: 16%;
-	}
+		.quiz-container {
+			width: 100%;
+			position: relative;
+		}
+
+		.quiz-container h3 {
+			padding: 38px 32px;
+		}
+
+		.quiz-container a {
+			position: absolute;
+			text-decoration: none;
+			background-color: #4caf50fa;
+			color: white;
+			border-radius: 5px;
+			width: 150px;
+			padding: 10px;
+			margin: 10px;
+			text-align: center;
+			left: 10%;
+			top: 16%;
+		}
 	</style>
 </head>
 
@@ -35,13 +37,15 @@
 	<div class="mainContainer">
 		<div class="content">
 			<% include partials/sidebar %>
-			<div class="inner-container">
-				<div class="quiz-container">
+			<div class="innerContainer">
+				<div class="heading">
 					<h3>Quiz</h3>
-					<div class="quiz">
-						<a href="/activity/questions/<%= quiz._id %>">Start Quiz</a>
-					</div>
+					<a class="toplink" href="/activity/questions/<%= quizId %>">Start Quiz</a>
 				</div>
+
+
+
+
 			</div>
 		</div>
 	</div>

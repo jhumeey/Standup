@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title></title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<% include partials/links %>
+	<link rel="stylesheet" type="text/css" href="/assets/table.css" />
+
+</head>
+
+<body>
+	<% include partials/flashmessage %>
+	<div class="mainContainer">
+		<div class="content">
+			<% include partials/admin/sidebar %>
+			<div class="innerContainer">
+				<div class="heading">
+					<h3>All Quizzes</h3>
+				</div>
+				<div class="tableContainer">
+					<table id="table" style="overflow-x:auto;">
+
+						<tr>
+							<th>Title</th>
+							<th>Actions</th>
+						</tr>
+						<% for (var key in quizzes) { %>
+						<tr>
+							<td><%= quizzes[key].title %></td>
+							<td class="links">
+								<a href="/quiz/<%= quizzes[key]._id %>"><i class="fa fa-eye" aria-hidden="true"></i></a>
+							</td>
+						</tr>
+
+						<% } %>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% include partials/scripts %>
+</body>
+
+</html>

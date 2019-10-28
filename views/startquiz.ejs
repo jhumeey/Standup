@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title></title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<% include partials/links %>
+	<style>
+		.events {
+			width: 100%;
+			background-color: #ffffff;
+			border-radius:5px;
+			box-shadow: 5px 5px 15px rgba(158, 158, 158);
+			padding: 10px;
+			color: #000;
+		}
+
+		.noactive {
+			display: none;
+		}
+
+		.active {
+			display: block;
+		}
+
+		.question-container {
+			position: relative;
+			width: 100%;
+			background-color: #eeeeee;
+			
+
+		}
+		.question-container h3 {
+			padding: 10px 10px;
+		}
+
+		.question-container p {
+
+			position: absolute;
+			right: 0%;
+			top: 2%;
+			margin: 10px 10px;
+			background-color: #50b153;
+			border-radius: 5px;
+			padding: 10px;
+			color: #fff;
+			width: 150px;
+		}
+	</style>
+</head>
+
+<body>
+	<% include partials/flashmessage %>
+	<div class="mainContainer">
+		<div class="content">
+			<% include partials/sidebar %>
+			<div class="question-container">
+				<p id="demo"></p>
+				<h3>Answer the following questions</h3>
+
+				<div class="events">
+
+					<form method="POST" action="/userresponses" id="form">
+						<% for(var key in question) { %>
+						<div class="noactive" id="<%= [key] %>">
+							<label for="question"><%= question[key].question %> ?</label>
+							<br />
+							<input type="hidden" name="quiz_id" class="check" value="<%= quiz_id %>">
+							<input type="hidden" name="question_id[]" class="check" value="<%= question[key]._id %>">
+							<section class="options">
+								<input type="radio" onchange="onChange(this)" name="option"
+									value="<%=question[key].answers[0] %>"><%= question[key].answers[0] %>
+								<input type="radio" onchange="onChange(this)" name="option"
+									value="<%=question[key].answers[1] %>"><%= question[key].answers[1] %>
+								<input type="radio" onchange="onChange(this)" name="option"
+									value="<%=question[key].answers[2] %>"><%= question[key].answers[2] %>
+								<input type="hidden" class="selected" name="answer[]" value="">
+							</section>
+							<br>
+							<button type="button" value="0" class="nextbtn" id="nextbtn" onclick="next()">
+								Next
+							</button>
+
+						</div>
+						<% } %>
+
+					</form>
+
+
+
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+	<% include partials/scripts %>
+	<% include partials/timer %>
+	<script>
+		start();
+		function start() {
+			let currentDiv = document.getElementById("0");
+			currentDiv.classList.remove("noactive");
+			currentDiv.classList.add("active");
+		}
+		function next() {
+			if (!document.querySelector("input:checked")) {
+				alert("You are required to choose an answer");
+			} else {
+				let nextbtn = document.querySelector(".nextbtn").value;
+				let submissionArray = [];
+				let x = document.querySelectorAll(".check, input:checked");
+				submissionArray.push(x);
+				let divs = document.querySelectorAll("form div");
+				console.log(divs);
+				let currentDiv = document.querySelector(".active");
+				let currentId = currentDiv.id;
+				let counter = ++currentId;
+				console.log(counter);
+				currentDiv.classList.remove("active");
+				currentDiv.classList.add("noactive");
+				let nextDiv = divs[counter];
+				nextDiv.classList.remove("noactive");
+				nextDiv.classList.add("active");
+				if (counter == divs.length - 1) {
+					let submitBtn = document.querySelector(".active .nextbtn");
+					submitBtn.innerText = "Submit"
+					submitBtn.type = "submit"
+					document.getElementById("form").appendChild = nextDiv;
+				} else {
+					document.getElementById("form").appendChild = nextDiv;
+				}
+
+
+
+
+			}
+		}
+		function onChange(answer) {
+			let parent = answer.parentElement;
+			console.log(parent);
+			let selected = parent.querySelector(".selected");
+			let choice = answer.value;
+			selected.value = choice;
+
+		}
+	</script>
+
+</body>
+
+</html>

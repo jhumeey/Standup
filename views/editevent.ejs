@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>StandUp</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<% include partials/links %>
+</head>
+
+<body>
+	<% include partials/flashmessage %>
+	<div class="mainContainer">
+		<div class="content">
+			<% include partials/admin/sidebar %>
+			<div class="innerContainer">
+				<div class="heading">
+					<h3>Edit Quiz</h3>
+				</div>
+				<div class="formContainer">
+					<form method="post" action="/events/edit/<%= event._id %>">
+						<label for="Question">Name</label>
+						<br />
+						<input type="text" id="name" name="name" placeholder="Eevnt name...."
+							value="<%= event.name %>" />
+						<br />
+						<label for="answer 2">Activity</label>
+						<input type="text" id="activity" name="activity" placeholder="Activity...."
+							value="<%= event.activity %>" />
+						<br />
+						<label for="answer 3">Description</label>
+						<input type="text" id="description" name="description" placeholder="Description..."
+							value="<%= event.description %>" />
+						<br />
+						<label for="answer 3">Status</label>
+						<input type="text" id="status" name="status" placeholder="Status.."
+							value="<%= event.status %>" />
+						<input type="hidden" id="event id" name="event_id" value="<%= event._id %>" />
+						<button type="submit">Submit</button>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<% include partials/links %>
+</body>
+
+</html>

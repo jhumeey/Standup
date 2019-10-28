@@ -1,0 +1,27 @@
+<!doctype html>
+
+<head>
+	<title>Login User</title>
+	<% include partials/links %>
+	<link href="/assets/login.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<% include partials/flashmessage %>
+
+	<form method="post" action="login">
+
+		<div class='login'>
+			<h2 class="logo-text"> <a href="/">StandUp</a> </h2>
+			<h2>SIGN IN</h2>
+
+			<input name='email' placeholder='E-Mail Address' type='text'>
+			<input id='pw' name='password' placeholder='Password' type='password'>
+			<input class='animated' type='submit' value='Login'>
+		</div>
+	</form>
+	<% include partials/scripts %>
+
+</body>
+
+</html>

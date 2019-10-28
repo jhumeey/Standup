@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>StandUp</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<% include partials/links %>
+</head>
+
+<body>
+	<% include partials/flashmessage %>
+	<div class="mainContainer">
+		<div class="content">
+			<% include partials/admin/sidebar %>
+			<div class="innerContainer">
+				<div class="heading">
+					<h3>Create Event</h3>
+				</div>
+				<div class="formContainer">
+
+					<form method="post" action="/events">
+
+						<label for="name">Event Name</label>
+						<br />
+						<input type="text" id="name" name="name" placeholder="Event name.." />
+						<br />
+						<label for="activity">Activity</label>
+						<select id="activity" name="activity">
+							<option value="Poll">Poll</option>
+							<option value="Quiz">Quiz</option>
+						</select>
+						<br />
+						<label for="description">Description</label>
+						<input type="text" id="description" name="description" placeholder="Description.." />
+						<input type="hidden" id="status" name="status" value="pending" />
+
+						<input type="submit" value="Submit" />
+					</form>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<% include partials/scripts %>
+</body>
+
+</html>

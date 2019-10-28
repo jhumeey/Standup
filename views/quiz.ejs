@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title></title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<% include partials/links %>
+</head>
+
+<body>
+	<% include partials/flashmessage %>
+	<div class="mainContainer">
+		<div class="content">
+			<% include partials/admin/sidebar %>
+			<div class="edit-profile">
+				<h3>Create Quiz</h3>
+				<form method="post" action="/quiz">
+					<label for="title">Title</label>
+					<input type="text" name="title" value="">
+					<input type="hidden" name="user_id" value="<%= user._id%>">
+					<input type="hidden" id="eventid" name="event_id" value="<%= id%>">
+					<input type="submit" value="Submit" />
+				</form>
+			</div>
+		</div>
+		<% include partials/scripts %>
+</body>
+
+</html>

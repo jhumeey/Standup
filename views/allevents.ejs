@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>StandUp</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<% include partials/links %>
+	<link rel="stylesheet" type="text/css" href="/assets/table.css" />
+	<style>
+		.inner-container {
+			background-color: #ffffff;
+			/* box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
+			width: 100%;
+			margin: 5px;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			height: 100%;
+		}
+
+		.inner-container a {
+			text-decoration: none;
+		}
+
+		.inner-container h3 {
+			padding: 32px 10px 10px;
+		}
+
+		.event-container {
+			display: flex;
+			flex-direction: column;
+			width: 85%;
+			height: 100%;
+		}
+
+		.event-heading {
+			position: relative;
+		}
+
+		a.create {
+			text-decoration: none;
+			text-align: center;
+			position: absolute;
+			right: 5px;
+			background-color: #4caf50fa;
+			color: #ffffff;
+			border-radius: 5px;
+			font: 20px;
+			width: 150px;
+			padding: 10px;
+			top: 39px;
+		}
+
+		a:hover.create {
+			text-decoration: none;
+			background-color: #ffffff;
+			color: #4caf50fa;
+		}
+
+		.inner-container .links a {
+			position: relative;
+			text-decoration: none;
+			background-color: #fff;
+			border-radius: 5px;
+			text-align: center;
+		}
+
+		.view {
+			position: relative;
+			display: inline-block;
+			border-bottom: 1px dotted black;
+		}
+
+		.view .tooltiptext {
+			visibility: hidden;
+			width: 70px;
+			background-color: #fff;
+			color: #4caf50fa;
+			text-align: center;
+			border-radius: 6px;
+			padding: 5px 0;
+
+			/* Position the tooltip */
+			position: absolute;
+			z-index: 1;
+		}
+
+		.view:hover .tooltiptext {
+			visibility: visible;
+		}
+	</style>
+</head>
+
+<body>
+	<% include partials/flashmessage %>
+	<div class="mainContainer">
+		<div class="content">
+			<% include partials/admin/sidebar %>
+
+			<div class="innerContainer">
+				<div class="heading">
+
+					<h3>All Events</h3>
+				</div>
+				<div class="tableContainer">
+					<table id="table" style="overflow-x:auto;">
+
+						<a class="create" href="/events/create ">Create Event</a>
+
+						<tr>
+							<th>Name</th>
+							<th>Activity</th>
+							<th>Status</th>
+							<th>Description</th>
+							<th>Actions</th>
+						</tr>
+						<% for (var key in events) { %>
+						<tr>
+							<td><%= events[key].name %></td>
+							<td><%= events[key].activity %></td>
+							<td><%= events[key].status %></td>
+							<td><%= events[key].description %></td>
+							<td class="links">
+								<a class="view" href="/events/<%= events[key]._id %>">
+									<i class="fa fa-eye" aria-hidden="true"></i>
+								</a>
+							</td>
+						</tr>
+
+						<% } %>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% include partials/scripts %>
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+<% if (typeof(error) !== 'undefined' && error.length > 0) { %>
+<div class="alert alert-danger" id="danger-alert">
+    <p> <%= error[0].message %> </p>
+</div>
+<% } %>
+<% if (typeof(success) !== 'undefined' && success.length > 0) { %>
+<div class="alert alert-success" id="success-alert">
+    <p> <%= success[0].message %> </p>
+</div>
+<% } %>

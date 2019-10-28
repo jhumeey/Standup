@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title></title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<% include partials/links %>
+	<link rel="stylesheet" type="text/css" href="/assets/table.css" />
+</head>
+
+<body>
+	<% include partials/flashmessage %>
+	<div class="mainContainer">
+		<div class="content">
+			<% include partials/admin/sidebar %>
+			<div class="innerContainer">
+				<% if(!questions.length) { %>
+				<div class="heading">
+					<h3>You do not have any question and answer</h3>
+				</div>
+				<% } else { %>
+					<div class="heading">
+						<h3>Questions And Answers</h3>
+					</div>
+				<div class="tableContainer">
+					<table id="table" style="overflow-x:auto;">
+						
+
+						<tr>
+							<th> Question </th>
+							<th>Answers</th>
+							<th>Correct Answer</th>
+							<th>Actions</th>
+						</tr>
+						<% for (var key in questions) { %>
+						<tr>
+							<td><%= questions[key].question %></td>
+							<td><%= questions[key].answers %></td>
+							<td><%= questions[key].correctAnswer %></td>
+							<td class="links">
+								<a href="/activity/edit/<%= questions[key]._id %>">
+									<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+								</a>
+								<a href="/activity/delete/<%= questions[key]._id %>"
+									onclick="return confirm('Are you sure you want to delete this question?')">
+									<i class="fa fa-trash-o" aria-hidden="true"></i>
+								</a>
+
+
+							</td>
+						</tr>
+
+						<% } %>
+					</table>
+				</div>
+
+				<% } %>
+			</div>
+		</div>
+	</div>
+	<% include partials/scripts %>
+	<script>
+		// let eventid = localStorage.getItem("event id");
+		// document.getElementById("event id").value = eventid;
+
+		$("#success-alert").fadeTo(2000, 500).slideUp(200, function () {
+			$("#success-alert").slideUp(200);
+		});
+
+	</script>
+</body>
+
+</html>

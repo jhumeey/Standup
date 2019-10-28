@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Profile page</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<% include partials/links %>
+</head>
+
+<body>
+		<% include partials/flashmessage %>
+	<div class="mainContainer">
+		<div class="content">
+			<% include partials/sidebar %>
+			<div id="innerContainer" class="innerContainer">
+				<div class="heading">
+					<h3>User Profile</h3>
+				</div>
+				<div class="profile-container">
+
+					<div class="edit-profile">
+						<div class="profile-heading">
+							<h3>Edit Profile</h3>
+							<h4>Complete Your Profile</h4>
+						</div>
+						<form method="post" action="/users/update">
+							<label for="fname">First Name</label>
+							<br />
+							<input type="text" id="fname" name="firstname" placeholder="Your name.." />
+							<br />
+							<label for="lname">Last Name</label>
+							<input type="text" id="lname" name="lastname" placeholder="Your last name.." />
+							<br />
+							<label for="email">Email</label>
+							<input type="text" id="email" name="email" placeholder="Your email...." />
+
+							<br />
+							<label for="department">Department</label>
+							<select id="department" name="department">
+								<option value="Technology">Technology</option>
+								<option value="Operations">Operations</option>
+								<option value="Finance">Finance</option>
+							</select>
+							</br>
+							<input type="hidden" name="id" value="<%= user._id %>" />
+							<!-- <input type="hidden" name="_method" value="put" /> -->
+
+							<input type="submit" value="Submit" />
+						</form>
+					</div>
+					<div class="user-details">
+						<div class="user-box">
+							<%if (user.gender === "female") { %>
+							<div>
+
+								<img class="w3-circle" src="/assets/images/girl.png" alt="" />
+
+
+								<h2><%= user.firstname +" "+ user.lastname %></h2>
+								<h3><%= user.department %></h3>
+								<h3><%= user.email %></h3>
+								<p><%= user.gender %></p>
+
+							</div>
+							<% } else { %>
+							<div>
+
+								<img class="w3-circle" src="/assets/images/boy.png" alt="" />
+								<h2><%= user.firstname +" "+ user.lastname %></h2>
+								<h3><%= user.department %></h3>
+								<h3><%= user.email %></h3>
+							</div>
+							<% } %>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<% include partials/scripts %>
+</body>
+
+</html>

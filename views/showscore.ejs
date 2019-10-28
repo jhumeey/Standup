@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <% include partials/links %>
+</head>
+
+<body>
+    <% include partials/flashmessage %>
+    <div class="mainContainer">
+        <div class="content">
+            <% include partials/admin/sidebar %>
+            <div class="scoreContainer">
+               <h3><%= userscore.score %></h3>
+            </div>
+            <% include partials/scripts %>
+        </div>
+    </div>
+</body>
+
+</html>

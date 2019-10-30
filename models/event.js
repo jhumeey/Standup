@@ -4,13 +4,13 @@ const eventSchema = new mongoose.Schema({
 	name: {
 		type: String,
 		required: true,
-		minlength: 3,
+		minlength: 4,
 		maxlength: 50
 	},
 	description: {
 		type: String,
 		required: true,
-		minlength: 3,
+		minlength: 4,
 		maxlength: 1024
 	},
 	status: {

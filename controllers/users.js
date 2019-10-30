@@ -34,7 +34,6 @@ exports.registerUser = async (req, res) => {
             req.flash("error", { message: "User already registered" });
             res.redirect("/users/create");
         } else {
-            // const errors = validationResult(req);
             req.errors = validationResult(req).errors;
             if (req.errors) {
                 for(i=0; i < req.errors.length; i++){

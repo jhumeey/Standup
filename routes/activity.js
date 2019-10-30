@@ -1,4 +1,5 @@
 const redirectLogin = require("../middleware/redirectLogin");
+const { Question } = require("../models/activity");
 const express = require("express");
 const { check } = require('express-validator');
 let activityController = require('../controllers/activity');

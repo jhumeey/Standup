@@ -38,6 +38,11 @@
 		<div class="content">
 			<% include partials/sidebar %>
 			<div class="innerContainer">
+					<% if(!quiz.length) { %>
+					<div class="heading">
+						<h3>You do not have any quiz for this event</h3>
+					</div>
+					<% } else { %>
 				<div class="heading">
 					<h3 >Quiz</h3>
 
@@ -51,6 +56,7 @@
 					</div>
 					<% } %>
 				</div>
+				<% } %>
 
 			</div>
 		</div>

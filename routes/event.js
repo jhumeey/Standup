@@ -1,9 +1,9 @@
-const { Event, validate } = require("../models/event");
-const { Check_in, validater } = require("../models/checkin");
+const { Event } = require("../models/event");
+const { User } = require("../models/users");
 const redirectLogin = require("../middleware/redirectLogin");
-const auth = require("../middleware/auth");
-const lodash = require("lodash");
-const mongoose = require("mongoose");
+// const auth = require("../middleware/auth");
+// const lodash = require("lodash");
+// const mongoose = require("mongoose");
 const express = require("express");
 const router = express.Router();
 
@@ -13,7 +13,8 @@ router.post("/events", async (req, res) => {
 		name: req.body.name,
 		description: req.body.description,
 		status: req.body.status,
-		activity: req.body.activity
+		activity: req.body.activity,
+		eventDate: req.body.eventDate
 	});
 	event = await event.save();
 
@@ -23,9 +24,11 @@ router.post("/events", async (req, res) => {
 //GET ACTIVE EVENTS----------USER ROUTE
 router.get("/events", redirectLogin, async (req, res) => {
 	let user = req.session.user;
+	let userId = user._id;
+	const userDetails = await User.findById(userId);
 	const active_events = await Event.find({ status: "active" }).sort();
 	console.log(active_events);
-	res.render("events", { active_events, user });
+	res.render("events", { active_events, userDetails });
 });
 
 //CREATE EVENTS------ADMIN ROUTE
@@ -66,7 +69,8 @@ router.post("/events/edit/:id", async (req, res) => {
 		name: req.body.name,
 		description: req.body.description,
 		status: req.body.status,
-		activity: req.body.activity
+		activity: req.body.activity,
+		eventDate: req.body.eventDate
 	};
 
 	await Event.findByIdAndUpdate(req.params.id, body, function (err) {

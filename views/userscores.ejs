@@ -20,20 +20,22 @@
 					<h3>You do not have any quiz score</h3>
 				</div>
 				<% } else { %>
-					<div class="heading">
-						<h3>User Scores</h3>
-					</div>
+				<div class="heading">
+					<h3>User Scores</h3>
+				</div>
 				<div class="tableContainer">
 					<table id="table" style="overflow-x:auto;">
-						
+
 						<tr>
 							<th>Event Title</th>
 							<th>Score</th>
+							<th>Date</th>
 						</tr>
 						<% for (var key in userscore) { %>
 						<tr>
 							<td><%= userscore[key].quiz_title %></td>
 							<td><%= userscore[key].score %></td>
+							<td><%= userscore[key].dateTaken %></td>
 						</tr>
 
 						<% } %>

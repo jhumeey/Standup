@@ -4,7 +4,6 @@ html, body, h1, h2, h3, h4, h5 {
 
 nav {
   position: relative;
-  background-color: #0000001c!important;
   background: linear-gradient(to bottom, #555553a8, #464849), url('https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-2.32103624.jpg');
 }
 

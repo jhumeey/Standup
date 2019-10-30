@@ -14,7 +14,7 @@ exports.getAllUsers = async (req, res) => {
             res.render("allusers", { users, deleteHandler: "deleteUser();" });
         }
         else {
-            req.flash("error", { message: " Sorry Cannot find users" });
+            req.flash("error", { message: "Sorry Cannot find users" });
         }
     } catch (error) {
         console.log(error.message);
@@ -34,10 +34,12 @@ exports.registerUser = async (req, res) => {
             req.flash("error", { message: "User already registered" });
             res.redirect("/users/create");
         } else {
-            const errors = validationResult(req);
-            // req.errors = validationResult(req).errors;
-            if (!errors.isEmpty()) {
-                req.flash("error", { message: JSON.stringify(errors.msg) })
+            // const errors = validationResult(req);
+            req.errors = validationResult(req).errors;
+            if (req.errors) {
+                for(i=0; i < req.errors.length; i++){
+                      req.flash("error", { message: req.errors[i].msg})
+                }
                 res.redirect("/users/create");
             } else {
                 user = new User(
@@ -102,10 +104,15 @@ exports.loginUser = async (req, res) => {
     }
 
 }
-exports.getUserProfile = function (req, res) {
+exports.getUserProfile = async (req, res) => {
     try {
-        console.log(req.session);
-        res.render("profile", { user: req.session.user });
+        let user = req.session.user;
+        console.log(user);
+        userId = user._id;
+        console.log(userId);
+        let user_details = await User.findById(userId);
+        console.log(user_details);
+        res.render("profile", { user_details });
     } catch (error) {
         console.log(error.message);
     }
@@ -114,8 +121,9 @@ exports.getUserProfile = function (req, res) {
 exports.updateUserByUser = async (req, res) => {
     try {
         const errors = validationResult(req);
+        console.log(errors.msg);
         if (!errors.isEmpty()) {
-            req.flash("error", { message: errors.array() });
+            req.flash("error", { message: errors.msg });
         }
         const body = {
             id: req.body.id,

@@ -18,7 +18,6 @@
 					<h3>User Profile</h3>
 				</div>
 				<div class="profile-container">
-
 					<div class="edit-profile">
 						<div class="profile-heading">
 							<h3>Edit Profile</h3>
@@ -27,13 +26,13 @@
 						<form method="post" action="/users/update">
 							<label for="fname">First Name</label>
 							<br />
-							<input type="text" id="fname" name="firstname" placeholder="Your name.." />
+							<input type="text" id="fname" name="firstname" placeholder="Your name.." value="<%= user_details.firstname %>" required />
 							<br />
 							<label for="lname">Last Name</label>
-							<input type="text" id="lname" name="lastname" placeholder="Your last name.." />
+							<input type="text" id="lname" name="lastname" placeholder="Your last name.." value="<%= user_details.lastname %>"  required/>
 							<br />
 							<label for="email">Email</label>
-							<input type="text" id="email" name="email" placeholder="Your email...." />
+							<input type="text" id="email" name="email" placeholder="Your email...." value="<%= user_details.email %>" required />
 
 							<br />
 							<label for="department">Department</label>
@@ -41,35 +40,31 @@
 								<option value="Technology">Technology</option>
 								<option value="Operations">Operations</option>
 								<option value="Finance">Finance</option>
-							</select>
+							</select required>
 							</br>
-							<input type="hidden" name="id" value="<%= user._id %>" />
-							<!-- <input type="hidden" name="_method" value="put" /> -->
+							<input type="hidden" name="id" value="<%= user_details._id %>" />
 
 							<input type="submit" value="Submit" />
 						</form>
 					</div>
 					<div class="user-details">
 						<div class="user-box">
-							<%if (user.gender === "female") { %>
+							<%if (user_details.gender == "female") { %>
 							<div>
 
 								<img class="w3-circle" src="/assets/images/girl.png" alt="" />
-
-
-								<h2><%= user.firstname +" "+ user.lastname %></h2>
-								<h3><%= user.department %></h3>
-								<h3><%= user.email %></h3>
-								<p><%= user.gender %></p>
+								<h2><%= user_details.firstname +" "+ user_details.lastname %></h2>
+								<h3><%= user_details.department %></h3>
+								<h3><%= user_details.email %></h3>
+								<p><%= user_details.gender %></p>
 
 							</div>
 							<% } else { %>
 							<div>
-
 								<img class="w3-circle" src="/assets/images/boy.png" alt="" />
-								<h2><%= user.firstname +" "+ user.lastname %></h2>
-								<h3><%= user.department %></h3>
-								<h3><%= user.email %></h3>
+								<h2><%= user_details.firstname +" "+ user_details.lastname %></h2>
+								<h3><%= user_details.department %></h3>
+								<h3><%= user_details.email %></h3>
 							</div>
 							<% } %>
 

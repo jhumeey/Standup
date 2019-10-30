@@ -12,9 +12,12 @@
     <% include partials/flashmessage %>
     <div class="mainContainer">
         <div class="content">
-            <% include partials/admin/sidebar %>
-            <div class="scoreContainer">
-               <h3><%= userscore.score %></h3>
+            <% include partials/sidebar %>
+            <div class="innerContainer">
+                <div class="heading">
+                    <h3>User Score</h3>
+                    <h3><%= userscore.score %></h3>
+                </div>
             </div>
             <% include partials/scripts %>
         </div>

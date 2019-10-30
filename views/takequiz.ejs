@@ -39,17 +39,25 @@
 			<% include partials/sidebar %>
 			<div class="innerContainer">
 				<div class="heading">
-					<h3>Quiz</h3>
-					<a class="toplink" href="/activity/questions/<%= quizId %>">Start Quiz</a>
+					<h3 >Quiz</h3>
+
 				</div>
-
-
-
+				<div class="quizContainer">
+					<% for (var key in quiz) { %>
+					<div class="quizImage" >
+						<img src="https://cdn.pixabay.com/photo/2017/01/24/01/13/quiz-2004350_960_720.png" alt="">
+						<h3 style="margin: -10px 10px 22px; font-size: 24px;"><%= quiz[key].title %></h3>
+						<a class="quizBtn" href="/activity/questions/<%= quiz[key]._id %>">Start Quiz</a>
+					</div>
+					<% } %>
+				</div>
 
 			</div>
 		</div>
 	</div>
-
+<script>
+	sessionStorage.setItem("Page2Visited", "True");
+</script>
 	<% include partials/scripts %>
 </body>
 

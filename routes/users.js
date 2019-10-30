@@ -14,7 +14,7 @@ router.get("/create", redirectLogin, UserController.createUserPage)
 //CREATE USER ROUTE-------ADMIN ROUTE
 router.post("/register", [
 	check('firstname').isString().isLength({ min: 5 }).withMessage('Firstname must not be less than 4 characters').matches(/^[A-Z][a-z0-9_-]{4,19}$/),
-	check('lastname').isString().isLength({ min: 5 }).withMessage('Firstname must not be less than 4 characters').matches(/^[A-Z][a-z0-9_-]{4,19}$/),
+	check('lastname').isString().isLength({ min: 5 }).withMessage('Lastname must not be less than 4 characters').matches(/^[A-Z][a-z0-9_-]{4,19}$/),
 	check('email').isEmail().withMessage("Email must be valid"),
 	check('gender').isString().withMessage("A Gender Must be choosen"),
 	check('department').isString().withMessage("A Department must be choosen"),
@@ -33,14 +33,15 @@ router.post("/login", UserController.loginUser);
 router.get("/profile", redirectLogin, UserController.getUserProfile);
 
 //UPDATE USER---------USER ROUTE
-router.post("/update", [
+router.post("/update",
+//  [
 
-	check('firstname').isString().isLength({ min: 5 }).withMessage('Firstname must not be less than 4 characters').matches(/^[A-Z][a-z0-9_-]{4,19}$/),
-	check('lastname').isString().isLength({ min: 5 }).withMessage('Firstname must not be less than 4 characters').matches(/^[A-Z][a-z0-9_-]{4,19}$/),
-	check('email').isEmail().withMessage("Email must be valid"),
-	check('department').isString().withMessage("A Department must be choosen"),
+// 	check('firstname').isString().isLength({ min: 5 }).withMessage('Firstname must not be less than 4 characters'),
+// 	check('lastname').isString().isLength({ min: 5 }).withMessage('Firstname must not be less than 4 characters'),
+// 	check('email').isEmail().withMessage("Email must be valid"),
+// 	check('department').isString().withMessage("A Department must be choosen"),
 
-],
+// ],
 	UserController.updateUserByUser
 );
 

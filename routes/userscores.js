@@ -17,6 +17,7 @@ router.post("/", async (req, res) => {
 			score: req.body.score,
 			event_id: req.body.event_id,
 			event_title: req.body.event_title,
+			dateTaken: req.body.dateTaken
 		});
 		userscores = await userscores.save();
 

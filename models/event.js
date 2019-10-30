@@ -18,6 +18,10 @@ const eventSchema = new mongoose.Schema({
 	},
 	activity: {
 		type: [String]
+	},
+	eventDate: {
+		type: Date,
+		default: Date.now
 	}
 });
 

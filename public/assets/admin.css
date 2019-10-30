@@ -1,7 +1,8 @@
 .innerContainer {
+    position: relative;
     background-color: #f8f8f8;
     width: 85%;
-    margin-left: 199px;
+    margin-left: 15%;
 }
 
 .btn {
@@ -12,6 +13,46 @@
     font: 20px;
     width: 150px;
     padding: 10px;
+}
+
+.quizContainer {
+    background-color: #fff;
+    padding: 10px;
+    margin: 3%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 455px;
+    width: 94%;
+}
+
+.quizImage {
+    text-align: center;
+}
+
+.quizImage a {
+    text-decoration: none;
+    background-color: #4caf50fa;
+    color: #fff;
+    padding: 10px;
+    margin: 10px;
+    width: 150px;
+    border-radius: 5px;
+}
+
+.quizImage img {
+    width: 50%;
+}
+
+.quizImage a:hover {
+    text-decoration: none;
+    color: #4caf50fa;
+    background-color: #fff;
+    padding: 10px;
+    margin: 10px;
+    width: 150px;
+    border-radius: 5px;
 }
 
 .chart {
@@ -49,7 +90,8 @@
     color: #4caf50fa;
     background-color: #ffffff;
 }
-.noactive{
+
+.noactive {
     display: none;
 }
 

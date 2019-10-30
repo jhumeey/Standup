@@ -18,6 +18,9 @@ const Userscores = mongoose.model(
 		},
 		quiz_title: {
 			type: String
+		},
+		dateTaken: {
+			type: Date
 		}
 	}),
 	"UsersScores"

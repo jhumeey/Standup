@@ -34,6 +34,7 @@
 						<label for="description">Description</label>
 						<input type="text" id="description" name="description" placeholder="Description.." />
 						<input type="hidden" id="status" name="status" value="pending" />
+						<input type="hidden" id="eventDate" name="eventDate" value="Date.now()" />
 
 						<input type="submit" value="Submit" />
 					</form>
@@ -42,6 +43,9 @@
 
 		</div>
 	</div>
+	<script>
+		document.getElementById("eventDate").value = Date.now();
+	</script>
 	<% include partials/scripts %>
 </body>
 

@@ -4,6 +4,15 @@ const express = require("express");
 const router = express.Router();
 
 //CREATE A NEW QUIZ ROUTE-----ADMIN ROUTE
+router.get("/createquiz/", redirectLogin, async (req, res) => {
+	try {
+		let user = req.session.user;
+		res.render("quiz", {user});
+	} catch (error) {
+		// req.flash("error", { message: "Sorry cannot get all quizzes" })
+		console.log(error);
+	}
+});
 router.post("/create", async (req, res) => {
 	try {
 		let quiz = new Quiz({
@@ -19,6 +28,7 @@ router.post("/create", async (req, res) => {
 	}
 
 });
+
 
 //GET ALL QUIZZES------ADMIN ROUTE
 router.get("/all", redirectLogin, async (req, res) => {
@@ -82,7 +92,7 @@ router.post("/edit/:id", async (req, res) => {
 			req.flash("error", { message: " Sorry Cannot Edit Quiz" });
 			console.log(err);
 		}
-		req.flash("success", { message: " Quiz Edietd Succesfully" });
+		req.flash("success", { message: " Quiz Edited Succesfully" });
 		res.redirect("/quiz/all/quizzes");
 	});
 });

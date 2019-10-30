@@ -22,9 +22,9 @@ router.post("/", async (req, res) => {
 				console.log(err);
 			}
 		});
-		let quiz = await Quiz.findOne({ event_id: req.body.event_id });
-		let quizId = quiz._id;
-		res.render("takequiz", { user, event_id: req.body.event_id, quizId });
+		let quiz = await Quiz.find({ event_id: req.body.event_id });
+		req.flash("success", { message:"Checked-in Sucessfully" });
+		res.render("takequiz", { expressFlash: req.flash('success', {message: "Checked-in succesfully"}) , user, event_id: req.body.event_id, quiz });
 		console.log(quiz)
 	} catch(error){
 		console.log(error.message);

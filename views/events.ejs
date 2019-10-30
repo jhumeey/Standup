@@ -53,9 +53,9 @@
 
 		.container {
 			position: relative;
-			margin: auto;
+			margin: 20px;
 			overflow: hidden;
-			width: 47%;
+			width: 40%;
 			height: 350px;
 			background: #ffffff;
 			box-shadow: 5px 5px 25px rgba(158, 158, 158, 0.24);
@@ -64,58 +64,17 @@
 
 		p {
 			font-size: 0.6em;
-			color: #ba7e7e;
+			color: #f2f2f2;
 			letter-spacing: 1px;
 		}
 
-		h1 {
-			font-size: 1.2em;
-			color: #000000;
-			margin-top: -5px;
-		}
+		
 
-		h2 {
-			color: #c3a1a0;
-			margin-top: -5px;
-		}
-
-		img {
-			width: 50%;
-			margin-top: 47px;
-		}
-
-		.product {
-			position: absolute;
-			width: 40%;
-			height: 100%;
-			top: 10%;
-			left: 60%;
-			padding: 10px;
-		}
-
-		.product h2 {
-			color: #4e4e4eba;
-			font-size: 22px;
-		}
-
-		.product p {
-			color: #4e4e4eba;
-			font-size: 14px;
-		}
-
-		.desc {
-			text-transform: none;
-			letter-spacing: 0;
-			margin-bottom: 17px;
-			color: #4e4e4e;
-			font-size: 0.7em;
-			line-height: 1.6em;
-			margin-right: 25px;
-			text-align: justify;
-		}
+		
 
 		button {
 			background: #4caf50fa;
+			width: 150px;
 			padding: 10px;
 			display: inline-block;
 			outline: 0;
@@ -130,31 +89,32 @@
 
 		button:hover {
 			background: #fff;
-			color: #4caf50fa; 
+			color: #4caf50fa;
 			transition: all 0.4s ease-in-out;
 		}
 
-		.add {
-			width: 67%;
-		}
-
-		.like {
-			width: 22%;
-		}
-
-
-		.pick {
-			margin-top: 11px;
-			margin-bottom: 0;
-			margin-left: 20px;
-		}
+	.card{
+		margin: 17px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    width: 300px!important;
+	}
+	.card p{
+		font-size: 10px;
+		color: #000000;
+	}
+	.card h5{
+		font-size: 20px;
+		color: #000000;
+	}
 	</style>
 </head>
 
 <body>
 	<div class="mainContainer">
 		<div class="content">
-				<% include partials/sidebar %>
+			<% include partials/sidebar %>
 			<div class="inner-container">
 
 				<div class="heading">
@@ -162,42 +122,39 @@
 				</div>
 				<div class="events-container">
 					<% for(var key in active_events) { %>
-					<div class="container">
-						<div class="images">
-							<img src="https://cdn.pixabay.com/photo/2015/10/21/10/27/calendar-999172_960_720.jpg" />
-						</div>
-						<div class="product">
-							<h1><%= active_events[key].name %></h1>
-							<h2><%= active_events[key].status %></h2>
-							<p class="desc"><%= active_events[key].description %>.</p>
-							<div class="button">
-								<% if (user.event_id.includes(active_events[key]._id.toString())) { %>
-								<button type="button">You are checked-in</button>
-								<%} else { %>
+						<div class="card" style="width: 18rem;">
+							<div class="card-body">
+								<h5 class="card-title"><%= active_events[key].name %></h5>
+								<p class="card-text"><%= active_events[key].description %>.</p>
+								<% if (userDetails.event_id.includes(active_events[key]._id.toString())) { %>
+								<button type="button" style="margin-left: -5px;">You are checked-in</button>
+								<% } else { %>
 								<form method="post" action="/checkin">
 									<button type="submit">Check-in</button>
-									<input type="hidden" name="user_id" value="<%= user._id %>">
+									<input type="hidden" name="user_id" value="<%= userDetails._id %>">
 									<input type="hidden" name="event_id" value="<%= active_events[key]._id %>">
-							
+								
 								</form>
 								<% } %>
 							</div>
-							
 						</div>
-					</div>
-				
-
-
-
 					<% } %>
-
-
-
-
 				</div>
+
 			</div>
 		</div>
-		<% include partials/scripts %>
+
+
+
+
+	</div>
+	<script>
+		if (sessionStorage.getItem("Page2Visited")) {
+			sessionStorage.removeItem("Page2Visited");
+			window.location.reload(true); // force refresh page1
+		}
+	</script>
+	<% include partials/scripts %>
 </body>
 
 </html>

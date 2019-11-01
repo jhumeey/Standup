@@ -1,10 +1,14 @@
 <% if (typeof(error) !== 'undefined' && error.length > 0) { %>
 <div class="alert alert-danger" id="danger-alert">
-    <p> <%= error[0].message %> </p>
+    <% for(var i=0; i < error.length; i++) { %>
+        <li><%= error[i] %></li>
+    <% } %>
 </div>
 <% } %>
 <% if (typeof(success) !== 'undefined' && success.length > 0) { %>
 <div class="alert alert-success" id="success-alert">
-    <p> <%= success[0].message %> </p>
+    <% for(var i=0; i < success.length; i++) { %>
+    <li><%= success[i].msg %></li>
+    <% } %>
 </div>
 <% } %>

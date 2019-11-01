@@ -1,6 +1,8 @@
 const { Event } = require("../models/event");
 const { User } = require("../models/users");
-const { check, validationResult } = require('express-validator');
+const { Activity } = require("../models/activity");
+const { eventValidationRules, validate } = require('../middleware/eventvalidator');
+const { activityValidationRules, validateActivity } = require('../middleware/activityvalidator');
 const redirectLogin = require("../middleware/redirectLogin");
 // const auth = require("../middleware/auth");
 // const lodash = require("lodash");
@@ -9,40 +11,23 @@ const express = require("express");
 const router = express.Router();
 
 //CREATE EVENTS ROUTE------------- Admin ROUTE
-router.post("/events",
-	[
-		check('name').isLength({ min: 4 }).withMessage("Name must be a minimum of 4 characters "),
-		check('description').isLength({ min: 4 }).withMessage("Description must be a  minimum of 4 characters"),
-		check('status').isLength({ min: 4 }).withMessage("Status must be a  minimum of 4 characters"),
-		check('activity').isLength({ min: 4 }).withMessage("Activity must be a  minimum of 4 characters"),
-		check('eventDate').isLength({ min: 4 }).withMessage("Event Date must be a  minimum of 4 characters"),
-	],
+router.post("/events", eventValidationRules(), validateActivity,
 	async (req, res) => {
 		try {
-			req.errors = validationResult(req).errors;
-			if (req.errors) {
-				console.log(req.errors)
-				for (i = 0; i < req.errors.length; i++) {
-					req.flash("error", { message: req.errors[i].msg })
-				}
-				res.redirect("/events/create");
-			} else {
-				let event = new Event({
-					name: req.body.name,
-					description: req.body.description,
-					status: req.body.status,
-					activity: req.body.activity,
-					eventDate: req.body.eventDate
-				});
-				event = await event.save();
-				req.flash("success", { message: "Event Created Succesfully" })
-				res.redirect(302, "/events/all");
+			let event = new Event({
+				name: req.body.name,
+				description: req.body.description,
+				status: req.body.status,
+				activity: req.body.activity,
+				eventDate: req.body.eventDate
+			});
+			event = await event.save();
+			req.flash("success", { message: "Event Created Succesfully" })
+			res.redirect(302, "/events/all");
 
-
-			}
 		} catch (error) {
 			req.flash("error", { message: "Sorry, You cannot create an event" })
-			res.redirect(302, "/events/all");
+			res.redirect(302, "/events/create");
 			console.log(error.message);
 		}
 	});
@@ -87,6 +72,63 @@ router.get("/events/edit/:id", redirectLogin, async (req, res) => {
 		}
 	});
 	res.render("editevent", { event });
+});
+
+//POST EVENT ACTIVITIES ROUTE-------ADMIN ROUTE
+router.post("/events/activity/:id/create", redirectLogin, activityValidationRules(), validate, async (req, res) => {
+	try {
+		let activity = new Activity({
+			name: req.body.name,
+			description: req.body.description,
+			activityType: req.body.activityType,
+			event_id: req.body.event_id
+		});
+		activity = await activity.save();
+		req.flash("success", { message: "Activity Created Succesfully" })
+		res.redirect(302, "/events/all");
+
+	} catch (error) {
+		req.flash("error", { message: "Sorry, You cannot create an event" })
+		res.redirect(302, "/event/activity/" + req.params.id + "/create");
+		console.log(error.message);
+	}
+
+
+});
+//GET EVENT ACTIVITIES ROUTE-------ADMIN ROUTE
+router.get("/events/activity/:id/create", redirectLogin, async (req, res) => {
+	let eventId = req.params.id;
+	let activity = await Activity.find({ "activityType": { $exists: true } })
+	console.log(activity);
+	try {
+	res.render("create activity", { eventId, activity });
+
+	} catch (error) {
+		req.flash("error", { message: "Sorry, You cannot create an event" })
+		res.redirect(302, "/event/activity/" + req.params.id + "/create");
+		console.log(error.message);
+	}
+
+
+});
+
+//GET EVENT ACTIVITIES ROUTE-------ADMIN ROUTE
+router.get("/events/details/:id", redirectLogin, async (req, res) => {
+	try {
+		let eventId = req.params.id;
+		let user = req.session.user;
+		let userId = user._id;
+		const userDetails = await User.findById(userId);
+		const event = await Event.findOne({_id: eventId});
+		const eventActivity = await Activity.find({event_id: eventId});
+		console.log(eventActivity);
+		res.render("event Info", { eventActivity, userDetails, event });
+
+	} catch (error) {
+		console.log(error.message);
+	}
+
+
 });
 
 //EDIT EVENT-----ADMIN ROUTGE

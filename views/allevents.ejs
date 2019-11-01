@@ -83,6 +83,7 @@
 							<th>Name</th>
 							<th>Activity</th>
 							<th>Status</th>
+							<th>Event Date</th>
 							<th>Description</th>
 							<th>Actions</th>
 						</tr>
@@ -91,6 +92,7 @@
 							<td><%= events[key].name %></td>
 							<td><%= events[key].activity %></td>
 							<td><%= events[key].status %></td>
+								<td><%= events[key].eventDate %></td>
 							<td><%= events[key].description %></td>
 							<td class="links">
 								<a class="view" href="/events/<%= events[key]._id %>">

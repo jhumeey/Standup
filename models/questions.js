@@ -3,26 +3,34 @@ const mongoose = require("mongoose");
 const Question = mongoose.model(
 	"Question",
 	new mongoose.Schema({
-		question_text: {
+		question: {
 			type: String,
 			required: true,
 			minlength: 5,
 			maxlength: 50
 		},
-		quiz_id: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: "Quiz"
+		answers: {
+			type: [String],
+			required: true,
+			minlength: 1,
+			maxlength: 50
 		},
-		question_id: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: "Question"
+		correctAnswer: {
+			type: String,
+			required: true,
+			minlength: 1,
+			maxlength: 50
 		},
 		event_id: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "Event"
+		},
+		quiz_id: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "Quiz"
 		}
-	}),
-	"Questions"
+	})
 );
 
 exports.Question = Question;
+

@@ -28,8 +28,15 @@ let UserSchema = mongoose.Schema({
 	},
 	event_id: {
 		type: [String]
+	},
+	activity_id: {
+		type: [String]
 	}
-});
+
+},
+	{
+		timestamps: true
+	});
 
 const User = mongoose.model('User', UserSchema);
 exports.User = User;

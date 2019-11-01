@@ -23,6 +23,9 @@ const eventSchema = new mongoose.Schema({
 		type: Date,
 		default: Date.now
 	}
+},
+{
+	timestamps: true
 });
 
 const Event = mongoose.model("Event", eventSchema);

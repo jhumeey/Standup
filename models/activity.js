@@ -1,36 +1,36 @@
 const mongoose = require("mongoose");
 
-const Question = mongoose.model(
-	"Question",
+const Activity = mongoose.model(
+	"Activity",
 	new mongoose.Schema({
-		question: {
+		name: {
 			type: String,
 			required: true,
 			minlength: 5,
-			maxlength: 50
+			maxlength: 500
+
 		},
-		answers: {
-			type: [String],
-			required: true,
-			minlength: 1,
-			maxlength: 50
-		},
-		correctAnswer: {
+		activityType: {
 			type: String,
 			required: true,
-			minlength: 1,
-			maxlength: 50
+			minlength: 3,
+			maxlength: 500
+		},
+		description: {
+			type: String,
+			required: true,
+			minlength: 5,
+			maxlength: 500
 		},
 		event_id: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "Event"
-		},
-		quiz_id: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: "Quiz"
 		}
-	})
+	},
+		{
+			timestamps: true
+		})
 );
 
-exports.Question = Question;
+exports.Activity = Activity;
 

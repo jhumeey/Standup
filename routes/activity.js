@@ -1,92 +1,108 @@
+const { Activity } = require("../models/activity");
 const redirectLogin = require("../middleware/redirectLogin");
-const { Question } = require("../models/activity");
 const express = require("express");
-const { check } = require('express-validator');
-let activityController = require('../controllers/activity');
 const router = express.Router();
 
-
-//CREATE A QUESTION--------------------------ADMIN ROUTE
-router.post("/createquestion/:id", [
-	check('question').isLength({ min: 5 }),
-	check('answers').isLength({ min: 5 }),
-	check('correctAnswer').isLength({ min: 5 }),
-], activityController.createQuestion);
-
-// GET CREATE QUESTION PAGE-----------ADMIN ROUTE
-router.get("/createquestion/:id", redirectLogin, activityController.getCreateQuestionPage);
-
-
-
-//GET QUESTION BY ID----ADMIN ROUTE
-router.get("/questions/:id", redirectLogin, activityController.getQuestionById);
-
-//GET EDIT QUESTION ROUTE----ADMIN ROUTE
-router.get("/edit/:id", redirectLogin, activityController.editQuestionPage);
-
-// //EDIT QUESTION--------ADMIN ROUTE
-// router.post("/edit/:id", validate, async (req, res) => {
-// 	try{
-// 		const errors = validationResult(req);
-// 		if (!errors.isEmpty()) {
-// 			return res.status(422).json({ errors: errors.array() });
+// router.post("/create", 
+// async (req, res) => {
+// 		try {
+// 			let quiz = new Quiz({
+// 				title: req.body.title,
+// 				user_id: req.body.user_id,
+// 				event_id: req.body.event_id
+// 			});
+// 			console.log(quiz);
+// 			quiz = await quiz.save();
+// 			req.flash("success", { message: " Quiz created succesfully" });
+// 			res.redirect(302, "/quiz/allquizzes");
+// 		} catch (error) {
+// 			console.log(error.message)
 // 		}
-// 		const body = {
-// 			question: req.body.question,
-// 			answers: req.body.answers,
-// 			correctAnswer: req.body.correctAnswer
-// 		};
+// 	// }
 
-// 		await Question.findByIdAndUpdate(req.params.id, body, function (err, question) {
-// 			let quiz_id = question.quiz_id;
-// 			if (err) {
-// 				console.log(err);
-// 			}
-// 			req.flash("success", { message: "Question edited succesfully" });
-// 			res.redirect("/activity/question/" + quiz_id);
-// 		});
-// 	} catch(error){
-// 		console.log(error.message);
-// 	}
+
 // });
 
-//DELETE QUESTION-----ADMIN ROUTE
-router.get("/delete/:id", redirectLogin, async (req, res) => {
+
+//GET ALL QUIZZES------ADMIN ROUTE
+router.get("/all/", redirectLogin, async (req, res) => {
 	try {
-		await Quiz.findByIdAndRemove(req.params.id, function (err) {
+		const activities = await Activity.find().sort();
+		res.render("activities", { activities });
+	} catch (error) {
+		console.log(error);
+	}
+});
+
+//GET QUIZ BY ID-----ADMIN ROUTE
+router.get("/view /:id", redirectLogin, async (req, res) => {
+	try {
+		const activity = await Activity.findById(req.params.id, function (err) {
 			if (err) {
 				console.log(err);
 			}
-			res.redirect("/events/all");
 		});
+		res.render("activity details", { activity });
 	} catch (error) {
-		console.log(error.meassage);
+		console.log(error.message);
 	}
 });
 
-//ALL QUESTION BY QUIZ ID PAGE------ADMIN ROUTE
-router.get("/question/:id", redirectLogin, async (req, res) => {
+router.get("/activity/create/:id/question", redirectLogin, async (req, res) => {
 	try {
-		let quizId = req.params.id;
-		let query = { quiz_id: quizId };
-		const questions = await Question.find(query).sort();
-		res.render("questions", { questions });
+		const activity = await Activity.findById(req.params.id, function (err) {
+			if (err) {
+				console.log(err);
+			}
+		});
+		res.render("edit activity", { quiz });
 	} catch (error) {
-		console.log(error);
+		console.log(error.message)
 	}
-
-
 });
 
-//ALL QUESTION PAGE------ADMIN ROUTE
-router.get("/questions/all", redirectLogin, async (req, res) => {
+//GET EDIT QUIZ-------ADMIN ROUTE
+router.get("/activity/edit/:id", redirectLogin, async (req, res) => {
 	try {
-		const question = await Question.find().sort();
-		res.render("questions", { question });
+		const activity = await Activity.findById(req.params.id, function (err) {
+			if (err) {
+				console.log(err);
+			}
+		});
+		res.render("edit activity", { quiz });
 	} catch (error) {
-		console.log(error);
+		console.log(error.message)
 	}
-
-
 });
+
+//EDIT QUIZ--------ADMIN ROUTE
+router.post("activity/edit/:id", async (req, res) => {
+	const body = {
+		name: req.body.name,
+		description: req.body.description,
+		activityType: req.body.activityType,
+		event_id: req.body.event_id
+	};
+	await Activity.findByIdAndUpdate(req.params.id, body, function (err) {
+		if (err) {
+			req.flash("error", { message: " Sorry Cannot Edit Activity" });
+			console.log(err);
+		}
+		req.flash("success", { message: " Quiz Edited Succesfully" });
+		res.redirect("/activity/all/");
+	});
+});
+
+//DELETE QUIZ-------ADMIN ROUTE
+router.get("/delete/:id", redirectLogin, async (req, res) => {
+	await Activity.findByIdAndRemove(req.params.id, function (err) {
+		if (err) {
+			req.flash("error", { message: " Sorry Cannot Delete Quiz" });
+			console.log(err);
+		}
+		req.flash("success", { message: " Quiz Deleted Succesfully" });
+		res.redirect("/activity/all/");
+	});
+});
+
 module.exports = router;

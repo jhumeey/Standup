@@ -33,34 +33,26 @@ exports.registerUser = async (req, res) => {
         if (user) {
             req.flash("error", { message: "User already registered" });
             res.redirect("/users/create");
-        } else {
-            req.errors = validationResult(req).errors;
-            if (req.errors) {
-                for(i=0; i < req.errors.length; i++){
-                      req.flash("error", { message: req.errors[i].msg})
-                }
-                res.redirect("/users/create");
-            } else {
-                user = new User(
-                    _.pick(req.body, [
-                        "firstname",
-                        "lastname",
-                        "email",
-                        "password",
-                        "gender",
-                        "department",
-                        "role"
-                    ])
-                );
-                const salt = await bcrypt.genSalt(10);
-                user.password = await bcrypt.hash(user.password, salt);
-
-                await user.save();
-                req.flash("success", { message: `${user.firstname}'s account created successfully!` });
-                res.redirect("/users/all");
-            }
-
         }
+            user = new User(
+                _.pick(req.body, [
+                    "firstname",
+                    "lastname",
+                    "email",
+                    "password",
+                    "gender",
+                    "department",
+                    "role"
+                ])
+            );
+            const salt = await bcrypt.genSalt(10);
+            user.password = await bcrypt.hash(user.password, salt);
+
+            await user.save();
+
+            req.flash("success", { message: `${user.firstname}'s account created successfully!` });
+            res.redirect("/users/all");
+       
 
     } catch (error) {
         req.flash("error", { message: "error saving user" });
@@ -68,6 +60,7 @@ exports.registerUser = async (req, res) => {
         console.log(`Error saving user: ${error.message}`);
     }
 }
+
 exports.loginUserPage = (req, res) => {
     try {
         res.render("login");

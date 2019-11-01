@@ -1,5 +1,5 @@
 const { Question } = require("../models/activity");
-const { Quiz } = require("../models/quiz");
+const { Activity} = require("../models/activity");
 const { validationResult } = require('express-validator');
 
 exports.createQuestion = async (req, res) => {

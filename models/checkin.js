@@ -12,9 +12,8 @@ const Check_in = mongoose.model(
 			type: mongoose.Types.ObjectId,
 			ref: "Event"
 		},
-		datetime: {
-			type: Date,
-			default: Date.now
+		checkin_Date: {
+			type: Date
 		}
 	})
 );

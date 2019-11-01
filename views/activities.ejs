@@ -17,20 +17,26 @@
 			<% include partials/admin/sidebar %>
 			<div class="innerContainer">
 				<div class="heading">
-					<h3>All Quizzes</h3>
+					<h3>All Activities</h3>
 				</div>
 				<div class="tableContainer">
 					<table id="table" style="overflow-x:auto;">
 
 						<tr>
-							<th>Title</th>
+							<th>Name</th>
+							<th>Description</th>
+							<th>Activity Type</th>
+							<th>Created Date</th>
 							<th>Actions</th>
 						</tr>
-						<% for (var key in quizzes) { %>
+						<% for (var key in activities) { %>
 						<tr>
-							<td><%= quizzes[key].title %></td>
+							<td><%= activities[key].name %></td>
+							<td><%= activities[key].description %></td>
+							<td><%= activities[key].activityType %></td>
+							<td><%= activities[key].createdAt %></td>
 							<td class="links">
-								<a href="/quiz/<%= quizzes[key]._id %>"><i class="fa fa-eye" aria-hidden="true"></i></a>
+								<a href="/activity/view/<%= activities[key]._id %>"><i class="fa fa-eye" aria-hidden="true"></i></a>
 							</td>
 						</tr>
 

@@ -1,7 +1,7 @@
 const express = require("express");
 let router = express.Router();
 let UserController = require('../controllers/users');
-const { check } = require('express-validator');
+const { userValidationRules, validate } = require('../middleware/validator');
 const redirectLogin = require("../middleware/redirectLogin");
 
 
@@ -12,15 +12,7 @@ router.get("/all", redirectLogin, UserController.getAllUsers)
 router.get("/create", redirectLogin, UserController.createUserPage)
 
 //CREATE USER ROUTE-------ADMIN ROUTE
-router.post("/register", [
-	check('firstname').isString().isLength({ min: 5 }).withMessage('Firstname must not be less than 4 characters').matches(/^[A-Z][a-z0-9_-]{4,19}$/),
-	check('lastname').isString().isLength({ min: 5 }).withMessage('Lastname must not be less than 4 characters').matches(/^[A-Z][a-z0-9_-]{4,19}$/),
-	check('email').isEmail().withMessage("Email must be valid"),
-	check('gender').isString().withMessage("A Gender Must be choosen"),
-	check('department').isString().withMessage("A Department must be choosen"),
-	check('role').isString().withMessage("An Option must be selected"),
-	check('password').isLength({ min: 5 }).withMessage("Password must not be less than 5 characters"),
-],
+router.post("/register", userValidationRules(), validate,
 	UserController.registerUser)
 
 //GET LOGIN PAGE------------USER ROUTE
@@ -49,15 +41,16 @@ router.post("/update",
 router.get("/edit/:id", redirectLogin, UserController.getEditUserDetailsPage);
 
 //EDIT USER ROUTE---------ADMIN ROUTE
-router.post("/edit", [
-	check('firstname').isString().isLength({ min: 5 }).withMessage('Firstname must not be less than 4 characters').matches(/^[A-Z][a-z0-9_-]{4,19}$/),
-	check('lastname').isString().isLength({ min: 5 }).withMessage('Firstname must not be less than 4 characters').matches(/^[A-Z][a-z0-9_-]{4,19}$/),
-	check('email').isEmail().withMessage("Email must be valid"),
-	check('gender').isString().withMessage("A Gender Must be choosen"),
-	check('department').isString().withMessage("A Department must be choosen"),
-	check('role').isString().withMessage("An Option must be selected"),
-	check('password').isLength({ min: 5 }).withMessage("Password must not be less than 5 characters"),
-],
+router.post("/edit",
+//  [
+// 	check('firstname').isString().isLength({ min: 5 }).withMessage('Firstname must not be less than 4 characters').matches(/^[A-Z][a-z0-9_-]{4,19}$/),
+// 	check('lastname').isString().isLength({ min: 5 }).withMessage('Firstname must not be less than 4 characters').matches(/^[A-Z][a-z0-9_-]{4,19}$/),
+// 	check('email').isEmail().withMessage("Email must be valid"),
+// 	check('gender').isString().withMessage("A Gender Must be choosen"),
+// 	check('department').isString().withMessage("A Department must be choosen"),
+// 	check('role').isString().withMessage("An Option must be selected"),
+// 	check('password').isLength({ min: 5 }).withMessage("Password must not be less than 5 characters"),
+// ],
 	UserController.editUserDetails
 );
 

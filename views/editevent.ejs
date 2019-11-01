@@ -29,13 +29,18 @@
 						<input type="text" id="activity" name="activity" placeholder="Activity...."
 							value="<%= event.activity %>" />
 						<br />
+						
 						<label for="answer 3">Description</label>
 						<input type="text" id="description" name="description" placeholder="Description..."
 							value="<%= event.description %>" />
 						<br />
+						<label for="Event Date">Event Date</label>
+						<br>
+						<input type="date" name="eventDate" value="<%= event.eventDate %>">
+						<br>
 						<label for="answer 3">Status</label>
 						<select id="department" name="status" required>
-							<option selected value="choose">Choose....</option>
+							<option value="choose">Choose....</option>
 							<option value="pending">Pending</option>
 							<option value="active">Active</option>
 						</select>

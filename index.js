@@ -16,7 +16,7 @@ const activity = require("./routes/activity");
 const checkin = require("./routes/checkin");
 const events = require("./routes/event");
 const userscores = require("./routes/userscores");
-const quiz = require("./routes/quiz");
+const questions = require("./routes/question");
 const userresponses = require("./routes/userresponses");
 
 if (!config.get("jwtPrivateKey")) {
@@ -79,8 +79,6 @@ app.use("/", events);
 app.use("/", userscores);
 app.use("/admin", admin);
 app.use("/activity", activity);
-app.use("/checkin", checkin);
-app.use("/quiz", quiz);
 app.use("/userresponses", userresponses);
 app.use(function (err, res) {
 	res.status(422).send({ error: err.message });

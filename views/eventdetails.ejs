@@ -17,7 +17,7 @@
 			<div class="innerContainer">
 				<div class="heading">
 					<h3>View Event</h3>
-					<a class="toplink" href="/quiz/create/quiz/<%= event._id %>">Create Quiz</a>
+					<a class="toplink" href="/events/activity/<%= event._id %>/create">Create Activity</a>
 				</div>
 				<div class="tableContainer">
 					<table id="table" style="overflow-x:auto;">
@@ -26,6 +26,7 @@
 							<th>Name</th>
 							<th>Activity</th>
 							<th>Status</th>
+							<th>Event Date</th>
 							<th>Description</th>
 							<th>Actions</th>
 						</tr>
@@ -33,6 +34,7 @@
 							<td><%= event.name %></td>
 							<td><%= event.activity %></td>
 							<td><%= event.status %></td>
+							<td><%= event.eventDate%></td>
 							<td><%= event.description %></td>
 							<td>
 								<a href="/events/edit/<%= event._id %>">

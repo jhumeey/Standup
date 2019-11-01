@@ -13,6 +13,16 @@
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet"
 		id="bootstrap-css" />
 </head>
+<% if (userDetails.event_id.includes(active_events[key]._id.toString())) { %>
+<button type="button" style="margin-left: -5px;">You are checked-in</button>
+<% } else { %>
+<form method="post" action="/checkin">
+	<button type="submit">Check-in</button>
+	<input type="hidden" name="user_id" value="<%= userDetails._id %>">
+	<input type="hidden" name="event_id" value="<%= active_events[key]._id %>">
+
+</form>
+<% } %>
 
 <body>
 	<div class="mainContainer">

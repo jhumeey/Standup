@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const _ = require("lodash");
 const { Userscores, validate } = require("../models/userscores");
+
 const redirectLogin = require("../middleware/redirectLogin");
 const { Quiz } = require("../models/quiz");
 const auth = require("../middleware/auth");

@@ -1,6 +1,7 @@
 const { Event } = require("../models/event");
 const { User } = require("../models/users");
 const { Activity } = require("../models/activity");
+const { Userscores} = require("../models/userscores");
 const { eventValidationRules, validate } = require('../middleware/eventvalidator');
 const { activityValidationRules, validateActivity } = require('../middleware/activityvalidator');
 const redirectLogin = require("../middleware/redirectLogin");
@@ -81,6 +82,7 @@ router.post("/events/activity/:id/create", redirectLogin, activityValidationRule
 			name: req.body.name,
 			description: req.body.description,
 			activityType: req.body.activityType,
+			instructions: req.body.instructions,
 			event_id: req.body.event_id
 		});
 		activity = await activity.save();
@@ -122,7 +124,7 @@ router.get("/events/details/:id", redirectLogin, async (req, res) => {
 		const event = await Event.findOne({_id: eventId});
 		const eventActivity = await Activity.find({event_id: eventId});
 		console.log(eventActivity);
-		res.render("event Info", { eventActivity, userDetails, event });
+		res.render("event Info", { eventActivity, userDetails, event});
 
 	} catch (error) {
 		console.log(error.message);
@@ -130,6 +132,33 @@ router.get("/events/details/:id", redirectLogin, async (req, res) => {
 
 
 });
+
+// //GET EVENT ACTIVITIES ROUTE-------ADMIN ROUTE
+// router.get("/events/activity/:id/userstatus", redirectLogin, async (req, res) => {
+// 	try {
+// 		let eventId = req.params.id;
+		
+// 		let userscore = await Userscores.findOne({ event_id: req.body.event_id });
+// 		if (!userscore) {
+// 			req.flash("error", { message: "You have accessed thid activity already" });
+// 			res.redirect("/events");
+
+// 		}
+// 	   	    userscore = new Userscores({
+// 			score: req.body.score,
+// 			activity_id: req.body.event_id,
+// 		});
+// 		userscore = await userscore.save();
+
+// 		req.flash("error", { message: "You have checked-in to this activity" });
+// 		res.redirect("/events");
+
+// 	} catch (error) {
+// 		console.log(error.message);
+// 	}
+
+
+// });
 
 //EDIT EVENT-----ADMIN ROUTGE
 router.post("/events/edit/:id", async (req, res) => {

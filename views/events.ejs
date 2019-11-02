@@ -68,9 +68,9 @@
 			letter-spacing: 1px;
 		}
 
-		
 
-		
+
+
 
 		a {
 			text-align: center;
@@ -83,7 +83,6 @@
 			border: 0;
 			margin: -1px;
 			border-radius: 5px;
-			text-transform: uppercase;
 			letter-spacing: 1px;
 			color: #f5f5f5;
 			cursor: pointer;
@@ -96,24 +95,7 @@
 			transition: all 0.4s ease-in-out;
 		}
 
-	.card{
-		margin: 17px;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #fff;
-    width: 300px!important;
-	}
-	.card p{
-		font-size: 13px;
-		color: #000000;
-	}
-	.card h5{
-		font-size: 20px;
-		color: #000000;
-	}
-	.card img{
-		width: 90%;
-	}
+		
 	</style>
 </head>
 
@@ -128,16 +110,16 @@
 				</div>
 				<div class="events-container">
 					<% for(var key in active_events) { %>
-						<div class="card" style="width: 18rem;">
-							<img src="https://cdn.pixabay.com/photo/2016/11/21/20/03/calendar-1847346_960_720.png">
-							<div class="card-body">
-								<h5 class="card-title "><%= active_events[key].name %></h5>
-								<p class="card-text" id="card-text"><%= active_events[key].description %>.</p>
-								<p class="date"><%= active_events[key].eventDate %></p>
-								<a href="/events/details/<%= active_events[key]._id %>">view Details</a>
-								
-							</div>
+					<div class="card">
+						<img src="/assets/images/event 480.png" class="card-img-top img-fluid">
+						<div class="card-body">
+							<h5 class="card-title "><%= active_events[key].name %></h5>
+							<p class="card-text" id="card-text"><%= active_events[key].description %>.</p>
+							<p class="date"><%= active_events[key].eventDate %></p>
+							<a href="/events/details/<%= active_events[key]._id %>">View Details</a>
+
 						</div>
+					</div>
 					<% } %>
 				</div>
 

@@ -38,32 +38,29 @@
 		<div class="content">
 			<% include partials/sidebar %>
 			<div class="innerContainer">
-					<% if(!quiz.length) { %>
-					<div class="heading">
-						<h3>You do not have any quiz for this event</h3>
-					</div>
-					<% } else { %>
 				<div class="heading">
-					<h3 >Quiz</h3>
+					<h3>Activity Instructions</h3>
 
 				</div>
 				<div class="quizContainer">
-					<% for (var key in quiz) { %>
-					<div class="quizImage" >
-						<img src="https://cdn.pixabay.com/photo/2017/01/24/01/13/quiz-2004350_960_720.png" alt="">
-						<h3 style="margin: -10px 10px 22px; font-size: 24px;"><%= quiz[key].title %></h3>
-						<a class="quizBtn" href="/activity/questions/<%= quiz[key]._id %>">Start Quiz</a>
+					<div class="card">
+						<img src="https://cdn.pixabay.com/photo/2016/11/21/20/03/calendar-1847346_960_720.png">
+						<div class="card-body">
+							<h5 class="card-title "><%= activity.instructions %></h5>
+							<a href="/activity/startquiz/<%= activity.id %> ">Start Quiz</a>
+
+						</div>
 					</div>
-					<% } %>
+
 				</div>
-				<% } %>
+
 
 			</div>
 		</div>
 	</div>
-<script>
-	sessionStorage.setItem("Page2Visited", "True");
-</script>
+	<script>
+		sessionStorage.setItem("Page2Visited", "True");
+	</script>
 	<% include partials/scripts %>
 </body>
 

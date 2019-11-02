@@ -8,20 +8,18 @@ const Userscores = mongoose.model(
 			type: Number,
 			required: true
 		},
-		quiz_id: {
+		activity_id: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "Quiz"
+			ref: "Activity"
 		},
 		user_id: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "User"
 		},
-		quiz_title: {
-			type: String
-		},
-		dateTaken: {
-			type: Date
-		}
+		
+	},
+	{
+		timestamps: true
 	}),
 	"UsersScores"
 );

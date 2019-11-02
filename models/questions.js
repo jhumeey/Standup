@@ -21,13 +21,9 @@ const Question = mongoose.model(
 			minlength: 1,
 			maxlength: 50
 		},
-		event_id: {
+		activity_id: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "Event"
-		},
-		quiz_id: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: "Quiz"
+			ref: "Activity"
 		}
 	})
 );

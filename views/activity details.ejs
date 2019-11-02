@@ -16,14 +16,14 @@
 			<% include partials/admin/sidebar %>
 			<div class="innerContainer">
 				<div class="heading">
-					<h3>View Quiz</h3>
+					<h3>View Activity</h3>
 					<a class="toplink" href="/activity/create/<%= activity._id %>/question">Create Question</a>
 				</div>
 				<div class="tableContainer">
-					
 					<table id="table" style="overflow-x:auto;">
 						<tr>
 							<th>Name</th>
+							<th>Instructions</th>
 							<th>Description</th>
 							<th>Activity Type</th>
 							<th>Created Date</th>
@@ -31,6 +31,7 @@
 						</tr>
 						<tr>
 							<td><%= activity.name %></td>
+							<td><%= activity.instructions %></td>
 							<td><%= activity.description %></td>
 							<td><%= activity.activityType %></td>
 							<td><%= activity.createdAt %></td>

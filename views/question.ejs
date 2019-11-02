@@ -20,7 +20,7 @@
 
 				<div class="formContainer">
 					<h4>Create A Question</h4>
-					<form method="post" action="/activity/createquestion/<%= quiz_id %>">
+					<form method="post" action="/activity/create/<%= activityId %>/question">
 						<div class="form-group col-md-12">
 							<label for="Question">Question</label>
 							<input type="text" id="question" name="question" placeholder="Question.." />
@@ -47,10 +47,9 @@
 							</div>
 						</div>
 						<div class="hidden">
-							<input type="hidden" id="event id" name="event_id" value="<%= event_id %>">
-							<input type="hidden" id="quiz id" name="quiz_id" value="<%= quiz_id %>">
+							<input type="hidden" id="activity id" name="activity_id" value="<%= activityId %>">
 						</div>
- <br>
+						<br>
 						<input type="submit" value="Submit" />
 					</form>
 				</div>

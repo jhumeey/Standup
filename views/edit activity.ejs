@@ -18,13 +18,28 @@
 					<h3>Edit Quiz</h3>
 				</div>
 				<div class="formContainer">
-					<form method="post" action="quiz/edit/<%= quiz._id %>">
-						<label for="Name">Name</label>
-						<br />
-						<input type="text" id="Question" name="Question" placeholder="Question.."
-							value="<%= activity.name %>" />
-						<br />
-						<input type="hidden" id="event id" name="event_id" value="<%= activity.event_id %>" />
+					<form method="post" action="/activity/edit/<%= activity._id %>">
+						<div class="form-row">
+							<div class="form-group col-md-12">
+								<label for="Activity Name">Activity Name</label>
+								<input type="text" class="form-control" id="name" name="name" placeholder="Activity Name" value="<%= activity.name %>" required>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="Description">Description</label>
+								<input type="text" class="form-control" id="description" name="description" placeholder="description" value="<%= activity.description %>" required>
+						
+							</div>
+							<div class="form-group col-md-6">
+								<label for="activity Type">Activity Type</label>
+						
+								<select name="activityType" id="activityType">
+									<option value="<%= activity.activityType %>"><%= activity.activityType %>
+									</option>
+								</select>
+								<input type="hidden" name="event_id" value="<%= activity.event_id %>">
+							</div>
 						<button type="submit" class="btn">Submit</button>
 					</form>
 				</div>

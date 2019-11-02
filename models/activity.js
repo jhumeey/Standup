@@ -22,6 +22,10 @@ const Activity = mongoose.model(
 			minlength: 5,
 			maxlength: 500
 		},
+		instructions: {
+			type: String,
+			required: true
+		},
 		event_id: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "Event"

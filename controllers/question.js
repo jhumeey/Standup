@@ -5,11 +5,6 @@ const { validationResult } = require('express-validator');
 exports.createQuestion = async (req, res) => {
     try {
         let quizid = req.params.id;
-        // const errors = validationResult(req);
-        // if (!errors.isEmpty()) {
-        // 	console.log(json({ errors: errors.array() }));
-        // }
-
         let question = new Question({
             event_id: req.body.event_id,
             quiz_id: req.body.quiz_id,

@@ -36,21 +36,10 @@
                         <% } %>
                         <h3>Activities</h3>
                         <% for (var key in eventActivity) { %>
-                            <% if (userDetails.activity_id.includes(eventActivity[key]._id.toString()) ) { %>
-                                <p> Activity Taken</p>
-                            <% } else { %>
-                                <p>
-                                    <% if ( eventActivity[key].activityType == "Quiz" || "quiz" ) { %>
-                                        <span><i></i></span><%= eventActivity[key].activityType %> <span><a
-                                            href="/activity/questions/<%= eventActivity[key]._id %>">Start</a></span>
-                                <% } else { %>
-                                <span><i></i></span><%= eventActivity[key].activityType %> <span><a
-                                        href="activity/poll/<%= eventActivity[key]._id %>">Start</a></span>
-                                <% } %>
-                                </p>
-                            <% } %>
+                     
+                        <li><%= eventActivity[key].activityType %> <span> <a href="/activity/details/<%=eventActivity[key]._id %>">
+                                    View Activity</a></span></li>
                         <% } %>
-
                     </div>
                 </div>
             </div>

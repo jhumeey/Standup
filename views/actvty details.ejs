@@ -24,11 +24,12 @@
                         <div class="card-body">
                             <h5 class="card-title "><%= activity.name %></h5>
                             <p class="card-text" id="card-text"><%= activity.description %>.</p>
-                            <p class="date"><%= activity.activityType %></p>
-                            <% if ( activity.activityType.toLowerCase() == "quiz") { %>
-                            <a href="/activity/quiz/<%= activity._id %>">View Instructions</a>
+                            <p class="card-text"><%= activity.activityType %></p>
+                            <p class="card-text"><%= activity.instructions %></p>
+                            <% if ( activity.activityType.toLowerCase() == "quiz" && userscore.length != 0 ) { %>
+                        <a class="btn" href="/activity/start<%= activity.activityType.toLowerCase() %>/<%= activity.id %> ">Start <%= activity.activityType.toLowerCase() %> </a>
                             <% } else { %>
-                            <a href="/activity/poll/<%= activity._id %>">View Instructions</a>
+                            <a class="btn" href="/activity/start<%= activity.activityType.toLowerCase() %>/<%= activity.id %> ">Start <%= activity.activityType.toLowerCase() %></a>
                             <% } %>
                         </div>
                     </div>

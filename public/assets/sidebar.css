@@ -22,12 +22,26 @@ nav .active {
 
 .logo {
   color: #fff;
-}
+  text-align: center;
+  text-decoration: none;
 
+}
+.logo:hover {
+  text-decoration: none;
+  color: #fff;
+}
+.logo-heading{
+  text-align: center;
+}
 .alink {
+  text-decoration: none;
   font-size: 14px;
 padding: 10px;
 margin-bottom: 10px;
+}
+.alink:hover{
+  text-decoration: none;
+  color: #fff;
 }
 
 .alink i {

@@ -15,6 +15,7 @@
 }
 
 .card-body {
+    border: none;
     padding: 10px;
 }
 
@@ -24,6 +25,10 @@
     line-height: 1.5;
     font-size: 13px;
     color: #6c757d;
+}
+.card li{
+border: none !important;
+margin: 10px;
 }
 
 .card h5 {
@@ -44,6 +49,25 @@
     width: 150px;
     padding: 10px;
 }
+
+.secondary-link {
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    text-decoration: none;
+    text-align: center;
+    background-color: #ffffff;
+    color: #4caf50fa;
+    width: 150px;
+}
+.secondary-link:hover{
+    background-color: #4caf50fa;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+
 
 .quizContainer {
     background-color: #fff;

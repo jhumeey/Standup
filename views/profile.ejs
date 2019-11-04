@@ -49,14 +49,13 @@
 					</div>
 					<div class="user-details">
 						<div class="user-box">
-							<%if (user_details.gender == "female") { %>
+							<%if (user_details.gender.toLowerCase() == "female") { %>
 							<div>
 
 								<img class="w3-circle" src="/assets/images/girl.png" alt="" />
 								<h2><%= user_details.firstname +" "+ user_details.lastname %></h2>
 								<h3><%= user_details.department %></h3>
 								<h3><%= user_details.email %></h3>
-								<p><%= user_details.gender %></p>
 
 							</div>
 							<% } else { %>

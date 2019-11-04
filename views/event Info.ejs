@@ -6,44 +6,95 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <% include partials/links %>
+    <style>
+    #table {
+  font-family: 'Raleway', sans-serif!important;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#table td, #table th #table te {
+  border: none;
+  padding: 8px;
+}
+#table tr:nth-child(even){
+  background-color: #ffffff;
+}
+#table tr:nth-child(odd){
+  background-color: #ddd;}
+
+#table tr:nth-child(even):hover {background-color: #ddd;}
+#table tr:nth-child(odd):hover {background-color: #fff;}
+
+#table th {
+  padding: 12px 10px 12px;
+  text-align: left;
+  color: white;
+}
+#table tr:last-child td:first-child {
+    border-bottom-left-radius: 5px;
+}
+
+#table tr:last-child td:last-child {
+    border-bottom-right-radius: 5px;
+}
+.tableContainer{
+  border-radius: 5px;
+  background-color: #fff;
+  margin: 10px;
+  padding:20px 20px 10px;
+}
+    </style>
 </head>
 
 <body>
-    <% include partials/flashmessage %>
+    <% include partials/flashmessage%>
     <div class="mainContainer">
         <div class="content">
-            <% include partials/admin/sidebar %>
+            <% include partials/sidebar %>
             <div class="innerContainer">
                 <div class="heading">
                     <h3>Event Details</h3>
                 </div>
 
-                <div class="card" style="width: 18rem;">
+                <div class="card">
+                    <div class="card-header">
+                     <%= event.name %>
+                    </div>
                     <div class="card-body">
-
-                        <h5 class="card-title "><%= event.name %></h5>
+                        
                         <p class="card-text" id="card-text"><%= event.description %>.</p>
-                        <p class="date"><%= event.eventDate %></p>
+                    </div>
+                    <div class="card-header">
+                        Activities
+                    </div>
+                        <% for (var key in eventActivity) { %>
+                            <table id="table" style="width:100%">
+                                <tr>
+                                    <th><%= eventActivity[key].activityType %>:</th>
+                                    <td><a class="secondary-link" href="/activity/details/<%=eventActivity[key]._id %>">
+                                        View Activity</a></td>
+                                </tr>
+                            </table>
+
+                        <% } %>
+
+                    <div class="card-body">
                         <% if (userDetails.event_id.includes(event._id.toString())) { %>
                         <h3>You are checked-in</h3>
                         <% } else { %>
                         <form method="post" action="/events/checkin">
-                            <button type="submit">Check-in</button>
+                            <input type="submit" value="Check-in">
                             <input type="hidden" name="user_id" value="<%= userDetails._id %>">
                             <input type="hidden" name="event_id" value="<%= event._id %>">
                             <input type="hidden" name="checkin_Date" value="Date.now()">
                         </form>
                         <% } %>
-                        <h3>Activities</h3>
-                        <% for (var key in eventActivity) { %>
-                     
-                        <li><%= eventActivity[key].activityType %> <span> <a href="/activity/details/<%=eventActivity[key]._id %>">
-                                    View Activity</a></span></li>
-                        <% } %>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <% include partials/scripts %>
 </body>

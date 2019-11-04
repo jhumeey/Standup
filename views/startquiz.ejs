@@ -19,7 +19,9 @@
 		.noactive {
 			display: none;
 		}
-
+.options{
+	padding: 10px 20px;
+}
 		.active {
 			display: block;
 		}
@@ -31,6 +33,8 @@
 			
 
 		}
+		/* .radio-big{ width: 10px;
+			height: 10px } */
 		.question-container h3 {
 			padding: 10px 10px;
 		}
@@ -71,11 +75,11 @@
 							<input type="hidden" name="activity_id" class="check" value="<%= question[key].activity_id %>">
 							<input type="hidden" name="question_id[]" class="check" value="<%= question[key]._id %>">
 							<section class="options">
-								<input type="radio" onchange="onChange(this)" name="option"
+								<input type="radio" class="radio-big" onchange="onChange(this)" name="option"
 									value="<%=question[key].answers[0] %>"><%= question[key].answers[0] %> <br>
-								<input type="radio" onchange="onChange(this)" name="option"
+								<input type="radio" class="radio-big" onchange="onChange(this)" name="option"
 									value="<%=question[key].answers[1] %>"><%= question[key].answers[1] %> <br>
-								<input type="radio" onchange="onChange(this)" name="option"
+								<input type="radio" class="radio-big" onchange="onChange(this)" name="option"
 									value="<%=question[key].answers[2] %>"><%= question[key].answers[2] %> <br>
 								<input type="hidden" class="selected" name="answer[]" value="">
 							</section>

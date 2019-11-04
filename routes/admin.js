@@ -38,7 +38,6 @@ router.get("/dashboard", redirectLogin, function (req, res) {
 				}
 			}
 		], function (err, result) {
-			// res.send(result);
 			res.render("dashboard", {result});
 			// for (i = 0; i < result.length; i++) {
 			//  var scoreArray = [];

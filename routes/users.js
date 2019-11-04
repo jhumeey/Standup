@@ -26,14 +26,6 @@ router.get("/profile", redirectLogin, UserController.getUserProfile);
 
 //UPDATE USER---------USER ROUTE
 router.post("/update",
-//  [
-
-// 	check('firstname').isString().isLength({ min: 5 }).withMessage('Firstname must not be less than 4 characters'),
-// 	check('lastname').isString().isLength({ min: 5 }).withMessage('Firstname must not be less than 4 characters'),
-// 	check('email').isEmail().withMessage("Email must be valid"),
-// 	check('department').isString().withMessage("A Department must be choosen"),
-
-// ],
 	UserController.updateUserByUser
 );
 
@@ -42,15 +34,6 @@ router.get("/edit/:id", redirectLogin, UserController.getEditUserDetailsPage);
 
 //EDIT USER ROUTE---------ADMIN ROUTE
 router.post("/edit",
-//  [
-// 	check('firstname').isString().isLength({ min: 5 }).withMessage('Firstname must not be less than 4 characters').matches(/^[A-Z][a-z0-9_-]{4,19}$/),
-// 	check('lastname').isString().isLength({ min: 5 }).withMessage('Firstname must not be less than 4 characters').matches(/^[A-Z][a-z0-9_-]{4,19}$/),
-// 	check('email').isEmail().withMessage("Email must be valid"),
-// 	check('gender').isString().withMessage("A Gender Must be choosen"),
-// 	check('department').isString().withMessage("A Department must be choosen"),
-// 	check('role').isString().withMessage("An Option must be selected"),
-// 	check('password').isLength({ min: 5 }).withMessage("Password must not be less than 5 characters"),
-// ],
 	UserController.editUserDetails
 );
 

@@ -20,7 +20,7 @@
 				</div>
 					<div class="chart">
 						<input type="hidden" id="result" value="<%= JSON.stringify(result) %>">
-						<canvas id="myChart" width="400" height="400"></canvas>
+						<canvas id="myChart"></canvas>
 					
 					</div>
 			</div>
@@ -44,7 +44,7 @@
 		var myChart = new Chart(ctx, {
 			type: 'bar',
 			data: {
-				labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+				labels: labelvalues,
 				datasets: [{
 					label: 'Average Score of Quiz',
 					data: datavalues,

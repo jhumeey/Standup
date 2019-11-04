@@ -24,31 +24,27 @@ router.get("/questions/:id", redirectLogin,questionController.getQuestionById);
 //GET EDIT QUESTION ROUTE----ADMIN ROUTE
 router.get("/edit/:id", redirectLogin, questionController.editQuestionPage);
 
-// //EDIT QUESTION--------ADMIN ROUTE
-// router.post("/edit/:id", validate, async (req, res) => {
-// 	try{
-// 		const errors = validationResult(req);
-// 		if (!errors.isEmpty()) {
-// 			return res.status(422).json({ errors: errors.array() });
-// 		}
-// 		const body = {
-// 			question: req.body.question,
-// 			answers: req.body.answers,
-// 			correctAnswer: req.body.correctAnswer
-// 		};
+//EDIT QUESTION--------ADMIN ROUTE
+router.post("/edit/:id",  async (req, res) => {
+	try{
+		const body = {
+			question: req.body.question,
+			answers: req.body.answers,
+			correctAnswer: req.body.correctAnswer
+		};
 
-// 		await Question.findByIdAndUpdate(req.params.id, body, function (err, question) {
-// 			let quiz_id = question.quiz_id;
-// 			if (err) {
-// 				console.log(err);
-// 			}
-// 			req.flash("success", { message: "Question edited succesfully" });
-// 			res.redirect("/activity/question/" + quiz_id);
-// 		});
-// 	} catch(error){
-// 		console.log(error.message);
-// 	}
-// });
+		await Question.findByIdAndUpdate(req.params.id, body, function (err, question) {
+			let quiz_id = question.quiz_id;
+			if (err) {
+				console.log(err);
+			}
+			req.flash("success", { message: "Question edited succesfully" });
+			res.redirect("/activity/question/" + quiz_id);
+		});
+	} catch(error){
+		console.log(error.message);
+	}
+});
 
 //DELETE QUESTION-----ADMIN ROUTE
 router.get("/delete/:id", redirectLogin, async (req, res) => {

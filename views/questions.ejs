@@ -15,7 +15,7 @@
 		<div class="content">
 			<% include partials/admin/sidebar %>
 			<div class="innerContainer">
-				<% if(!questions.length) { %>
+				<% if(!question.length) { %>
 				<div class="heading">
 					<h3>You do not have any question and answer</h3>
 				</div>
@@ -33,16 +33,16 @@
 							<th>Correct Answer</th>
 							<th>Actions</th>
 						</tr>
-						<% for (var key in questions) { %>
+						<% for (var key in question) { %>
 						<tr>
-							<td><%= questions[key].question %></td>
-							<td><%= questions[key].answers %></td>
-							<td><%= questions[key].correctAnswer %></td>
+							<td><%= question[key].question %></td>
+							<td><%= question[key].answers %></td>
+							<td><%= question[key].correctAnswer %></td>
 							<td class="links">
-								<a href="/activity/edit/<%= questions[key]._id %>">
+								<a href="/question/edit/<%= question[key]._id %>">
 									<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 								</a>
-								<a href="/activity/delete/<%= questions[key]._id %>"
+								<a href="/question/delete/<%= question[key]._id %>"
 									onclick="return confirm('Are you sure you want to delete this question?')">
 									<i class="fa fa-trash-o" aria-hidden="true"></i>
 								</a>

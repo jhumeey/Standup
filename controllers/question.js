@@ -47,11 +47,7 @@ exports.getQuestionById = async (req, res) => {
 }
 exports.editQuestionPage = async (req, res) => {
     try {
-        const question = await Question.findById(req.params.id, function (err) {
-            if (err) {
-                console.log(err);
-            }
-        });
+        const question = await Question.findById(req.params.id);
         res.render("editquestion", { question });
     } catch (error) {
         console.log(error.messaage)

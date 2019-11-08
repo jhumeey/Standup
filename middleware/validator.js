@@ -66,3 +66,109 @@ exports.userProfileValidate = (req, res, next) => {
     req.flash("error", { message: extractedErrors });
     res.redirect("/users/profile");
 }
+
+exports.questionValidationRules = () => {
+    return [
+        body('answers').isLength({ min: 1 }).withMessage("Name must be a minimum of 4 characters "),
+        body('question').isLength({ min: 4 }).withMessage("Description must be a  minimum of 4 characters"),
+        body('correctAnswer').isLength({ min: 1 }).withMessage("Status must be a  minimum of 4 characters")
+    ]
+
+}
+
+exports.validateQuestion = (req, res, next) => {
+    try{
+        const errors = validationResult(req)
+        if (errors.isEmpty()) {
+            return next()
+        }
+        const extractedErrors = []
+        errors.array().map(err => extractedErrors.push(err.msg))
+        req.flash("error", { message: extractedErrors });
+        res.redirect("/activity/createquestion/" + req.params.id);
+    }catch(error){
+        console.log(error.message)
+    }
+   
+}
+exports.editValidateQuestion = (req, res, next) => {
+    try {
+        const errors = validationResult(req)
+        if (errors.isEmpty()) {
+            return next()
+        }
+        const extractedErrors = []
+        errors.array().map(err => extractedErrors.push(err.msg))
+        req.flash("error", { message: extractedErrors });
+        res.redirect("/activity/createquestion/" + req.params.id);
+    } catch (error) {
+        console.log(error.message)
+    }
+
+}
+exports.activityValidationRules = () => {
+    return [
+        body('name').isLength({ min: 4 }).withMessage("Name must be a minimum of 4 characters "),
+        body('description').isLength({ min: 4 }).withMessage("Description must be a  minimum of 4 characters"),
+        body('activityType').isLength({ min: 3 }).withMessage("ActivityType  must be a  minimum of 3 characters"),
+    ]
+
+}
+
+exports.validateActivity = (req, res, next) => {
+    const errors = validationResult(req)
+    if (errors.isEmpty()) {
+        return next()
+    }
+    const extractedErrors = []
+    errors.array().map(err => extractedErrors.push(err.msg))
+    console.log(extractedErrors);
+    req.flash("error", { message: extractedErrors });
+    res.redirect("/events/all");
+}
+exports.editValidateActivity = (req, res, next) => {
+    const errors = validationResult(req)
+    if (errors.isEmpty()) {
+        return next()
+    }
+    const extractedErrors = []
+    errors.array().map(err => extractedErrors.push(err.msg))
+    console.log(extractedErrors);
+    req.flash("error", { message: extractedErrors });
+    res.redirect("/activity/all");
+}
+exports.eventValidationRules = () => {
+    return [
+        body('name').isLength({ min: 4 }).withMessage("Name must be a minimum of 4 characters "),
+        body('description').isLength({ min: 4 }).withMessage("Description must be a  minimum of 4 characters"),
+        body('status').isLength({ min: 4 }).withMessage("Status must be a  minimum of 4 characters"),
+        body('activity').isLength({ min: 4 }).withMessage("Activity must be a  minimum of 4 characters"),
+        body('eventDate').isLength({ min: 4 }).withMessage("Event Date must be a  minimum of 4 characters"),
+    ]
+
+}
+
+exports.validateEvent = (req, res, next) => {
+    const errors = validationResult(req)
+    if (errors.isEmpty()) {
+        return next()
+    }
+    const extractedErrors = []
+    errors.array().map(err => extractedErrors.push(err.msg))
+    console.log(extractedErrors);
+    req.flash("error", { message: extractedErrors });
+    res.redirect("/events/create");
+}
+
+
+exports.editValidateEvent = (req, res, next) => {
+    const errors = validationResult(req)
+    if (errors.isEmpty()) {
+        return next()
+    }
+    const extractedErrors = []
+    errors.array().map(err => extractedErrors.push(err.msg))
+    console.log(extractedErrors);
+    req.flash("error", { message: extractedErrors });
+    res.redirect("/events/all");
+}

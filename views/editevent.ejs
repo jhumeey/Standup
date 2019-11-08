@@ -16,34 +16,56 @@
 			<% include partials/admin/sidebar %>
 			<div class="innerContainer">
 				<div class="heading">
-					<h3>Edit Quiz</h3>
+					<h3>Edit Event</h3>
 				</div>
 				<div class="formContainer">
 					<form method="post" action="/events/edit/<%= event._id %>">
-						<label for="Question">Name</label>
-						<br />
-						<input type="text" id="name" name="name" placeholder="Eevnt name...."
-							value="<%= event.name %>" />
-						<br />
-						<label for="answer 2">Activity</label>
-						<input type="text" id="activity" name="activity" placeholder="Activity...."
-							value="<%= event.activity %>" />
-						<br />
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="name">Event Name</label>
+								<input type="text" id="name" name="name" placeholder="Event name.." value="<%= event.name %>" required />
+							</div>
 						
-						<label for="answer 3">Description</label>
-						<input type="text" id="description" name="description" placeholder="Description..."
-							value="<%= event.description %>" />
-						<br />
-						<label for="Event Date">Event Date</label>
-						<br>
-						<input type="date" name="eventDate" value="<%= event.eventDate %>">
-						<br>
-						<label for="answer 3">Status</label>
-						<select id="department" name="status" required>
-							<option value="choose">Choose....</option>
-							<option value="pending">Pending</option>
-							<option value="active">Active</option>
-						</select>
+						
+							<div class="form-group col-md-6">
+								<label for="activity">Activity </label>
+								<select id="activity" name="activity">
+									<option value="Poll">Poll</option>
+									<option value="Quiz">Quiz</option>
+									<option selected value="<%= event.activity %>">Quiz</option>
+								</select>
+							</div>
+						</div>
+						
+						<div class='form-row'>
+							<div class="form-group col-md-12">
+								<label for="description">Description</label>
+								<input type="text" id="description" name="description" placeholder="Description.." value="<%= event.description %>" />
+							</div>
+						
+							
+						</div>
+						<div class="form-row">
+							<!-- <div class="form-group col-md-4">
+								<label for="description">Event Date Choosen</label>
+								<input type="text" class="form-control" name="" value="<%= event.eventDate %>" readonly />
+							</div> -->
+							<div class="form-group col-md-6">
+								<label for="description">Event Date</label>
+								<input type="date" class="form-control" name="eventDate"  required/>
+							</div>
+
+							<div class="form-group col-md-6">
+								<label for="answer 3">Status</label>
+								<select id="department" name="status" required>
+									<option value="pending">Pending</option>
+									<option value="active">Active</option>
+									<option selected value="<%= event.status %>"><%= event.status %></option>
+								</select>
+							</div>
+							
+						</div>
+						
 						<input type="hidden" id="event id" name="event_id" value="<%= event._id %>" />
 					    <input type="submit" value="Submit">
 					</form>

@@ -29,6 +29,9 @@ const Activity = mongoose.model(
 		event_id: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "Event"
+		},
+		createdBy: {
+			type: String
 		}
 	},
 		{

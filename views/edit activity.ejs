@@ -39,8 +39,8 @@
 							<div class="form-group col-md-6">
 								<label for="activity Type">Activity Type</label>
 						
-								<select name="activityType" id="activityType">
-									<option value="<%= activity.activityType %>"><%= activity.activityType %>
+								<select name="activityType" id="activityType" name="activityType">
+									<option value="<%= activity.activityType %>" ><%= activity.activityType %>
 									</option>
 								</select>
 								<input type="hidden" name="event_id" value="<%= activity.event_id %>">

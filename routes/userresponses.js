@@ -1,4 +1,3 @@
-// const { userValidationRules, validate } = require('../middleware/Userscorevalidator');
 const redirectLogin = require("../middleware/redirectLogin");
 let Userresponses = require("../controllers/userresponses");
 const express = require("express");

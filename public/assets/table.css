@@ -1,20 +1,7 @@
 #table {
   font-family: 'Raleway', sans-serif!important;
-
 }
 
-/* #table td, #table th #table te {
-  border: none;
-  padding: 8px;
-}
-#table tr:nth-child(even){
-  background-color: #ffffff;
-}
-#table tr:nth-child(odd){
-  background-color: #ddd;}
-
-#table tr:nth-child(even):hover {background-color: #ddd;}
-#table tr:nth-child(odd):hover {background-color: #fff;} */
 
 #table th {
   padding: 12px 10px 12px;
@@ -22,16 +9,15 @@
   background-color: #4CAF50;
   color: white;
 }
-/* #table tr:last-child td:first-child {
-    border-bottom-left-radius: 5px;
-}
 
-#table tr:last-child td:last-child {
-    border-bottom-right-radius: 5px;
-} */
-.tableContainer{
+
+.tableContainer {
   border-radius: 5px;
   background-color: #fff;
   margin: 10px;
-  padding:20px 20px 10px;
+  padding: 20px 20px 10px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.table-responsive {
+width: auto !important;
 }

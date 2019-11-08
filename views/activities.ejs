@@ -19,14 +19,15 @@
 				<div class="heading">
 					<h3>All Activities</h3>
 				</div>
-				<div class="tableContainer">
-					<table class="card-table table" id="table" style="overflow-x:auto;">
+				<div class="tableContainer table-responsive">
+					<table class="card-table table" id="table">
 
 						<tr>
 							<th>Name</th>
 							<th>Description</th>
 							<th>Instructions</th>
 							<th>Activity Type</th>
+							<th>Created By</th>
 							<th>Created Date</th>
 							<th>Actions</th>
 						</tr>
@@ -36,6 +37,7 @@
 							<td><%= activities[key].description %></td>
 							<td><%= activities[key].instructions %></td>
 							<td><%= activities[key].activityType %></td>
+							<td><%= activities[key].createdBy %></td>
 							<td><%= activities[key].createdAt.toDateString() %></td>
 							<td class="links">
 								<a href="/activity/view/<%= activities[key]._id %>"><i class="fa fa-eye" aria-hidden="true"></i></a>
@@ -49,6 +51,7 @@
 		</div>
 	</div>
 	<% include partials/scripts %>
+		
 </body>
 
 </html>

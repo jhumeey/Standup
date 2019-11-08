@@ -67,7 +67,6 @@ exports.createEventActivityPage = async (req, res) => {
     let activity = await Activity.find({ "activityType": { $exists: true } })
     try {
         res.render("create activity", { eventId, activity });
-
     } catch (error) {
         req.flash("error", { message: "Sorry, You cannot create an event" })
         res.redirect(302, "/event/activity/" + req.params.id + "/create");
@@ -77,12 +76,14 @@ exports.createEventActivityPage = async (req, res) => {
 
 }
 exports.createEventActivity = async (req, res) => {
+    let user_name = req.session.user.firstname;
     try {
         let activity = new Activity({
             name: req.body.name,
             description: req.body.description,
             activityType: req.body.activityType,
             instructions: req.body.instructions,
+            createdBy: user_name,
             event_id: req.body.event_id
         });
         activity = await activity.save();

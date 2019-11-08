@@ -1,12 +1,13 @@
 const redirectLogin = require("../middleware/redirectLogin");
-const { questionValidationRules, validate } = require('../middleware/questionvalidator');
-const express = require("express");
+let questionValidation = require('../middleware/validator');
 let questionController = require('../controllers/question');
+const express = require("express");
+
 const router = express.Router();
 
 
 //CREATE A QUESTION--------------------------ADMIN ROUTE
-router.post("/createquestion/:id", questionValidationRules(), validate, questionController.createQuestion);
+router.post("/createquestion/:id", questionValidation.questionValidationRules(), questionValidation.validateQuestion, questionController.createQuestion);
 
 // GET CREATE QUESTION PAGE-----------ADMIN ROUTE
 router.get("/createquestion/:id", redirectLogin, questionController.getCreateQuestionPage);
@@ -18,7 +19,7 @@ router.get("/questions/:id", redirectLogin, questionController.getQuestionById);
 router.get("/edit/:id", redirectLogin, questionController.editQuestionPage);
 
 //EDIT QUESTION--------ADMIN ROUTE
-router.post("/edit/:id", questionValidationRules(), validate, questionController.editQuestion);
+router.post("/edit/:id", questionValidation.questionValidationRules(), questionValidation.validateQuestion, questionController.editQuestion);
 
 //DELETE QUESTION-----ADMIN ROUTE
 router.get("/delete/:id", redirectLogin, questionController.deleteQuestion);

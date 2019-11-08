@@ -17,7 +17,7 @@ router.get("/dashboard", redirectLogin, function (req, res) {
 			},
 			{
 				$lookup: {
-					from: "users",
+					from: "Users",
 					localField: "_id",
 					foreignField: "_id",
 					as: "user"
@@ -38,6 +38,9 @@ router.get("/dashboard", redirectLogin, function (req, res) {
 				}
 			}
 		], function (err, result) {
+			if(err){
+				console.log(err)
+			}
 			res.render("dashboard", {result});
 			// for (i = 0; i < result.length; i++) {
 			//  var scoreArray = [];

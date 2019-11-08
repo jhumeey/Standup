@@ -1,4 +1,4 @@
-const { Question } = require("../models/activity");
+const { Question } = require("../models/questions");
 const { Activity} = require("../models/activity");
 
 
@@ -49,6 +49,7 @@ exports.getQuestionById = async (req, res) => {
 exports.editQuestionPage = async (req, res) => {
     try {
         const question = await Question.findById(req.params.id);
+        console.log(question);
         res.render("editquestion", { question });
     } catch (error) {
         console.log(error.messaage)

@@ -23,9 +23,6 @@ const Event  = mongoose.model( "Event",
 		eventDate: {
 			type: Date,
 			default: Date.now
-		},
-		createdBy:{
-			type: String
 		}
 	},
 		{

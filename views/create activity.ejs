@@ -45,10 +45,12 @@
                                 <label for="activity Type">Activity Type</label>
 
                                 <select name="activityType" id="activityType">
-                                    <% for (var key in activity) { %>
-                                    <option value="<%= activity[key].activityType %>"><%= activity[key].activityType %>
+
+                                    <option value="quiz">Quiz
                                     </option>
-                                    <% } %>
+                                    <option value="poll">Poll
+                                    </option>
+
                                 </select>
                                 <input type="hidden" name="event_id" value="<%= eventId %>">
                             </div>

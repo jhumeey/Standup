@@ -21,7 +21,7 @@
 					<a class="toplink" href="/events/activity/<%= event._id %>/create">Create Activity</a>
 				</div>
 				<div class="tableContainer">
-					<table id="table" style="overflow-x:auto;">
+					<table class="card-table table" id="table">
 
 						<tr>
 							<th>Name</th>
@@ -35,7 +35,7 @@
 							<td><%= event.name %></td>
 							<td><%= event.activity %></td>
 							<td><%= event.status %></td>
-							<td><%= event.eventDate%></td>
+							<td><%= event.eventDate.toDateString() %></td>
 							<td><%= event.description %></td>
 							<td>
 								<a href="/events/edit/<%= event._id %>">

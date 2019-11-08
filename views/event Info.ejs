@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <% include partials/links %>
     <style>
-
         .checkin-text {
             font-size: 15px !important;
 
@@ -29,8 +28,12 @@
                     <div class="card-body">
                         <h5 class="card-title custom-card-header"><%= eventDetails[key].name %></h5>
                         <h4 class="custom-badge">Number of Checkins:
+                            <% if (checkin_counter == 0) { %>
+                                <span class="badge badge-primary">0 </span>
+                                <% } else { %>
                             <% for (var key in checkin_counter) { %>
                             <span class="badge badge-primary"><%= checkin_counter[key].myCount %></span>
+                            <% } %>
                             <% } %>
                         </h4>
                         <p class="card-text" id="card-text"><%= eventDetails[key].description %>.</p>
@@ -39,7 +42,7 @@
                         <h5 class="checkin-text">You are checked-in</h5>
                         <% } else { %>
                         <form method="post" action="/events/checkin">
-                            <input type="submit" value="Check-in">
+                            <input type="submit" value="Check-in" style="margin-left: -6px;">
                             <input type="hidden" name="user_id" value="<%= userDetails._id %>">
                             <input type="hidden" name="event_id" value="<%= eventDetails[key]._id %>">
                             <input type="hidden" name="checkin_Date" value="Date.now()">
@@ -53,7 +56,6 @@
                     <div class="card-header">
                         Activities
                     </div>
-                    <% for (var element in eventDetails[key].activitydetails) { %>
                     <table class="card-table table">
                         <thead>
                             <tr>
@@ -65,7 +67,9 @@
 
                             </tr>
                         </thead>
+
                         <tbody>
+                            <% for (var element in eventDetails[key].activitydetails) { %>
                             <tr>
                                 <td><%= eventDetails[key].activitydetails[element].name %></td>
                                 <td><%= eventDetails[key].activitydetails[element].activityType %></td>
@@ -75,9 +79,10 @@
                                         href="/activity/details/<%=eventDetails[key].activitydetails[element]._id %>">
                                         View Activity</a></td>
                             </tr>
+                            <% } %>
                         </tbody>
                     </table>
-                    <% } %>
+
                 </div>
 
             </div>

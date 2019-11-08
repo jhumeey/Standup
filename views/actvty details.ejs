@@ -28,6 +28,7 @@
                                 <th scope="col">Activity Type</th>
                                 <th scope="col">Activity Description</th>
                                 <th scope="col">Activity Instruction</th>
+                                <th scope="col">Created By</th>
                                 <th scope="col">Actions</th>
 
                             </tr>
@@ -38,6 +39,7 @@
                                 <td><%= activity.activityType %></td>
                                 <td><%= activity.description %></td>
                                 <td><%= activity.instructions %></td>
+                                <td><%= activity.createdBy %></td>
                                 <% if ( activity.activityType.toLowerCase() == "quiz") { %>
                                 <td><a class="secondary-link"
                                         href="/activity/start<%= activity.activityType.toLowerCase() %>/<%= activity.id %> ">Start

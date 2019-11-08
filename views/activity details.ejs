@@ -26,6 +26,7 @@
 							<th>Instructions</th>
 							<th>Description</th>
 							<th>Activity Type</th>
+							<th>Created By</th>
 							<th>Created Date</th>
 							<th>Actions</th>
 						</tr>
@@ -34,7 +35,8 @@
 							<td><%= activity.instructions %></td>
 							<td><%= activity.description %></td>
 							<td><%= activity.activityType %></td>
-							<td><%= activity.createdAt %></td>
+							<td><%= activity.createdBy %></td>
+							<td><%= activity.createdAt.toDateString() %></td>
 							<td class="links">
 								<a href="/activity/question/<%= activity._id %>/"><i class="fa fa-eye" aria-hidden="true"></i></a>
 								<a href="/activity/edit/<%= activity._id %>">

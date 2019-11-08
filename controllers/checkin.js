@@ -7,11 +7,16 @@ exports.getAllCheckins = async (req, res) => {
     try {
         Check_in.aggregate(
             [
-                // { "$match": { "_id": ObjectId(eventId) } },
+                {
+                    $group:
+                    {
+                        _id: "$user_id",
+                    }
+                },
                 {
                     $lookup: {
                         from: "Activities",
-                        localField: "_id",
+                        localField: "event_id",
                         foreignField: "event_id",
                         as: "activitydetails"
                     },
@@ -19,8 +24,8 @@ exports.getAllCheckins = async (req, res) => {
                 {
                     $lookup: {
                         from: "Users",
-                        localField: "_id",
-                        foreignField: "event_id",
+                        localField: "user_id",
+                        foreignField: "_id",
                         as: "activitydetails"
                     },
                 },

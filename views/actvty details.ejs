@@ -17,22 +17,39 @@
                 <div class="heading">
                     <h3>Activity Details</h3>
                 </div>
-                <div>
-                    <div class="card">
-                        <img src="https://cdn.pixabay.com/photo/2017/03/02/09/26/question-mark-2110767_960_720.jpg"
-                            alt="task image">
-                        <div class="card-body">
-                            <h5 class="card-title "><%= activity.name %></h5>
-                            <p class="card-text" id="card-text"><%= activity.description %>.</p>
-                            <p class="card-text"><%= activity.activityType %></p>
-                            <p class="card-text"><%= activity.instructions %></p>
-                            <% if ( activity.activityType.toLowerCase() == "quiz" && userscore.length != 0 ) { %>
-                        <a class="btn" href="/activity/start<%= activity.activityType.toLowerCase() %>/<%= activity.id %> ">Start <%= activity.activityType.toLowerCase() %> </a>
-                            <% } else { %>
-                            <a class="btn" href="/activity/start<%= activity.activityType.toLowerCase() %>/<%= activity.id %> ">Start <%= activity.activityType.toLowerCase() %></a>
-                            <% } %>
-                        </div>
+                <div class="card">
+                    <div class="card-header">
+                        Activity
                     </div>
+                    <table class="card-table table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Activity Name</th>
+                                <th scope="col">Activity Type</th>
+                                <th scope="col">Activity Description</th>
+                                <th scope="col">Activity Instruction</th>
+                                <th scope="col">Actions</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><%= activity.name %></td>
+                                <td><%= activity.activityType %></td>
+                                <td><%= activity.description %></td>
+                                <td><%= activity.instructions %></td>
+                                <% if ( activity.activityType.toLowerCase() == "quiz") { %>
+                                <td><a class="secondary-link"
+                                        href="/activity/start<%= activity.activityType.toLowerCase() %>/<%= activity.id %> ">Start
+                                        <%= activity.activityType.toLowerCase() %> </a> </td>
+                                <% } else { %>
+                                <td><a class="secondary-link"
+                                        href="/activity/start<%= activity.activityType.toLowerCase() %>/<%= activity.id %> ">Start
+                                        <%= activity.activityType.toLowerCase() %></a></td>
+                                <% } %>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

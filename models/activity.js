@@ -33,7 +33,7 @@ const Activity = mongoose.model(
 	},
 		{
 			timestamps: true
-		})
+		}), "Activities"
 );
 
 exports.Activity = Activity;

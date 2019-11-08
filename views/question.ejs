@@ -20,30 +20,32 @@
 
 				<div class="formContainer">
 					<h4>Create A Question</h4>
-					<form method="post" action="/activity/create/<%= activityId %>/question">
-						<div class="form-group col-md-12">
-							<label for="Question">Question</label>
-							<input type="text" id="question" name="question" placeholder="Question.." />
+					<form method="post" action="/activity/createquestion/<%= activityId %>">
+						<div class="form-row">
+							<div class="form-group col-md-12">
+								<label for="Question">Question</label>
+								<input type="text" id="question" name="question" placeholder="Question.." required />
+							</div>
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-6">
 								<label for="answer 1">Answer 1</label>
-								<input type="text" id="answer 1" name="answers[]" placeholder="Your answer.." />
+								<input type="text" id="answer 1" name="answers[]" placeholder="Your answer.."  required/>
 							</div>
 							<div class="form-group col-md-6">
 								<label for="answer 2">Answer 2</label>
-								<input type="text" id="answer 2" name="answers[]" placeholder="Your answer" />
+								<input type="text" id="answer 2" name="answers[]" placeholder="Your answer.." required />
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-6">
 								<label for="answer 3">Answer 3</label>
-								<input type="text" id="answer 3" name="answers[]" placeholder="Your answer" />
+								<input type="text" id="answer 3" name="answers[]" placeholder="Your answer.." required />
 							</div>
 							<div class="form-group col-md-6">
 								<label for="answer 3">Correct Answer</label>
 
-								<input type="text" id="correctAnswer" name="correctAnswer" placeholder="Your answer" />
+								<input type="text" id="correctAnswer" name="correctAnswer" placeholder="Crrect answer.."  required/>
 							</div>
 						</div>
 						<div class="hidden">

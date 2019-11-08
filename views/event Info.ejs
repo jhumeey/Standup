@@ -7,43 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <% include partials/links %>
     <style>
-    #table {
-  font-family: 'Raleway', sans-serif!important;
-  border-collapse: collapse;
-  width: 100%;
-}
 
-#table td, #table th #table te {
-  border: none;
-  padding: 8px;
-}
-#table tr:nth-child(even){
-  background-color: #ffffff;
-}
-#table tr:nth-child(odd){
-  background-color: #ddd;}
+        .checkin-text {
+            font-size: 15px !important;
 
-#table tr:nth-child(even):hover {background-color: #ddd;}
-#table tr:nth-child(odd):hover {background-color: #fff;}
-
-#table th {
-  padding: 12px 10px 12px;
-  text-align: left;
-  color: white;
-}
-#table tr:last-child td:first-child {
-    border-bottom-left-radius: 5px;
-}
-
-#table tr:last-child td:last-child {
-    border-bottom-right-radius: 5px;
-}
-.tableContainer{
-  border-radius: 5px;
-  background-color: #fff;
-  margin: 10px;
-  padding:20px 20px 10px;
-}
+        }
     </style>
 </head>
 
@@ -56,42 +24,62 @@
                 <div class="heading">
                     <h3>Event Details</h3>
                 </div>
-
-                <div class="card">
-                    <div class="card-header">
-                     <%= event.name %>
-                    </div>
+                <% for (var key in eventDetails) { %>
+                <div class="card" style="position: relative;">
                     <div class="card-body">
-                        
-                        <p class="card-text" id="card-text"><%= event.description %>.</p>
-                    </div>
-                    <div class="card-header">
-                        Activities
-                    </div>
-                        <% for (var key in eventActivity) { %>
-                            <table id="table" style="width:100%">
-                                <tr>
-                                    <th><%= eventActivity[key].activityType %>:</th>
-                                    <td><a class="secondary-link" href="/activity/details/<%=eventActivity[key]._id %>">
-                                        View Activity</a></td>
-                                </tr>
-                            </table>
-
-                        <% } %>
-
-                    <div class="card-body">
-                        <% if (userDetails.event_id.includes(event._id.toString())) { %>
-                        <h3>You are checked-in</h3>
+                        <h5 class="card-title custom-card-header"><%= eventDetails[key].name %></h5>
+                        <h4 class="custom-badge">Number of Checkins:
+                            <% for (var key in checkin_counter) { %>
+                            <span class="badge badge-primary"><%= checkin_counter[key].myCount %></span>
+                            <% } %>
+                        </h4>
+                        <p class="card-text" id="card-text"><%= eventDetails[key].description %>.</p>
+                        <p class="card-text" id="card-text"><%= eventDetails[key].eventDate.toDateString() %>.</p>
+                        <% if (userDetails.event_id.includes(eventDetails[key]._id)) { %>
+                        <h5 class="checkin-text">You are checked-in</h5>
                         <% } else { %>
                         <form method="post" action="/events/checkin">
                             <input type="submit" value="Check-in">
                             <input type="hidden" name="user_id" value="<%= userDetails._id %>">
-                            <input type="hidden" name="event_id" value="<%= event._id %>">
+                            <input type="hidden" name="event_id" value="<%= eventDetails[key]._id %>">
                             <input type="hidden" name="checkin_Date" value="Date.now()">
                         </form>
                         <% } %>
                     </div>
+
                 </div>
+                <% } %>
+                <div class="card">
+                    <div class="card-header">
+                        Activities
+                    </div>
+                    <% for (var element in eventDetails[key].activitydetails) { %>
+                    <table class="card-table table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Activity Name</th>
+                                <th scope="col">Activity Type</th>
+                                <th scope="col">Activity Description</th>
+                                <th scope="col">Created By</th>
+                                <th scope="col">Actions</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><%= eventDetails[key].activitydetails[element].name %></td>
+                                <td><%= eventDetails[key].activitydetails[element].activityType %></td>
+                                <td><%= eventDetails[key].activitydetails[element].description %></td>
+                                <td><%= eventDetails[key].activitydetails[element].createdBy %></td>
+                                <td><a class="secondary-link"
+                                        href="/activity/details/<%=eventDetails[key].activitydetails[element]._id %>">
+                                        View Activity</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <% } %>
+                </div>
+
             </div>
         </div>
     </div>

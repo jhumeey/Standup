@@ -2,6 +2,8 @@ const { Activity } = require("../models/activity");
 const { Question } = require("../models/questions");
 const { Userscores } = require("../models/userscores");
 const redirectLogin = require("../middleware/redirectLogin");
+const mongoose = require("mongoose");
+var ObjectId = mongoose.Types.ObjectId;
 const express = require("express");
 const router = express.Router();
 
@@ -13,18 +15,19 @@ router.get("/all/", redirectLogin, async (req, res) => {
 		const activities = await Activity.find().sort();
 		res.render("activities", { activities });
 	} catch (error) {
-		console.log(error);
+		req.flash("error", { message: "Sorry, could not get activities" });
+		res.redirect("/activity/all/");
 	}
 });
 
 //GET QUIZ BY ID-----ADMIN ROUTE
 router.get("/details/:id", redirectLogin, async (req, res) => {
 	try {
-		const userscore = await Userscores.find({activity_id: req.params.id})
 		const activity = await Activity.findById(req.params.id);
-		res.render("actvty details", { activity, userscore });
+		res.render("actvty details", { activity });
 	} catch (error) {
-		console.log(error.message);
+		req.flash("error", { message: "Sorry, could not get activity" });
+		res.redirect("/activity/all/");
 	}
 });
 
@@ -34,15 +37,57 @@ router.get("/quiz/:id", redirectLogin, async (req, res) => {
 		const activity = await Activity.findById(req.params.id)
 		res.render("takequiz", { activity });
 	} catch (error) {
-		console.log(error.message);
+		req.flash("error", { message: "Sorry, could not get activity" });
+		res.redirect("/activity/all/");
 	}
 });
 
 router.get("/startquiz/:id", redirectLogin, async (req, res) => {
 	try {
 		let activityId = req.params.id;
-		const question = await Question.find({ activity_id: activityId });
-		res.render("startquiz", { question});
+		let userId = req.session.user._id;
+		let userscore = await Userscores.find({user_id: userId});
+		if (userscore.activity_id == activityId){
+			req.flash("error", { message: "You have accessed this activity already" });
+			res.redirect("/activity/details/"+ activityId);
+		}
+		else{
+			let userscore  = new Userscores ({
+				score: "0", user_id: userId, activity_id: activityId 
+			});
+			userscore.save();
+			Question.aggregate(
+				[
+					{ "$match": { "activity_id": ObjectId(activityId) } },
+					{
+						$lookup: {
+							from: "Activities",
+							localField: "activity_id",
+							foreignField: "_id",
+							as: "activitydetails"
+						},
+					},
+					{
+						$replaceRoot: {
+							newRoot: {
+								$mergeObjects: [
+									{ $arrayElemAt: ["$activitydetails", 0] }, "$$ROOT"
+								]
+							}
+						}
+					},
+					{
+						$project: {
+							__v: 0,
+						}
+					}
+				],
+				function (err, questions) {
+					res.render("startquiz", { questions})
+				}
+			)
+		}
+	
 	} catch (error) {
 		console.log(error.message);
 	}
@@ -58,7 +103,7 @@ router.get("/view/:id", redirectLogin, async (req, res) => {
 	}
 });
 
-router.get("/create/:id/question", redirectLogin, async (req, res) => {
+router.get("/createquestion/:id", redirectLogin, async (req, res) => {
 	try {
 		let activityId = req.params.id;
 		res.render("question", { activityId });
@@ -67,7 +112,7 @@ router.get("/create/:id/question", redirectLogin, async (req, res) => {
 	}
 });
 
-router.post("/create/:id/question", redirectLogin, async (req, res) => {
+router.post("/createquestion/:id", redirectLogin, async (req, res) => {
 	try {
 		let question = new Question({
 			event_id: req.body.event_id,

@@ -33,20 +33,21 @@
 									placeholder="Lastname" required>
 							</div>
 						</div>
-						<div class="form-group col-md-6">
-							<label for="password">Password</label>
-							<input type="password" class="form-control" id="password" name="password"
-								placeholder="Password" required>
-						</div>
-						<div class="form-group col-md-6">
-							<label for="Email">Email</label>
-							<input type="text" class="form-control" id="email" name="email" placeholder="Email" required>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="password">Password</label>
+								<input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+							</div>
+							<div class="form-group col-md-6" style="margin: -5px;">
+								<label for="Email">Email</label>
+								<input type="text" class="form-control" id="email" name="email" placeholder="Email" required>
+							</div>
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-4">
 								<label for="Department">Department</label>
 								<select id="department"  name="department" class="form-control" required>
-									<option selected>Choose...</option>
+									<option value="" >Choose...</option>
 									<option>Finance</option>
 									<option>Technology</option>
 								</select>
@@ -54,7 +55,7 @@
 							<div class="form-group col-md-4">
 								<label for="Gender">Gender</label>
 								<select id="gender" name="gender" class="form-control" required>
-									<option selected>Choose...</option>
+									<option value="" >Choose...</option>
 									<option value="Male">Male</option>
 									<option value="Female">Female</option>
 								</select>
@@ -63,7 +64,7 @@
 							<div class="form-group col-md-4">
 								<label for="Role">Role</label>
 								<select id="role" name="role" class="form-control" required>
-									<option selected>Choose...</option>
+									<option value="">Choose...</option>
 									<option value="Admin">Admin</option>
 									<option value="None">None</option>
 								</select>

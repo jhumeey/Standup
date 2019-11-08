@@ -1,5 +1,5 @@
 const express = require("express");
-const { Userscores, validate } = require("../models/userscores");
+const { Userscores } = require("../models/userscores");
 const redirectLogin = require("../middleware/redirectLogin");
 
 let router = express.Router();

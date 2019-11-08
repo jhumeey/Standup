@@ -25,7 +25,7 @@ const Question = mongoose.model(
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "Activity"
 		}
-	})
+	}), "Questions"
 );
 
 exports.Question = Question;

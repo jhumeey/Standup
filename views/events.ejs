@@ -109,19 +109,18 @@
 				</div>
 				<div class="events-container">
 					<% for(var key in active_events) { %>
-					<div class="card">
+					<div class="card" style="width: 300px;;">
 						<img src="/assets/images/event 480.png" class="card-img-top img-fluid">
 						<div class="card-body">
 							<h5 class="card-title "><%= active_events[key].name %></h5>
-							<p class="card-text" id="card-text"><%= active_events[key].description %>.</p>
-							<p class="date" id="date"><%= active_events[key].eventDate %></p>
+							<p class="card-text" id="card-text"><%= active_events[key].description.substring(0, 25); %>..............</p>
+							<p class="date" id="date"><%= active_events[key].eventDate.toDateString() %></p>
 							<a href="/events/details/<%= active_events[key]._id %>">View Details</a>
 
 						</div>
 					</div>
 					<% } %>
 				</div>
-
 			</div>
 		</div>
 
@@ -134,13 +133,6 @@
 			sessionStorage.removeItem("Page2Visited");
 			window.location.reload(true); // force refresh page1
 		}
-		let text = document.getElementById("card-text").innerText;
-		let truncated = text.substring(0, 25);
-		document.getElementById("card-text").innerText = truncated + "...............";
-let date = document.getElementById("date").innerText;
-		let new_date = moment(date).format('YYYY-MM-DD');
-		date.innerText = new_date;
-
 	</script>
 
 	<% include partials/scripts %>

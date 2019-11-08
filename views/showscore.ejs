@@ -16,8 +16,22 @@
             <div class="innerContainer">
                 <div class="heading">
                     <h3>User Score</h3>
+                   
+                </div>
+                <% if ( <%= userscore.score %> < 50 ) { %>
+            <div class="userscore-container">
+                <img src="https://cdn.pixabay.com/photo/2019/01/24/05/40/emoji-3951738_960_720.png" alt="">
+                <h3><%= userscore.score %></h3>
+            </div>
+                <% } else if( <%= userscore.score %> = 50 || < 70 ) { %>
+                <div class="userscore-container">
                     <h3><%= userscore.score %></h3>
                 </div>
+                <% } else { %> 
+               <div class="userscore-container">
+                    <h3><%= userscore.score %></h3>
+                </div>
+                <% } %>
             </div>
             <% include partials/scripts %>
         </div>

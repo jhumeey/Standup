@@ -21,12 +21,14 @@ nav .active {
 }
 
 .logo {
+  background-color: transparent;
   color: #fff;
   text-align: center;
   text-decoration: none;
 
 }
 .logo:hover {
+  background-color: transparent;
   text-decoration: none;
   color: #fff;
 }
@@ -45,7 +47,7 @@ margin-bottom: 10px;
 }
 
 .alink i {
-  font-size: 2rem;
+  font-size: 20px;
   margin-right: 20px;
 }
 

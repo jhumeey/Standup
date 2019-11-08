@@ -15,7 +15,9 @@ const Check_in = mongoose.model(
 		checkin_Date: {
 			type: Date
 		}
-	})
+	}, {
+		timestamps: true
+	}), "Check-Ins"
 );
 
 

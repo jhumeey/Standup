@@ -22,7 +22,7 @@ const Userresponses = mongoose.model(
 			type: [String]
 		}
 	}),
-	"userresponses"
+	"UserResponses"
 );
 
 

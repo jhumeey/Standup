@@ -5,18 +5,40 @@
     margin-left: 15%;
 }
 
+.fa.fa-pencil-square-o {
+    color: #4caf50fa;
+    margin: 5px;
+}
+
+.fa.fa-trash {
+    color: red;
+    margin: 5px;
+}
+
+.fa.fa-eye {
+    color: grey;
+    margin: 5px;
+}
+
+.userscore-container {
+    width: 500px;
+    height: 400px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
 .card {
-    box-shadow: 0 0.75rem 6rem rgba(56, 65, 74, .03);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     margin: 17px;
     background-color: #fff;
-    padding: 10px;
     border-radius: 5px;
-    width: 300px !important;
 }
 
 .card-body {
     border: none;
-    padding: 10px;
+    padding: 10px 26px;
 }
 
 .card p {
@@ -26,18 +48,36 @@
     font-size: 13px;
     color: #6c757d;
 }
-.card li{
-border: none !important;
-margin: 10px;
+
+.card li {
+    border: none !important;
+    margin: 10px;
+}
+
+.custom-card-header {
+    font-size: 32px;
 }
 
 .card h5 {
-    font-size: 20px;
     color: #000000;
 }
 
 .card img {
-    width: 90%;
+    width: 100%;
+}
+
+.card h6 {
+    font-size: 15px !important;
+}
+
+.card-header {
+    font-size: 21px;
+}
+
+.custom-badge {
+    position: absolute;
+    right: 10px;
+    top: 19px;
 }
 
 .btn {
@@ -51,23 +91,43 @@ margin: 10px;
 }
 
 .secondary-link {
+    font-size: 14px;
     border-radius: 5px;
-    margin: 10px;
+    background-color: #4caf50fa;
     padding: 10px;
     text-decoration: none;
     text-align: center;
-    background-color: #ffffff;
-    color: #4caf50fa;
-    width: 150px;
+    color: #fff;
+    width: 100px;
 }
-.secondary-link:hover{
-    background-color: #4caf50fa;
-    color: #ffffff;
+
+.secondary-link:hover {
+    background-color: #fff;
+    color: #4caf50fa;
+    ;
     text-decoration: none;
     border-radius: 5px;
     padding: 10px;
 }
 
+.card-btn {
+    border-radius: 5px;
+    padding: 10px;
+    text-decoration: none;
+    text-align: center;
+    background-color: #4caf50fa;
+    color: #fff;
+    width: 150px;
+}
+
+.card-btn:hover {
+    background-color: #ffffff;
+    color: #4caf50fa;
+    ;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 10px;
+}
 
 .quizContainer {
     background-color: #fff;

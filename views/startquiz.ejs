@@ -10,7 +10,7 @@
 		.events {
 			width: 100%;
 			background-color: #ffffff;
-			border-radius:5px;
+			border-radius: 5px;
 			box-shadow: 5px 5px 15px rgba(158, 158, 158);
 			padding: 10px;
 			color: #000;
@@ -19,9 +19,11 @@
 		.noactive {
 			display: none;
 		}
-.options{
-	padding: 10px 20px;
-}
+
+		.options {
+			padding: 10px 20px;
+		}
+
 		.active {
 			display: block;
 		}
@@ -30,11 +32,9 @@
 			position: relative;
 			width: 100%;
 			background-color: #eeeeee;
-			
+
 
 		}
-		/* .radio-big{ width: 10px;
-			height: 10px } */
 		.question-container h3 {
 			padding: 10px 10px;
 		}
@@ -68,19 +68,20 @@
 				<div class="formContainer" id="questionForm" style="margin-left: 20px;">
 
 					<form method="POST" action="/userresponses" id="form">
-						<% for(var key in question) { %>
+						<% for(var key in questions) { %>
 						<div class="noactive" id="<%= [key] %>">
-							<label for="question"><%= question[key].question %> ?</label>
+							<label for="question"><%= questions[key].question %> ?</label>
 							<br />
-							<input type="hidden" name="activity_id" class="check" value="<%= question[key].activity_id %>">
-							<input type="hidden" name="question_id[]" class="check" value="<%= question[key]._id %>">
+							<input type="hidden" name="activity_id" class="check"
+								value="<%= questions[key].activity_id %>">
+							<input type="hidden" name="question_id[]" class="check" value="<%= questions[key]._id %>">
 							<section class="options">
 								<input type="radio" class="radio-big" onchange="onChange(this)" name="option"
-									value="<%=question[key].answers[0] %>"><%= question[key].answers[0] %> <br>
+									value="<%=questions[key].answers[0] %>"><%= questions[key].answers[0] %> <br>
 								<input type="radio" class="radio-big" onchange="onChange(this)" name="option"
-									value="<%=question[key].answers[1] %>"><%= question[key].answers[1] %> <br>
+									value="<%=questions[key].answers[1] %>"><%= questions[key].answers[1] %> <br>
 								<input type="radio" class="radio-big" onchange="onChange(this)" name="option"
-									value="<%=question[key].answers[2] %>"><%= question[key].answers[2] %> <br>
+									value="<%=questions[key].answers[2] %>"><%= questions[key].answers[2] %> <br>
 								<input type="hidden" class="selected" name="answer[]" value="">
 							</section>
 							<br>
@@ -126,14 +127,14 @@
 				console.log(counter);
 				currentDiv.classList.remove("active");
 				currentDiv.classList.add("noactive");
-				let nextDiv = divs[counter]; 
+				let nextDiv = divs[counter];
 				console.log(nextDiv);
 				// if (nextDiv === undefined) {
 				// 	document.getElementById("questionForm").submit;
 				// }
 				nextDiv.classList.remove("noactive");
 				nextDiv.classList.add("active");
-				if (counter == divs.length - 1 ) {
+				if (counter == divs.length - 1) {
 					let submitBtn = document.querySelector(".active .nextbtn");
 					submitBtn.innerText = "Submit"
 					submitBtn.type = "submit"

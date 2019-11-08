@@ -1,6 +1,5 @@
 const { User } = require("../models/users");
 const bcrypt = require("bcryptjs");
-const { validationResult } = require('express-validator');
 
 const _ = require("lodash");
 
@@ -17,14 +16,22 @@ exports.getAllUsers = async (req, res) => {
             req.flash("error", { message: "Sorry Cannot find users" });
         }
     } catch (error) {
-        console.log(error.message);
+        req.flash("error", { message: "Cannot get users" });
+        res.redirect("/users/all");
     }
 
 
 }
 
 exports.createUserPage = async (req, res) => {
-    res.render("create user");
+    try{
+        res.render("create user");
+    } catch(error){
+        req.flash("error", { message: "Cannot get users"});
+        console.log(error.message)
+        res.redirect("/users/all");
+    }
+   
 }
 
 exports.registerUser = async (req, res) => {
@@ -56,7 +63,6 @@ exports.registerUser = async (req, res) => {
 
     } catch (error) {
         req.flash("error", { message: "error saving user" });
-
         console.log(`Error saving user: ${error.message}`);
     }
 }
@@ -112,17 +118,15 @@ exports.getUserProfile = async (req, res) => {
 }
 exports.updateUserByUser = async (req, res) => {
     try {
-        const errors = validationResult(req);
-        console.log(errors.msg);
-        if (!errors.isEmpty()) {
-            req.flash("error", { message: errors.msg });
-        }
         const body = {
             id: req.body.id,
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             email: req.body.email,
-            department: req.body.department
+            department: req.body.department,
+            role: req.body.role,
+            gender: req.body.gender
+
         };
 
         await User.findByIdAndUpdate(req.body.id, body, function (err) {
@@ -140,38 +144,38 @@ exports.updateUserByUser = async (req, res) => {
 }
 exports.getEditUserDetailsPage = async (req, res) => {
     try {
-        const user = await User.findByIdAndUpdate(req.params.id, function (err) {
+        // let department = await User.find({ "activityType": { $exists: true } })
+        // { "department": { $exists: true }, "gender": { $exists: true }, "role": { $exists: true }, },
+        const user = await User.findByIdAndUpdate(req.params.id,   function (err) {
             if (err) {
                 console.log(err);
             }
             res.redirect("/");
         });
         res.render("edit", { user });
-    } catch (errror) {
+    } catch (error) {
         console.log(error.message);
     }
 
 }
 exports.editUserDetails = async (req, res) => {
     try {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(422).json({ errors: errors.array() });
-        }
         const body = {
-            id: req.body.id,
-            firstname: req.body.firstname,
+            firstname: req.body.firstname, 
             lastname: req.body.lastname,
             email: req.body.email,
             gender: req.body.gender,
             address: req.body.address,
-            status: req.body.status,
-            department: req.body.department
+            role: req.body.role,
+            department: req.body.department,
+            password: req.body.password
         };
+      
 
-        await User.findByIdAndUpdate(req.body.id, body, function (err) {
+        await User.findByIdAndUpdate(req.params.id, body, function (err) {
             if (err) {
                 req.flash("error", { message: "User cannot be updated." });
+                res.redirect(302, "/users/edit/"+ req.body.id);
                 console.log(err);
             }
             req.flash("success", { message: "User updated succesfully." });
@@ -185,6 +189,7 @@ exports.editUserDetails = async (req, res) => {
 exports.deleteUser = async (req, res) => {
     try {
         await User.findByIdAndRemove(req.params.id);
+        req.flash("success", { message: "User deleted succesfully." });
         res.redirect("/users/all");
     } catch (error) {
         console.log(error.message)

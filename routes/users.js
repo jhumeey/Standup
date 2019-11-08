@@ -1,7 +1,7 @@
 const express = require("express");
 let router = express.Router();
 let UserController = require('../controllers/users');
-const { userValidationRules, validate } = require('../middleware/validator');
+let UserValidation = require('../middleware/validator');
 const redirectLogin = require("../middleware/redirectLogin");
 
 
@@ -12,7 +12,7 @@ router.get("/all", redirectLogin, UserController.getAllUsers)
 router.get("/create", redirectLogin, UserController.createUserPage)
 
 //CREATE USER ROUTE-------ADMIN ROUTE
-router.post("/register", userValidationRules(), validate,
+router.post("/register", UserValidation.createUserValidationRules(), UserValidation.createValidate,
 	UserController.registerUser)
 
 //GET LOGIN PAGE------------USER ROUTE
@@ -25,15 +25,15 @@ router.post("/login", UserController.loginUser);
 router.get("/profile", redirectLogin, UserController.getUserProfile);
 
 //UPDATE USER---------USER ROUTE
-router.post("/update",
+router.post("/update", UserValidation.UserProfileValidationRules(), UserValidation.userProfileValidate,
 	UserController.updateUserByUser
 );
 
 //GET EDIT USER PAGE--------ADMIN ROUTE
-router.get("/edit/:id", redirectLogin, UserController.getEditUserDetailsPage);
+router.get("/edit/:id", redirectLogin, UserController.getEditUserDetailsPage );
 
 //EDIT USER ROUTE---------ADMIN ROUTE
-router.post("/edit",
+router.post("/edit/:id", UserValidation.editUserValidationRules(), UserValidation.editValidate,
 	UserController.editUserDetails
 );
 

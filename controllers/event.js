@@ -1,6 +1,7 @@
 const { Event } = require("../models/event");
 const { User } = require("../models/users");
 const { Activity } = require("../models/activity");
+const { Activity_type} = require("../models/activitytype");
 const { Check_in } = require("../models/checkin");
 const mongoose = require("mongoose");
 var ObjectId = mongoose.Types.ObjectId;
@@ -42,12 +43,42 @@ exports.createEvent = async (req, res) => {
 
 exports.getEventByID = async (req, res) => {
     try {
-        const event = await Event.findById(req.params.id, function (err) {
-            if (err) {
-                console.log(err);
+        let event_id = req.params.id;
+        Event.aggregate(
+            [
+                { "$match": { "_id": ObjectId(event_id) } },
+                {
+                    $lookup: {
+                        from: "Activities",
+                        localField: "_id",
+                        foreignField: "event_id",
+                        as: "eventactivities"
+                    },
+                },
+                {
+                    $replaceRoot: {
+                        newRoot: {
+                            $mergeObjects: [
+                                { $arrayElemAt: ["$eventactivities", 0] }, "$$ROOT"
+                            ]
+                        }
+                    }
+                },
+                {
+                    $project: {
+                        __v: 0,
+                    }
+                }
+            ],
+            function (err, event) {
+                if (err) {
+                    req.flash("error", { message: "Sorry cannot get event details" })
+                    res.redirect("/events/all")
+                }
+                res.render("eventdetails", { event })
+                console.log(event);
             }
-        })
-        res.render("eventdetails", { event });
+        )
     } catch (error) {
         console.log(error.message)
     }
@@ -64,9 +95,9 @@ exports.editEvent = async (req, res) => {
 }
 exports.createEventActivityPage = async (req, res) => {
     let eventId = req.params.id;
-    let activity = await Activity.find({ "activityType": { $exists: true } })
+    let activityTypes = await Activity_type.find({ "activity": { $exists: true } })
     try {
-        res.render("create activity", { eventId, activity });
+        res.render("create activity", { eventId, activityTypes });
     } catch (error) {
         req.flash("error", { message: "Sorry, You cannot create an event" })
         res.redirect(302, "/event/activity/" + req.params.id + "/create");
@@ -116,6 +147,7 @@ exports.getEventDetails = async (req, res) => {
                 res.redirect("/eents");
             }
        checkin_counter = result;
+       console.log(checkin_counter);
         }
         )
 
@@ -171,7 +203,8 @@ exports.postEventsCheckins = async (req, res) => {
     try {
         let checkin = new Check_in({
             user_id: req.body.user_id,
-            event_id: req.body.event_id
+            event_id: req.body.event_id,
+            checkin_Date: req.body.checkin_Date
         });
         checkin = await checkin.save();
         let user = await User.findByIdAndUpdate(req.body.user_id, { $push: { event_id: req.body.event_id } });

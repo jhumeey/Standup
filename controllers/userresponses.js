@@ -34,14 +34,19 @@ exports.submitUserresponses = async (req, res) => {
         }
     }
     try {
-        let userscore = new Userscores({
+        let userscore = {
             score: score,
             activity_id: convertedIds[0],
             user_id: req.session.user._id,
             activity_name: activity_name
+        };
+        userscore = await Userscores.findOneAndUpdate({ $and: [{ user_id: req.session.user._id }, { activity_id: activity_id }] } , userscore,  function (err) {
+            if (err) {
+                console.log(err);
+            }
+            res.render("showscore", { userscore })
         });
-        userscore = await userscore.save();
-        res.render("showscore", { userscore })
+       
     } catch (error) {
         console.log(error);
     }

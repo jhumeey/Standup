@@ -23,31 +23,21 @@
 
 						<div class="form-row">
 							<div class="form-group col-md-6">
-							<label for="name">Event Name</label>
-							<input type="text" id="name" name="name" placeholder="Event name.." />
+								<label for="name">Event Name</label>
+								<input type="text" id="name" name="name" placeholder="Event name.." />
 							</div>
-
-
 							<div class="form-group col-md-6">
-								<label for="activity">Activity</label>
-								<select id="activity" name="activity">
-									<option value="Poll">Poll</option>
-									<option value="Quiz">Quiz</option>
-								</select>
+								<label for="description">Event Date</label>
+								<input type="date" class="form-control" name="eventDate" />
 							</div>
 						</div>
 
 						<div class='form-row'>
-							<div class="form-group col-md-6">
+							<div class="form-group col-md-12">
 								<label for="description">Description</label>
-								<input type="text" id="description" name="description" placeholder="Description.." />
+								<textarea class="form-control" name="description" aria-label="With textarea" required></textarea>
 							</div>
 
-							<div class="form-group col-md-6">
-								<label for="description">Event Date</label>
-									<input type="date" class="form-control" name="eventDate" />
-								</div>
-							</div>
 						</div>
 						<input type="hidden" id="status" name="status" value="pending" />
 						<input type="submit" value="Submit" />
@@ -58,7 +48,7 @@
 
 	</div>
 	</div>
-	
+
 	<% include partials/scripts %>
 	<script>
 		$(function () {

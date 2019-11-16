@@ -13,7 +13,7 @@
     <% include partials/flashmessage %>
     <div class="mainContainer">
         <div class="content">
-            <% include partials/admin/sidebar %>
+            <% include partials/sidebar %>
 
             <div class="innerContainer">
                 <div class="heading">
@@ -23,13 +23,11 @@
                     <table id="table" class="table">
                         <tr>
                             <th> Event</th>
-                            <th>User</th>
                             <th>Checked_In Date</th>
                         </tr>
                         <% for (var key in checkins) { %>
                         <tr>
                             <td><%= checkins[key].eventdetails[0].name %></td>
-                            <td><%= checkins[key].userdetails[0].firstname %>  <%= checkins[key].userdetails[0].lastname %>  </td>
                             <td><%= checkins[key].checkin_Date.toLocaleString() %></td>
                         </tr>
                         <% } %>

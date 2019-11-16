@@ -6,15 +6,17 @@ const cookieParser = require("cookie-parser");
 const flash = require("connect-flash");
 const session = require("express-session");
 const mongoose = require("mongoose");
+const toastr = require("express-toastr");
 
 const app = express();
 const home = require("./routes/home");
 const users = require("./routes/users");
 const admin = require("./routes/admin");
-const activity = require("./routes/activity");
-const events = require("./routes/event");
+const activity = require("./routes/activities");
+const events = require("./routes/events");
+const checkins = require("./routes/checkin");
 const userscores = require("./routes/userscores");
-const questions = require("./routes/question");
+const questions = require("./routes/questions");
 const userresponses = require("./routes/userresponses");
 
 
@@ -22,12 +24,17 @@ const userresponses = require("./routes/userresponses");
 mongoose.connect("mongodb://localhost/standup", {useCreateIndex: true,useNewUrlParser: true})
 		.then(() => console.log('connected to mongoDB'))
 		.catch(err => console.log(err.message))
+app.set('etag', false)
 app.use(function (req, res, next) {
 	res.setHeader("Access-Control-Allow-Origin", "*");
 	res.setHeader("Access-Control-Allow-Methods", "GET, POST");
 	res.setHeader("Access-Control-Allow-Headers", "x-auth-token");
 	next();
 });
+app.use((req, res, next) => {
+	res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private')
+	next()
+})
 app.use(express["static"](path.join(__dirname, "/public")));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -49,6 +56,7 @@ var sess = {
 };
 app.use(session(sess));
 app.use(flash());
+app.use(toastr());
 app.use(function (req, res, next) {
 	res.locals.success = req.flash('success');
 	res.locals.error = req.flash('error'); // console.log(res.locals.error);
@@ -56,10 +64,15 @@ app.use(function (req, res, next) {
 
 	next();
 });
+app.use(function (req, res, next) {
+	res.locals.toasts = req.toastr.render()
+	next()
+});
 app.use(express.json());
 app.use("/", home);
 app.use("/users", users);
 app.use("/", events);
+app.use("/", checkins);
 app.use("/", userscores);
 app.use("/admin", admin);
 app.use("/activity", activity);

@@ -22,29 +22,37 @@
 						<div class="form-row">
 							<div class="form-group col-md-6">
 								<label for="Activity Name">Activity Name</label>
-								<input type="text" class="form-control" id="name" name="name" placeholder="activity name" value="<%= activity.name %>" required>
-							</div>
-							<div class="form-group col-md-6">
-								<label for="Instructions">Instructions</label>
-								<input type="text" class="form-control" id="instructions" name="instructions" placeholder="instructions"
-									value="<%= activity.instructions %>" required>
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="form-group col-md-6">
-								<label for="Description">Description</label>
-								<input type="text" class="form-control" id="description" name="description" placeholder="description" value="<%= activity.description %>" required>
-						
+								<input type="text" class="form-control" id="name" name="name"
+									placeholder="activity name" value="<%= activity.name %>" required>
 							</div>
 							<div class="form-group col-md-6">
 								<label for="activity Type">Activity Type</label>
-						
+
 								<select name="activityType" id="activityType" name="activityType">
-									<option value="<%= activity.activityType %>" ><%= activity.activityType %>
+									<option value="<%= activity.activityType %>"><%= activity.activityType %>
 									</option>
 								</select>
 								<input type="hidden" name="event_id" value="<%= activity.event_id %>">
 							</div>
+
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-12">
+								<label for="Description">Description</label>
+								<textarea class="form-control" id="description" name="description"
+									placeholder="description" aria-label="With textarea" required> <%= activity.description %> </textarea>
+
+							</div>
+
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-12">
+								<label for="Instructions">Instructions</label>
+								<textarea class="form-control" id="instructions" name="instructions"
+									placeholder="instructions"  required><%= activity.instructions %> </textarea>
+							</div>
+						</div>
+
 						<input type="submit" value="Submit" style="margin-left: 5px;">
 					</form>
 				</div>

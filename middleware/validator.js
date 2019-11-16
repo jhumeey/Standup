@@ -142,7 +142,6 @@ exports.eventValidationRules = () => {
         body('name').isLength({ min: 4 }).withMessage("Name must be a minimum of 4 characters "),
         body('description').isLength({ min: 4 }).withMessage("Description must be a  minimum of 4 characters"),
         body('status').isLength({ min: 4 }).withMessage("Status must be a  minimum of 4 characters"),
-        body('activity').isLength({ min: 4 }).withMessage("Activity must be a  minimum of 4 characters"),
         body('eventDate').isLength({ min: 4 }).withMessage("Event Date must be a  minimum of 4 characters"),
     ]
 

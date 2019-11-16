@@ -1,6 +1,6 @@
 const { Check_in} = require("../models/checkin");
-const { User } = require("../models/users");
-const { Activity } = require("../models/activity");
+const mongoose = require("mongoose");
+var ObjectId = mongoose.Types.ObjectId;
 
 
 exports.getAllCheckins = async (req, res) => {
@@ -8,17 +8,11 @@ exports.getAllCheckins = async (req, res) => {
         Check_in.aggregate(
             [
                 {
-                    $group:
-                    {
-                        _id: "$user_id",
-                    }
-                },
-                {
                     $lookup: {
-                        from: "Activities",
+                        from: "Events",
                         localField: "event_id",
-                        foreignField: "event_id",
-                        as: "activitydetails"
+                        foreignField: "_id",
+                        as: "eventdetails"
                     },
                 },
                 {
@@ -26,14 +20,14 @@ exports.getAllCheckins = async (req, res) => {
                         from: "Users",
                         localField: "user_id",
                         foreignField: "_id",
-                        as: "activitydetails"
+                        as: "userdetails"
                     },
                 },
                 {
                     $replaceRoot: {
                         newRoot: {
                             $mergeObjects: [
-                                { $arrayElemAt: ["$activitydetails", 0] }, "$$ROOT"
+                                { $arrayElemAt: ["$eventdetails, userdetails", 0] }, "$$ROOT"
                             ]
                         }
                     }
@@ -44,9 +38,58 @@ exports.getAllCheckins = async (req, res) => {
                     }
                 }
             ],
-            function (err, eventDetails) {
-                console.log(eventDetails);
-                res.render("event Info", { eventDetails, userDetails })
+            function (err, checkins) {
+                if (err) {
+                    console.log(err.message)
+                }
+                res.render("allcheckins", { checkins });
+            }
+        )
+
+
+
+
+    } catch (error) {
+        console.log(error.message);
+    }
+
+
+}
+
+exports.getUserCheckins = async (req, res) => {
+    try {
+        let user_id = req.session.user._id;
+        Check_in.aggregate(
+            [
+                { "$match": { "user_id": ObjectId(user_id) } },
+                {
+                    $lookup: {
+                        from: "Events",
+                        localField: "event_id",
+                        foreignField: "_id",
+                        as: "eventdetails"
+                    },
+                },
+                {
+                    $replaceRoot: {
+                        newRoot: {
+                            $mergeObjects: [
+                                { $arrayElemAt: ["$eventdetails", 0] }, "$$ROOT"
+                            ]
+                        }
+                    }
+                },
+                {
+                    $project: {
+                        __v: 0,
+                    }
+                }
+            ],
+            function (err, checkins) {
+                if (err) {
+                    console.log(err.message)
+                }
+                res.render("usercheckins", { checkins });
             }
         )
 

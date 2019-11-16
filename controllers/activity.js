@@ -1,16 +1,12 @@
 const { Activity } = require("../models/activity");
 const { Question } = require("../models/questions");
 const { Userscores } = require("../models/userscores");
-const redirectLogin = require("../middleware/redirectLogin");
-let questionValidation = require('../middleware/validator');
 const mongoose = require("mongoose");
 var ObjectId = mongoose.Types.ObjectId;
-const express = require("express");
-const router = express.Router();
 
 exports.getAllActivities = async (req, res) => {
     try {
-        const activities = await Activity.find().sort();
+        const activities = await Activity.find();
         res.render("activities", { activities });
     } catch (error) {
         req.flash("error", { message: "Sorry, could not get activities" });
@@ -30,12 +26,11 @@ exports.startActivity = async (req, res) => {
     try {
         let activityId = req.params.id;
         let userId = req.session.user._id;
-        let userscore = await Userscores.find({ user_id: userId });
-        if (userscore.activity_id == activityId) {
+        let userscore = await Userscores.findOne({  $and: [{ user_id: userId }, { activity_id: activityId}] } );
+        if (userscore) {
             req.flash("error", { message: "You have accessed this activity already" });
-            res.redirect("/activity/details/" + activityId);
-        }
-        else {
+            res.redirect(301, "/activity/details/" + activityId);
+        } else {
             let userscore = new Userscores({
                 score: "0", user_id: userId, activity_id: activityId
             });
@@ -181,7 +176,7 @@ exports.editActivity = async (req, res) => {
             console.log(err);
         }
         req.flash("success", { message: " Activity Edited Succesfully" });
-        res.redirect("/activity/all/");
+        res.redirect("/events/all/");
     });
 }
 exports.deleteActivity = async (req, res) => {
@@ -191,6 +186,6 @@ exports.deleteActivity = async (req, res) => {
             console.log(err);
         }
         req.flash("success", { message: " Activity Deleted Succesfully" });
-        res.redirect("/activity/all/");
+        res.redirect("/events/all/");
     });
 }

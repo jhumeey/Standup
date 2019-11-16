@@ -17,9 +17,6 @@ const Event  = mongoose.model( "Event",
 		status: {
 			type: String
 		},
-		activity: {
-			type: [String]
-		},
 		eventDate: {
 			type: Date,
 			default: Date.now

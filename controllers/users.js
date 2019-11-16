@@ -1,4 +1,5 @@
 const { User } = require("../models/users");
+const { Department } = require("../models/departments");
 const bcrypt = require("bcryptjs");
 
 const _ = require("lodash");
@@ -25,7 +26,9 @@ exports.getAllUsers = async (req, res) => {
 
 exports.createUserPage = async (req, res) => {
     try{
-        res.render("create user");
+        let departments = await Department.find();
+        console.log(departments[1].department);
+        res.render("create user", {departments});
     } catch(error){
         req.flash("error", { message: "Cannot get users"});
         console.log(error.message)
@@ -41,25 +44,25 @@ exports.registerUser = async (req, res) => {
             req.flash("error", { message: "User already registered" });
             res.redirect("/users/create");
         }
-            user = new User(
-                _.pick(req.body, [
-                    "firstname",
-                    "lastname",
-                    "email",
-                    "password",
-                    "gender",
-                    "department",
-                    "role"
-                ])
-            );
-            const salt = await bcrypt.genSalt(10);
-            user.password = await bcrypt.hash(user.password, salt);
+        user = new User(
+            _.pick(req.body, [
+                "firstname",
+                "lastname",
+                "email",
+                "password",
+                "gender",
+                "department",
+                "role"
+            ])
+        );
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(user.password, salt);
 
-            await user.save();
+        await user.save();
 
-            req.flash("success", { message: `${user.firstname}'s account created successfully!` });
-            res.redirect("/users/all");
-       
+        req.flash("success", { message: `${user.firstname}'s account created successfully!` });
+        res.redirect("/users/all");
+
 
     } catch (error) {
         req.flash("error", { message: "error saving user" });
@@ -144,15 +147,14 @@ exports.updateUserByUser = async (req, res) => {
 }
 exports.getEditUserDetailsPage = async (req, res) => {
     try {
-        // let department = await User.find({ "activityType": { $exists: true } })
-        // { "department": { $exists: true }, "gender": { $exists: true }, "role": { $exists: true }, },
+        let departments = await Department.find();
         const user = await User.findByIdAndUpdate(req.params.id,   function (err) {
             if (err) {
                 console.log(err);
             }
             res.redirect("/");
         });
-        res.render("edit", { user });
+        res.render("edit", { user, departments });
     } catch (error) {
         console.log(error.message);
     }

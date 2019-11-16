@@ -41,20 +41,21 @@ router.get("/dashboard", redirectLogin, function (req, res) {
 			if(err){
 				console.log(err)
 			}
-			res.render("dashboard", {result});
-			// for (i = 0; i < result.length; i++) {
-			//  var scoreArray = [];
-			//  scoreArray.push(result[i].avgScore);
-			// 	console.log(scoreArray);
-			// 	var highestScore = 0;
-			// 	for(j=0; scoreArray.length > j; j++){
-			// 		console.log(scoreArray[j]);
-			// 		if(scoreArray[j] > highestScore){
-			// 			highestScore = scoreArray[j];
-			// 			console.log(highestScore);
-			// 		}
-			// 	}
-			// }
+			
+			for (i = 0; i < result.length; i++) {
+			 var scoreArray = [];
+			 scoreArray.push(result[i].avgScore);
+				console.log(scoreArray);
+				var highestScore = 0;
+				for(j=0; scoreArray.length > j; j++){
+					console.log(scoreArray[j]);
+					if(scoreArray[j] > highestScore){
+						highestScore = scoreArray[j];
+					}
+				}
+			}
+			console.log(result);
+			res.render("dashboard", { result, highestScore });
 			
 		}
 		

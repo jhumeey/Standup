@@ -23,8 +23,8 @@
 				<div class="heading">
 					<h3>User Scores</h3>
 				</div>
-				<div class="tableContainer">
-					<table id="table" style="overflow-x:auto;">
+				<div class="tableContainer table-responsive">
+					<table id="table" class="table">
 
 						<tr>
 							<th>Event Title</th>
@@ -36,7 +36,7 @@
 								<td><%= userscore[key].name %></td>
 		
 							<td><%= userscore[key].score %></td>
-							<td><%= userscore[key].dateTaken %></td>
+							<td><%= userscore[key].createdAt.toDateString() %></td>
 						</tr>
 						<% } %>
 					</table>

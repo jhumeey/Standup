@@ -6,6 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <% include partials/links %>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
 </head>
 
 <body>
@@ -21,42 +22,41 @@
                     <div class="card-header">
                         Activity
                     </div>
-                    <table class="card-table table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Activity Name</th>
-                                <th scope="col">Activity Type</th>
-                                <th scope="col">Activity Description</th>
-                                <th scope="col">Activity Instruction</th>
-                                <th scope="col">Created By</th>
-                                <th scope="col">Actions</th>
+                    <div class="card-body">
+                       
+                        <h4 class="card-title custom-card-header"><%= activity.name %></h4>
+                        <h6 class="card-subtitle text-muted">Activity Type: </h6>
+                        <p class="card-text"> <%= activity.activityType %>
+                        </p>
+                        <h6 class="card-subtitle text-muted">Created By: </h6>
+                        <p class="card-text"><%= activity.createdBy %></p>
+                        <h6 class="card-subtitle text-muted">Description:</h6>
+                        <p class="card-text"><%= activity.description %></p>
+                        <h6 class="card-subtitle text-muted">Activity Instructions:</h6>
+                        <p class="card-text"><%= activity.instructions %></p>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><%= activity.name %></td>
-                                <td><%= activity.activityType %></td>
-                                <td><%= activity.description %></td>
-                                <td><%= activity.instructions %></td>
-                                <td><%= activity.createdBy %></td>
-                                <% if ( activity.activityType.toLowerCase() == "quiz") { %>
-                                <td><a class="secondary-link"
-                                        href="/activity/start<%= activity.activityType.toLowerCase() %>/<%= activity.id %> ">Start
-                                        <%= activity.activityType.toLowerCase() %> </a> </td>
-                                <% } else { %>
-                                <td><a class="secondary-link"
-                                        href="/activity/start<%= activity.activityType.toLowerCase() %>/<%= activity.id %> ">Start
-                                        <%= activity.activityType.toLowerCase() %></a></td>
-                                <% } %>
-                            </tr>
-                        </tbody>
-                    </table>
+                        <% if ( activity.activityType.toLowerCase() == "quiz") { %>
+                        <a class="secondary-link"
+                            href="/activity/start<%= activity.activityType.toLowerCase() %>/<%= activity.id %> ">Start
+                            <%= activity.activityType.toLowerCase() %> </a>
+                        <% } else { %>
+                        <a class="secondary-link"
+                            href="/activity/start<%= activity.activityType.toLowerCase() %>/<%= activity.id %> ">Start
+                            <%= activity.activityType.toLowerCase() %></a>
+                        <% } %>
+
+
+                    </div>
+
+
                 </div>
             </div>
         </div>
     </div>
     <% include partials/scripts %>
+    <!-- <script>
+               window.onpopstate = location.href = "/events"
+    </script> -->
 </body>
 
 </html>

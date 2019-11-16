@@ -21,35 +21,21 @@
 				<div class="formContainer">
 					<form method="post" action="/events/edit/<%= event._id %>">
 						<div class="form-row">
-							<div class="form-group col-md-6">
+							<div class="form-group col-md-12">
 								<label for="name">Event Name</label>
 								<input type="text" id="name" name="name" placeholder="Event name.." value="<%= event.name %>" required />
-							</div>
-						
-						
-							<div class="form-group col-md-6">
-								<label for="activity">Activity </label>
-								<select id="activity" name="activity">
-									<option value="Poll">Poll</option>
-									<option value="Quiz">Quiz</option>
-									<option selected value="<%= event.activity %>">Quiz</option>
-								</select>
 							</div>
 						</div>
 						
 						<div class='form-row'>
 							<div class="form-group col-md-12">
 								<label for="description">Description</label>
-								<input type="text" id="description" name="description" placeholder="Description.." value="<%= event.description %>" />
+								<textarea class="form-control"  id="description" name="description" placeholder="Description.."><%= event.description %> </textarea>
 							</div>
 						
 							
 						</div>
 						<div class="form-row">
-							<!-- <div class="form-group col-md-4">
-								<label for="description">Event Date Choosen</label>
-								<input type="text" class="form-control" name="" value="<%= event.eventDate %>" readonly />
-							</div> -->
 							<div class="form-group col-md-6">
 								<label for="description">Event Date</label>
 								<input type="date" class="form-control" name="eventDate"  required/>

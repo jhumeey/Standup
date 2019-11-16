@@ -115,17 +115,25 @@
 			let currentDiv = document.getElementById("0");
 			currentDiv.classList.remove("noactive");
 			currentDiv.classList.add("active");
+			let divs = document.querySelectorAll("form div");
+			console.log(divs.length);
+			if (divs.length = 1) {
+				let submitBtn = document.querySelector(".active .nextbtn");
+				submitBtn.innerText = "Submit"
+				submitBtn.type = "submit"
+			}
 		}
 		function next() {
 			if (!document.querySelector("input:checked")) {
 				alert("You are required to choose an answer");
-			} else {
+			}
+			else {
 				let nextbtn = document.querySelector(".nextbtn").value;
 				let submissionArray = [];
 				let x = document.querySelectorAll(".check, input:checked");
 				submissionArray.push(x);
 				let divs = document.querySelectorAll("form div");
-				console.log(divs);
+
 				let currentDiv = document.querySelector(".active");
 				let currentId = currentDiv.id;
 				let counter = ++currentId;
@@ -139,12 +147,15 @@
 				// }
 				nextDiv.classList.remove("noactive");
 				nextDiv.classList.add("active");
-				if (counter == divs.length - 1) {
+
+				 
+			   if (counter == divs.length - 1) {
 					let submitBtn = document.querySelector(".active .nextbtn");
 					submitBtn.innerText = "Submit"
 					submitBtn.type = "submit"
 					document.getElementById("form").appendChild = nextDiv;
-				} else {
+				}
+				else {
 					document.getElementById("form").appendChild = nextDiv;
 				}
 
@@ -161,6 +172,10 @@
 			selected.value = choice;
 
 		}
+		  
+	
+		
+
 	</script>
 
 </body>

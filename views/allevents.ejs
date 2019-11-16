@@ -76,7 +76,6 @@
 					<table id="table" class="card-table table" style="overflow-x:auto;">
 						<tr>
 							<th>Name</th>
-							<th>Activity</th>
 							<th>Status</th>
 							<th>Event Date</th>
 							<th>Description</th>
@@ -85,7 +84,6 @@
 						<% for (var key in events) { %>
 						<tr>
 							<td><%= events[key].name %></td>
-							<td><%= events[key].activity %></td>
 							<td><%= events[key].status %></td>
 							<td><%= events[key].eventDate.toDateString() %></td>
 							<td><%= events[key].description %></td>

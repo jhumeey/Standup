@@ -1,9 +1,8 @@
-const express = require("express");
-let router = express.Router();
 let activityController = require('../controllers/activity');
 let Validation = require('../middleware/validator');
 const redirectLogin = require("../middleware/redirectLogin");
-
+const express = require("express");
+let router = express.Router();
 
 //GET ALL ACTIVITIES------ADMIN ROUTE
 router.get("/all/", redirectLogin, activityController.getAllActivities);

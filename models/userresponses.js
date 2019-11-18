@@ -15,9 +15,6 @@ const Userresponses = mongoose.model(
 			type: [String],
 			ref: "Quiz_id"
 		},
-		option: {
-			type: [String]
-		},
 		answer: {
 			type: [String]
 		}

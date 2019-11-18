@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>StandUp</title>
     <meta charset="UTF-8" />
@@ -8,35 +7,38 @@
     <% include partials/links %>
     <link rel="stylesheet" type="text/css" href="/assets/table.css" />
 </head>
-
 <body>
     <% include partials/flashmessage %>
     <div class="mainContainer">
         <div class="content">
             <% include partials/admin/sidebar %>
-
             <div class="innerContainer">
-                <div class="heading">
-                    <h3>All Checkins</h3>
-                </div>
-                <div class="tableContainer table-responsive">
-                    <table id="table" class="table">
-                        <tr>
-                            <th> Event</th>
-                            <th>User</th>
-                            <th>Checked_In Date</th>
-                        </tr>
-                        <% for (var key in checkins) { %>
-                        <tr>
-                            <td><%= checkins[key].eventdetails[0].name %></td>
-                            <td><%= checkins[key].userdetails[0].firstname %>  <%= checkins[key].userdetails[0].lastname %>  </td>
-                            <td><%= checkins[key].checkin_Date.toLocaleString() %></td>
-                        </tr>
-                        <% } %>
+                <% if (!checkins.length) { %>
+                    <div class="heading">
+                        <h3>Sorry, there is no data to display</h3>
+                    </div>
+                <% } else { %>
+                    <div class="heading">
+                        <h3>All Checkins</h3>
+                    </div>
+                    <div class="tableContainer table-responsive">
+                        <table id="table" class="table">
+                            <tr>
+                                <th> Event</th>
+                                <th>User</th>
+                                <th>Checked_In Date</th>
+                            </tr>
+                            <% for (var key in checkins) { %>
+                                <tr>
+                                    <td><%= checkins[key].eventdetails[0].name %></td>
+                                    <td><%= checkins[key].userdetails[0].firstname %>  <%= checkins[key].userdetails[0].lastname %>  </td>
+                                    <td><%= checkins[key].checkin_Date.toLocaleString() %></td>
+                                </tr>
+                            <% } %>
 
-                    </table>
-                </div>
-
+                        </table>
+                    </div>
+                <% } %>
             </div>
         </div>
     </div>

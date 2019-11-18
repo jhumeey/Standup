@@ -1,137 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-	<title>StandUp</title>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<% include partials/links %>
-	<link rel="stylesheet" type="text/css" href="/assets/table.css" />
-<script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
-
-
-	<style>
-		.events-heading {
-			background-color: #ffffff;
-			margin: 0px 0px 20px;
-
-		}
-
-		.inner-container {
-			margin-left: 199px;
-			background-color: #4950571c;
-			width: 85%;
-			display: flex;
-			flex-direction: column;
-		}
-
-		.events-heading h3 {
-			margin: 38px 27px;
-			color: #4bac4e;
-			font-size: 30px;
-			font-weight: bold;
-		}
-
-		.events-container {
-			display: flex;
-			flex-direction: row;
-			flex-wrap: wrap;
-		}
-
-		.events {
-
-			width: 30%;
-			margin: 1%;
-			color: #000000;
-			box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-			text-align: center;
-			height: 300px;
-		}
-
-		form {
-			display: inherit;
-		}
-
-		.container {
-			position: relative;
-			margin: 20px;
-			overflow: hidden;
-			width: 40%;
-			height: 350px;
-			background: #ffffff;
-			box-shadow: 5px 5px 25px rgba(158, 158, 158, 0.24);
-			border-radius: 10px;
-		}
-
-	
+	<head>
+		<title>StandUp</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<% include partials/links %>
+		<link rel="stylesheet" type="text/css" href="/assets/table.css" />
+		<script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
 
 
+		<style>
+			.events-heading {
+				background-color: #ffffff;
+				margin: 0px 0px 20px;
 
+			}
 
+			.inner-container {
+				margin-left: 199px;
+				background-color: #4950571c;
+				width: 85%;
+				display: flex;
+				flex-direction: column;
+			}
 
-		a {
-			text-align: center;
-			text-decoration: none;
-			background: #4caf50fa;
-			width: 150px;
-			padding: 10px;
-			display: inline-block;
-			outline: 0;
-			border: 0;
-			margin: -1px;
-			border-radius: 5px;
-			letter-spacing: 1px;
-			color: #f5f5f5;
-			cursor: pointer;
-		}
+			.events-heading h3 {
+				margin: 38px 27px;
+				color: #4bac4e;
+				font-size: 30px;
+				font-weight: bold;
+			}
 
-		a:hover {
-			text-decoration: none;
-			background: #fff;
-			color: #4caf50fa;
-			transition: all 0.4s ease-in-out;
-		}
-	</style>
-</head>
+			.events-container {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+			}
 
-<body>
-	<div class="mainContainer">
-		<div class="content">
-			<% include partials/sidebar %>
-			<div class="innerContainer">
+			.events {
 
-				<div class="heading">
-					<h3>Events</h3>
-				</div>
-				<div class="events-container">
-					<% for(var key in active_events) { %>
-					<div class="card" style="width: 300px;;">
-						<img src="/assets/images/event 480.png" class="card-img-top img-fluid">
-						<div class="card-body">
-							<h5 class="card-title "><%= active_events[key].name %></h5>
-							<p class="card-text" id="card-text"><%= active_events[key].description.substring(0, 25); %>..............</p>
-							<p class="date" id="date"><%= active_events[key].eventDate.toDateString() %></p>
-							<a href="/events/details/<%= active_events[key]._id %>">View Details</a>
+				width: 30%;
+				margin: 1%;
+				color: #000000;
+				box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+				text-align: center;
+				height: 300px;
+			}
 
-						</div>
+			form {
+				display: inherit;
+			}
+
+			.container {
+				position: relative;
+				margin: 20px;
+				overflow: hidden;
+				width: 40%;
+				height: 350px;
+				background: #ffffff;
+				box-shadow: 5px 5px 25px rgba(158, 158, 158, 0.24);
+				border-radius: 10px;
+			}
+			a {
+				text-align: center;
+				text-decoration: none;
+				background: #4caf50fa;
+				width: 150px;
+				padding: 10px;
+				display: inline-block;
+				outline: 0;
+				border: 0;
+				margin: -1px;
+				border-radius: 5px;
+				letter-spacing: 1px;
+				color: #f5f5f5;
+				cursor: pointer;
+			}
+
+			a:hover {
+				text-decoration: none;
+				background: #fff;
+				color: #4caf50fa;
+				transition: all 0.4s ease-in-out;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="mainContainer">
+			<div class="content">
+				<% include partials/sidebar %>
+				<div class="innerContainer">
+					<div class="heading">
+						<h3>Events</h3>
 					</div>
-					<% } %>
+					<div class="events-container">
+						<% for (var key in active_events) { %>
+							<div class="card" style="width: 300px;;">
+								<img src="/assets/images/event 480.png" class="card-img-top img-fluid">
+								<div class="card-body">
+									<h5 class="card-title "><%= active_events[key].name %></h5>
+									<p class="card-text" id="card-text">
+										<%= active_events[key].description.substring(0, 25); %>..............</p>
+									<p class="date" id="date"><%= active_events[key].eventDate.toDateString() %></p>
+									<a href="/events/details/<%= active_events[key]._id %>">View Details</a>
+								</div>
+							</div>
+						<% } %>
+					</div>
 				</div>
 			</div>
 		</div>
-
-
-
-
-	</div>
-	<script>
-		if (sessionStorage.getItem("Page2Visited")) {
-			sessionStorage.removeItem("Page2Visited");
-			window.location.reload(true); 
-		}
-	</script>
-
-	<% include partials/scripts %>
-</body>
-
+		<script>
+			if (sessionStorage.getItem("Page2Visited")) {
+				sessionStorage.removeItem("Page2Visited");
+				window.location.reload(true);
+			}
+		</script>
+		<% include partials/scripts %>
+	</body>
 </html>

@@ -40,9 +40,6 @@ exports.getUsersScores = async (req, res) => {
 				res.render("userscores", { userscore });
 			}
 		)
-
-
-
 	} catch (error) {
 		console.log(error.message);
 	}

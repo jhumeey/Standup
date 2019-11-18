@@ -11,24 +11,24 @@ exports.submitUserresponses = async (req, res) => {
         question_id: req.body.question_id,
         user_id: userId,
         activity_id: req.body.activity_id,
-        answer: req.body.answer,
-        option: req.body.option,
+        answer: req.body.answer
 
     });
     response = await response.save();
     let questionIds = req.body.question_id;
+    console.log(questionIds)
     let answers = req.body.answer;
     let activity_id = req.body.activity_id;
-    let activity_details = await Activity.find({ _id: activity_id[0] });
+    let activity_details = await Activity.find({ _id: activity_id });
     let activity_name = activity_details[0].name;
     let convertedIds = questionIds.map(s => mongoose.Types.ObjectId(s));
     let score = 0;
     let query = { _id: { $in: convertedIds } }
     const questions = await Question.find(query);
     for (let i = 0; i < questions.length; i++) {
+        console.log(questions[i].correctAnswer, answers[i]);
         if (questions[i].correctAnswer === answers[i]) {
             score = score + 10;
-
         } else {
             console.log("Wrong");
         }
@@ -45,8 +45,7 @@ exports.submitUserresponses = async (req, res) => {
                 console.log(err);
             }
             res.render("showscore", { userscore })
-        });
-       
+        });  
     } catch (error) {
         console.log(error);
     }

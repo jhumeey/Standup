@@ -1,15 +1,10 @@
-<!-- Top container -->
-<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
-	<button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();">
-		<i class="fa fa-bars"></i>  Menu</button>
+<div class="w3-bar w3-top  w3-large responsive-topbar" style="z-index:4">
+	<button class="custom-responsivescreen-btn w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();">
+		<i class="fa fa-bars"></i>
+	</button>
 </div>
-
-<!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3; width:15%;" id="mySidebar"><br>
+<nav class="sidenav w3-white w3-animate-left" style="z-index:3; width:20%;" id="mySidebar"><br>
 	<div class="w3-container w3-row">
-		<!-- <div class="w3-col s4">
-			<img src="/assets/images/slogo.jpg" class="w3-circle w3-margin-right" style="width:46px">
-		</div> -->
 		<div class="w3-col s8 w3-bar">
 			<h3><a class="logo" href="/">Standup</a></h3>
 		</div>
@@ -17,20 +12,33 @@
 	<hr>
 	<div class="w3-bar-block">
 		<a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black"
-			onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-		<a href="/admin/dashboard" class="w3-bar-item w3-button w3-padding alink"><i class="fa fa-dashboard fa-fw"></i> 
-			Dashboard</a>
-		<a href="/users/all" class="w3-bar-item w3-button w3-padding alink"><i class="fa fa-user fa-fw"></i>  Users</a>
-		<a href="/checkins/all/" class="w3-bar-item w3-button w3-padding alink"><i class="fa fa-star fa-fw"></i>  Checkins </a>
-		<a href="/events/all" class="w3-bar-item w3-button w3-padding alink"><i class="fa fa-calendar fa-fw"></i> 
-			Events</a>
-		<a href="/users/logout" class="w3-bar-item w3-button w3-padding alink"><i class="fa fa-sign-out fa-fw"></i>  Logout</a><br><br>
-
+			onclick="w3_close()" title="close menu">
+			<i class="fa fa-remove fa-fw"></i> 
+			Close Menu
+		</a>
+		<a href="/admin/dashboard" class="w3-bar-item w3-button w3-padding alink">
+			<i class="fa fa-dashboard fa-fw"></i> 
+			Dashboard
+		</a>
+		<a href="/users/all" class="w3-bar-item w3-button w3-padding alink">
+			<i class="fa fa-user fa-fw"></i> 
+			Users
+		</a>
+		<a href="/checkins/all/" class="w3-bar-item w3-button w3-padding alink">
+			<i class="fa fa-star fa-fw"></i> 
+			Checkins
+		</a>
+		<a href="/events/all" class="w3-bar-item w3-button w3-padding alink">
+			<i class="fa fa-calendar fa-fw"></i> 
+			Events
+		</a>
+		<a href="/users/logout" class="w3-bar-item w3-button w3-padding alink">
+			<i class="fa fa-sign-out fa-fw"></i> 
+			Logout
+		</a>
+		<br>
 	</div>
 </nav>
-
-
-<!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer"
-	title="close side menu" id="myOverlay">
+	title="close side m" id="myOverlay">
 </div>

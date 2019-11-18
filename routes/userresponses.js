@@ -4,4 +4,5 @@ const express = require("express");
 const router = express.Router();
 
 router.post("/", redirectLogin, Userresponses.submitUserresponses);
-	module.exports = router;
+
+module.exports = router;

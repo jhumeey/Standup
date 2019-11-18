@@ -1,62 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <title></title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <% include partials/links %>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
-</head>
+    <head>
+        <title></title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <% include partials/links %>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
+    </head>
 
-<body>
-    <% include partials/flashmessage %>
-    <div class="mainContainer">
-        <div class="content">
-            <% include partials/sidebar %>
-            <div class="innerContainer">
-                <div class="heading">
-                    <h3>Activity Details</h3>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        Activity
+    <body>
+        <% include partials/flashmessage %>
+        <div class="mainContainer">
+            <div class="content">
+                <% include partials/sidebar %>
+                <div class="innerContainer">
+                    <div class="heading">
+                        <h3>Activity Details</h3>
                     </div>
-                    <div class="card-body">
-                       
-                        <h4 class="card-title custom-card-header"><%= activity.name %></h4>
-                        <h6 class="card-subtitle text-muted">Activity Type: </h6>
-                        <p class="card-text"> <%= activity.activityType %>
-                        </p>
-                        <h6 class="card-subtitle text-muted">Created By: </h6>
-                        <p class="card-text"><%= activity.createdBy %></p>
-                        <h6 class="card-subtitle text-muted">Description:</h6>
-                        <p class="card-text"><%= activity.description %></p>
-                        <h6 class="card-subtitle text-muted">Activity Instructions:</h6>
-                        <p class="card-text"><%= activity.instructions %></p>
+                    <div class="card">
+                        <div class="card-header">
+                            Activity
+                        </div>
+                        <div class="card-body">
+                        
+                            <h4 class="card-title custom-card-header"><%= activity.name %></h4>
+                            <h6 class="card-subtitle text-muted">Activity Type: </h6>
+                            <p class="card-text"> <%= activity.activityType %>
+                            </p>
+                            <h6 class="card-subtitle text-muted">Created By: </h6>
+                            <p class="card-text"><%= activity.createdBy %></p>
+                            <h6 class="card-subtitle text-muted">Description:</h6>
+                            <p class="card-text"><%= activity.description %></p>
+                            <h6 class="card-subtitle text-muted">Activity Instructions:</h6>
+                            <p class="card-text"><%= activity.instructions %></p>
 
-                        <% if ( activity.activityType.toLowerCase() == "quiz") { %>
-                        <a class="secondary-link"
-                            href="/activity/start<%= activity.activityType.toLowerCase() %>/<%= activity.id %> ">Start
-                            <%= activity.activityType.toLowerCase() %> </a>
-                        <% } else { %>
-                        <a class="secondary-link"
-                            href="/activity/start<%= activity.activityType.toLowerCase() %>/<%= activity.id %> ">Start
-                            <%= activity.activityType.toLowerCase() %></a>
-                        <% } %>
-
-
+                            <% if ( activity.activityType.toLowerCase() == "quiz") { %>
+                                <a class="secondary-link"
+                                    href="/activity/start<%= activity.activityType.toLowerCase() %>/<%= activity.id %> ">Start
+                                    <%= activity.activityType.toLowerCase() %>
+                                </a>
+                            <% } else { %>
+                                <a class="secondary-link"
+                                    href="/activity/start<%= activity.activityType.toLowerCase() %>/<%= activity.id %> ">Start
+                                    <%= activity.activityType.toLowerCase() %>
+                                </a>
+                            <% } %>
+                        </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
-    </div>
-    <% include partials/scripts %>
-    <!-- <script>
-               window.onpopstate = location.href = "/events"
-    </script> -->
-</body>
+        <% include partials/scripts %>
+    </body>
 
 </html>

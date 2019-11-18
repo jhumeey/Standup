@@ -1,25 +1,4 @@
 const { Question } = require("../models/questions");
-const { Activity} = require("../models/activity");
-
-
-
-
-exports.createQuestion = async (req, res) => {
-    try {
-        let question = new Question({
-            event_id: req.body.event_id,
-            activity_id: req.body.activity_id,
-            question: req.body.question,
-            answers: req.body.answers,
-            correctAnswer: req.body.correctAnswer
-        });
-        question = await question.save();
-        req.flash("success", { message: "Question created succesfully" });
-        res.redirect("/activity/createquestion/" + req.body.activity_id);
-    } catch (error) {
-        console.log(error.message);
-    }
-}
 
 exports.getCreateQuestionPage = async (req, res) => {
     try {
@@ -28,18 +7,14 @@ exports.getCreateQuestionPage = async (req, res) => {
         let event_id = quiz.event_id;
         res.render("activity", { quiz_id, event_id });
     } catch (error) {
-        console.log("error", error.message);
+        console.log(error);
     }
-
 }
 exports.getQuestionById = async (req, res) => {
     try {
         let query = { quiz_id: req.params.id };
         const question = await Question.find(query);
         let user = req.session.user;
-        console.log(question);
-        console.log(user);
-        // res.send(question);
         res.render("startquiz", { question, quiz_id: req.params.id, user, clickHandler: "next();", startHandler: "start();", onchangeHandler: "onChange();" });
 
     } catch (error) {
@@ -62,7 +37,6 @@ exports.editQuestion = async (req, res) => {
             answers: req.body.answers,
             correctAnswer: req.body.correctAnswer
         };
-
         await Question.findByIdAndUpdate(req.params.id, body, function (err, question) {
             let quiz_id = question.quiz_id;
             if (err) {

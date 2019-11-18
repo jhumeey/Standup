@@ -13,7 +13,8 @@ const User = mongoose.model(
 			index: true
 		},
 		email: {
-			type: String
+			type: String,
+			unique: true
 		},
 		department: {
 			type: String,

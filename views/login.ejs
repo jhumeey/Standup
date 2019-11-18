@@ -1,29 +1,26 @@
 <!doctype html>
-
-<head>
-	<title>StandUp</title>
-	<link href="/assets/login.css" rel="stylesheet" type="text/css">
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet"
-		id="bootstrap-css" />
+<html>
+	<head>
+		<title>StandUp</title>
+		<link href="/assets/login.css" rel="stylesheet" type="text/css">
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-</head>
-
-<body>
-	<% include partials/flashmessage %>
-	<div class="login-form">
-		<form action="/users/login" method="post">
-			<div class="avatar"><i class="material-icons">&#xE7FF;</i></div>
-			<h4 class="modal-title">Login to Your Account</h4>
-			<div class="form-group">
-				<input type="text" class="form-control" name="email" placeholder="Username" required="required">
-			</div>
-			<div class="form-group">
-				<input type="password" class="form-control" name="password" placeholder="Password" required="required">
-			</div>
-			<input type="submit" class="btn btn-primary btn-block btn-lg" value="Login">
-		</form>
-	</div>
-	<% include partials/scripts %>
-</body>
-
+	</head>
+	<body>
+		<% include partials/flashmessage %>
+		<div class="login-form">
+			<form action="/users/login" method="post">
+				<div class="avatar"><i class="material-icons">&#xE7FF;</i></div>
+				<h4 class="modal-title">Login to Your Account</h4>
+				<div class="form-group">
+					<input type="text" class="form-control" name="email" placeholder="Username" required="required">
+				</div>
+				<div class="form-group">
+					<input type="password" class="form-control" name="password" placeholder="Password" required="required">
+				</div>
+				<input type="submit" class="btn btn-primary btn-block btn-lg" value="Login">
+			</form>
+		</div>
+		<% include partials/scripts %>
+	</body>
 </html>

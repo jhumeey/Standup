@@ -40,20 +40,17 @@ exports.getAllCheckins = async (req, res) => {
             ],
             function (err, checkins) {
                 if (err) {
-                    console.log(err.message)
+                    console.log(err)
                 }
                 res.render("allcheckins", { checkins });
             }
         )
 
-
-
-
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
+        req.flash("error", { message: "Sorry, Could not find the page you are looking for" });
+        res.redirect("/admin/dashboard");
     }
-
-
 }
 
 exports.getUserCheckins = async (req, res) => {

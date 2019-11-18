@@ -1,13 +1,11 @@
 const express = require("express");
 const path = require("path");
-
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const flash = require("connect-flash");
 const session = require("express-session");
 const mongoose = require("mongoose");
-const toastr = require("express-toastr");
-
+const MongoClient = require('mongodb').MongoClient;
 const app = express();
 const home = require("./routes/home");
 const users = require("./routes/users");
@@ -19,11 +17,17 @@ const userscores = require("./routes/userscores");
 const questions = require("./routes/questions");
 const userresponses = require("./routes/userresponses");
 
+require('dotenv').config();
 
 
-mongoose.connect("mongodb://localhost/standup", {useCreateIndex: true,useNewUrlParser: true})
-		.then(() => console.log('connected to mongoDB'))
-		.catch(err => console.log(err.message))
+const uri = "mongodb+srv://yakubuYAks12@me@standup-fr1bf.mongodb.net/test?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect(err => {
+});
+
+// mongoose.connect("mongodb + srv://yakubu:YAks12@me@standup-fr1bf.mongodb.net/test?retryWrites=true&w=majority")
+// 		.then(() => console.log('connected to mongoDB'))
+// 		.catch(err => console.log(err.message))
 app.set('etag', false)
 app.use(function (req, res, next) {
 	res.setHeader("Access-Control-Allow-Origin", "*");
@@ -45,7 +49,7 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 var sess = {
 	name: "aminat",
-	secret: "Aminat project",
+	secret: process.env.SECRET,
 	resave: false,
 	secure: false,
 	saveUninitialized: true,
@@ -56,17 +60,10 @@ var sess = {
 };
 app.use(session(sess));
 app.use(flash());
-app.use(toastr());
 app.use(function (req, res, next) {
 	res.locals.success = req.flash('success');
-	res.locals.error = req.flash('error'); // console.log(res.locals.error);
-	// console.log(res.locals.success);
-
+	res.locals.error = req.flash('error'); 
 	next();
-});
-app.use(function (req, res, next) {
-	res.locals.toasts = req.toastr.render()
-	next()
 });
 app.use(express.json());
 app.use("/", home);

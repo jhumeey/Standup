@@ -1,4 +1,5 @@
 const { Activity } = require("../models/activity");
+const { Activity_type } = require("../models/activitytype");
 const { Question } = require("../models/questions");
 const { Userscores } = require("../models/userscores");
 const mongoose = require("mongoose");
@@ -108,8 +109,9 @@ exports.CreateQuestionForActivity = async (req, res) => {
 }
 exports.getEditActivityPage = async (req, res) => {
     try {
+        let activityTypes = await Activity_type.find()
         const activity = await Activity.findById(req.params.id);
-        res.render("edit activity", { activity });
+        res.render("edit activity", { activity, activityTypes });
     } catch (error) {
         console.log(error.message)
     }

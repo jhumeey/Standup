@@ -2,82 +2,78 @@
 <html lang="en">
 
 <head>
-    <title>StandUp</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <% include partials/links %>
+	<title>StandUp</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<% include partials/links %>
 </head>
 
 <body>
-    <% include partials/flashmessage %>
-    <div class="mainContainer">
-        <div class="content">
-            <% include partials/sidebar %>
-            <div id="innerContainer" class="innerContainer">
-                <div class="heading">
-                    <h3>User Profile</h3>
-                </div>
-                <div class="profile-container" >
-                    <div class="edit-profile">
-                        <div class="profile-heading">
-                            <h3>Edit Profile</h3>
-                            <h4>Complete Your Profile</h4>
-                        </div>
-                        <form method="post" action="/users/update">
-                            <label for="fname">First Name</label>
-                            <br />
-                            <input type="text" id="fname" name="firstname" placeholder="Your name.."
-                                value="<%= user_details.firstname %>" required />
-                            <br />
-                            <label for="lname">Last Name</label>
-                            <input type="text" id="lname" name="lastname" placeholder="Your last name.."
-                                value="<%= user_details.lastname %>" required />
-                            <br />
-                            <label for="email">Email</label>
-                            <input type="text" id="email" name="email" placeholder="Your email...."
-                                value="<%= user_details.email %>" required />
+	<% include partials/flashmessage %>
+	<div class="mainContainer">
+		<div class="content">
+			<% include partials/sidebar %>
+			<div id="innerContainer" class="innerContainer">
+				<div class="heading">
+					<h3>User Profile</h3>
+				</div>
+				<div class="profile-container">
+					<div class="edit-profile">
+						<div class="profile-heading">
+							<h3>Edit Profile</h3>
+							<h4>Complete Your Profile</h4>
+						</div>
+						<form method="post" action="/users/update">
+							<label for="fname">First Name</label>
+							<br />
+							<input type="text" id="fname" name="firstname" placeholder="Your name.."
+								value="<%= user_details.firstname %>" required />
+							<br />
+							<label for="lname">Last Name</label>
+							<input type="text" id="lname" name="lastname" placeholder="Your last name.."
+								value="<%= user_details.lastname %>" required />
+							<br />
+							<label for="email">Email</label>
+							<input type="text" id="email" name="email" placeholder="Your email...."
+								value="<%= user_details.email %>" required />
 
-                            <br />
-                            <label for="department">Department</label>
-                            <select id="department" name="department" required>
-                                <option value="Technology">Technology</option>
-                                <option value="Operations">Operations</option>
-                                <option value="Finance">Finance</option>
-                            </select>
-                            </br>
-                            <input type="hidden" name="id" value="<%= user_details._id %>" />
+							<br />
+							<label for="department">Department</label>
+							<select id="department" name="department" required>
+								<option value="Technology">Technology</option>
+								<option value="Operations">Operations</option>
+								<option value="Finance">Finance</option>
+							</select>
+							</br>
+							<input type="hidden" name="id" value="<%= user_details._id %>" />
 
-                            <input type="submit" value="Submit" style=" margin: 10px 0px 14px;" />
-                        </form>
-                    </div>
-                    <div class="user-details col-sm-12 col-md-4">
-                        <div class="user-box">
-                            <%if (user_details.gender.toLowerCase() == "female") { %>
-                            <div>
-
-                                <img class="w3-circle" src="/assets/images/girl.png" alt="" />
-                                <h2><%= user_details.firstname +" "+ user_details.lastname %></h2>
-                                <h3><%= user_details.department %></h3>
-                                <h3><%= user_details.email %></h3>
-
-                            </div>
-                            <% } else { %>
-                            <div>
-                                <img class="w3-circle" src="/assets/images/boy.png" alt="" />
-                                <h2><%= user_details.firstname +" "+ user_details.lastname %></h2>
-                                <h3><%= user_details.department %></h3>
-                                <h3><%= user_details.email %></h3>
-                            </div>
-                            <% } %>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <% include partials/scripts %>
+							<input type="submit" value="Submit" style=" margin: 10px 0px 14px;" />
+						</form>
+					</div>
+					<div class="user-details col-6">
+						<div class="user-box">
+							<%if (user_details.gender.toLowerCase() == "female") { %>
+								<div>
+									<img class="w3-circle" src="/assets/images/girl.png" alt="" />
+									<h2><%= user_details.firstname +" "+ user_details.lastname %></h2>
+									<h3><%= user_details.department %></h3>
+									<h3><%= user_details.email %></h3>
+								</div>
+							<% } else { %>
+								<div>
+									<img class="w3-circle" src="/assets/images/boy.png" alt="" />
+									<h2><%= user_details.firstname +" "+ user_details.lastname %></h2>
+									<h3><%= user_details.department %></h3>
+									<h3><%= user_details.email %></h3>
+								</div>
+							<% } %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% include partials/scripts %>
 </body>
 
 </html>

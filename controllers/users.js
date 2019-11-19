@@ -189,9 +189,8 @@ exports.deleteUser = async (req, res) => {
 exports.logoutUser = async (req, res) => {
 	try {
 		if (req.session) {
-			req.session.destroy(
-				res.redirect('/users/login')
-			);
+			req.session = null
+			res.redirect('/users/login')
 		}
 	} catch (error) {
 		console.log(error);

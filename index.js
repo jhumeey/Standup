@@ -1,11 +1,9 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
 const flash = require("connect-flash");
-const session = require("express-session");
+const cookieSession = require("cookie-session");
 const mongoose = require("mongoose");
-const MongoClient = require('mongodb').MongoClient;
 const app = express();
 const home = require("./routes/home");
 const users = require("./routes/users");
@@ -16,6 +14,7 @@ const checkins = require("./routes/checkin");
 const userscores = require("./routes/userscores");
 const questions = require("./routes/questions");
 const userresponses = require("./routes/userresponses");
+var expiryDate = new Date(Date.now() + 60 * 60 * 1000)
 
 require('dotenv').config();
 
@@ -45,19 +44,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
-app.use(cookieParser());
-var sess = {
-	name: "aminat",
+
+app.set('trust proxy', 1)
+app.use(cookieSession({
+	name: "standup",
 	secret: process.env.SECRET,
-	resave: false,
-	secure: false,
-	saveUninitialized: true,
-	expires: new Date(Date.now(+ 30 * 86400 * 1000)),
-		cookie: {
-		expires: 86400000
-	}
-};
-app.use(session(sess));
+	httpOnly: true,
+	maxAge: expiryDate
+}));
+
 app.use(flash());
 app.use(function (req, res, next) {
 	res.locals.success = req.flash('success');

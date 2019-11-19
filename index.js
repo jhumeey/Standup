@@ -19,7 +19,7 @@ const userresponses = require("./routes/userresponses");
 
 require('dotenv').config();
 
-mongoose.connect("mongodb+srv://yakubu:YAks12@me@standup-fr1bf.mongodb.net/test?retryWrites=true&w=majority", { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true  })
+mongoose.connect("mongodb+srv://yakubu:YAks12@me@standup-fr1bf.mongodb.net/standup?retryWrites=true&w=majority", { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true  })
 .then(() => console.log('connected to mongoDB'))
 .catch(err => console.log('could not connect to mongoDB...', err))
 

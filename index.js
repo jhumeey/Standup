@@ -19,15 +19,10 @@ const userresponses = require("./routes/userresponses");
 
 require('dotenv').config();
 
+mongoose.connect("mongodb+srv://yakubu:YAks12@me@standup-fr1bf.mongodb.net/test?retryWrites=true&w=majority", { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true  })
+.then(() => console.log('connected to mongoDB'))
+.catch(err => console.log('could not connect to mongoDB...', err))
 
-const uri = "mongodb+srv://yakubuYAks12@me@standup-fr1bf.mongodb.net/test?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-client.connect(err => {
-});
-
-// mongoose.connect("mongodb + srv://yakubu:YAks12@me@standup-fr1bf.mongodb.net/test?retryWrites=true&w=majority")
-// 		.then(() => console.log('connected to mongoDB'))
-// 		.catch(err => console.log(err.message))
 app.set('etag', false)
 app.use(function (req, res, next) {
 	res.setHeader("Access-Control-Allow-Origin", "*");

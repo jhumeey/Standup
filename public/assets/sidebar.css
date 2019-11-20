@@ -1,68 +1,71 @@
 html, body, h1, h2, h3, h4, h5 {
-  font-family: 'Raleway', sans-serif!important
+	font-family: 'Raleway', sans-serif!important
 }
 
 nav {
-  position: relative;
-  background: linear-gradient(to bottom, #555553a8, #464849), url('https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-2.32103624.jpg');
+	position: relative;
+	background: linear-gradient(to bottom, #555553a8, #464849), url('https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-2.32103624.jpg');
 }
 
 nav .active {
-  color: #fff!important;
-  background-color: #4caf50fa!important;
+	color: #fff!important;
+	background-color: #4caf50fa!important;
 }
 
 .alink:hover {
-  color: #4caf50fa!important;
+	color: #4caf50fa!important;
 }
 
 .w3-white, .w3-hover-white:hover {
-  color: #fff!important;
+	color: #fff!important;
 }
 
 .logo {
-  background-color: transparent;
-  color: #fff;
-  text-align: center;
-  text-decoration: none;
+	background-color: transparent;
+	color: #fff;
+	text-align: center;
+	text-decoration: none;
+}
 
-}
 .logo:hover {
-  background-color: transparent;
-  text-decoration: none;
-  color: #fff;
+	background-color: transparent;
+	text-decoration: none;
+	color: #fff;
 }
-.logo-heading{
-  text-align: center;
+
+.logo-heading {
+	text-align: center;
 }
+
 .alink {
-  text-decoration: none;
-  font-size: 14px;
-padding: 10px;
-margin-bottom: 10px;
+	text-decoration: none;
+	font-size: 14px;
+	padding: 10px;
+	margin-bottom: 10px;
 }
-.alink:hover{
-  text-decoration: none;
-  color: #fff;
+
+.alink:hover {
+	text-decoration: none;
+	color: #fff;
 }
 
 .alink i {
-  font-size: 20px;
-  margin-right: 20px;
+	font-size: 20px;
+	margin-right: 20px;
 }
 
 a {
-  text-decoration: none;
+	text-decoration: none;
 }
 
 a:hover {
-  text-decoration: none;
+	text-decoration: none;
 }
 
 .wrapper .sidebar:after {
-  background-color: #1b1b1bde;
+	background-color: #1b1b1bde;
 }
 
 .w3-button {
-  color: #fff!important;
+	color: #fff!important;
 }

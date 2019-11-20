@@ -22,7 +22,7 @@ mongoose.set('useUnifiedTopology', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useNewUrlParser', true);
 mongoose.Promise = global.Promise
-mongoose.connect("mongodb+srv://yakubu:YAks12@me@standup-fr1bf.mongodb.net/standup?retryWrites=true&w=majority", {useCreateIndex:  true})
+mongoose.connect(process.env.MONGODB_URI, {useCreateIndex:  true})
 .then(() => console.log('connected to mongoDB'))
 .catch(err => console.log('could not connect to mongoDB...', err))
 
@@ -30,7 +30,6 @@ app.set('etag', false)
 app.use(function (req, res, next) {
 	res.setHeader("Access-Control-Allow-Origin", "*");
 	res.setHeader("Access-Control-Allow-Methods", "GET, POST");
-	res.setHeader("Access-Control-Allow-Headers", "x-auth-token");
 	next();
 });
 app.use((req, res, next) => {

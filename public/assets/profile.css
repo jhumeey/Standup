@@ -1,152 +1,152 @@
 * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
 }
 
 html, body {
-  font-family: 'Raleway', sans-serif!important;
-  height: 100%;
-  width: 100%;
+	font-family: 'Raleway', sans-serif!important;
+	height: 100%;
+	width: 100%;
 }
 
 .mainContainer {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
 }
 
 .content {
-  display: flex;
-  flex-direction: row;
-  height: 100%;
+	display: flex;
+	flex-direction: row;
+	height: 100%;
 }
 
 .user-box img {
-  margin: -36px 10px 10px;
-  background-color: #ffffff;
-  width: 40%;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.47);
+	margin: -36px 10px 10px;
+	background-color: #ffffff;
+	width: 40%;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.47);
 }
 
 .heading h3 {
-  margin: 0px 27px;
-  padding: 32px 0px;
-  color: #4bac4e;
-  font-size: 30px;
-  font-weight: bold;
+	margin: 0px 27px;
+	padding: 32px 0px;
+	color: #4bac4e;
+	font-size: 30px;
+	font-weight: bold;
 }
 
 .heading {
-  background-color: #ffffff;
-  margin: 0px 0px 20px;
-  padding: 0px 10px;
+	background-color: #ffffff;
+	margin: 0px 0px 20px;
+	padding: 0px 10px;
 }
 
 .edit-profile {
-  margin: 40px 10px 0px 10px;
-  height: fit-content;
-  border-radius: 5px;
-  background-color: #ffffff;
-  padding: 57px 10px;
-  width: 85%;
+	margin: 40px 10px 0px 10px;
+	height: fit-content;
+	border-radius: 5px;
+	background-color: #ffffff;
+	padding: 57px 10px;
+	width: 85%;
 }
 
 .edit-profile h3 {
-  margin: 7px 0px 15px;
+	margin: 7px 0px 15px;
 }
 
 .event-form {
-  width: 85%;
-  padding: 5px;
-  background-color: #eeeeee;
+	width: 85%;
+	padding: 5px;
+	background-color: #eeeeee;
 }
 
 .user {
-  position: absolute;
-  bottom: 10px;
-  left: 25%;
+	position: absolute;
+	bottom: 10px;
+	left: 25%;
 }
 
 .user-details {
-  top: -16px;
-  padding: 49px;
-  background-color: #ffffff;
-  border-radius: 5px 5px 5px 0px;
-  margin: 57px 10px;
-  width: 35%;
-  height: fit-content;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+	top: -16px;
+	padding: 49px;
+	background-color: #ffffff;
+	border-radius: 5px 5px 5px 0px;
+	margin: 57px 10px;
+	width: 35%;
+	height: fit-content;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .user-box {
-  text-align: center;
-  color: black;
+	text-align: center;
+	color: black;
 }
 
 .user-box h3 {
-  padding: 0px;
+	padding: 0px;
 }
 
 .inner-container {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	width: 100%;
 }
 
 .profile-container {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  height: fit-content;
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	height: fit-content;
 }
 
 .profile-heading {
-  position: absolute;
-  color: #fff;
-  background-color: #4caf50fa;
-  border-radius: 5px;
-  height: 93px;
-  top: 11px;
-  left: 40px;
-  right: 60px;
-  padding: 0px 10px;
-  width: 41%;
+	position: absolute;
+	color: #fff;
+	background-color: #4caf50fa;
+	border-radius: 5px;
+	height: 93px;
+	top: 11px;
+	left: 40px;
+	right: 60px;
+	padding: 0px 10px;
+	width: 41%;
 }
 
 @media (min-width: 200px) and (max-width: 700px) {
-  .edit-profile {
-    width: 94%;
-    margin: 3%;
-  }
-  .user-details {
-    width: 94%!important;
-    margin: 3%;
-  }
-  .profile-container {
-    flex-direction: column-reverse;
-  }
-  .profile-heading {
-    height: unset;
-    top: unset;
-    left: 40px;
-    margin-top: -78px;
-    right: 45px;
-    padding: 0px 10px;
-    width: initial;
-  }
-  .innerContainer {
-    height: fit-content;
-  }
+	.edit-profile {
+		width: 94%;
+		margin: 3%;
+	}
+	.user-details {
+		width: 94%!important;
+		margin: 3%;
+	}
+	.profile-container {
+		flex-direction: column-reverse;
+	}
+	.profile-heading {
+		height: unset;
+		top: unset;
+		left: 40px;
+		margin-top: -78px;
+		right: 45px;
+		padding: 0px 10px;
+		width: initial;
+	}
+	.innerContainer {
+		height: fit-content;
+	}
 }
 
 @media (min-width: 710px) and (max-width: 1200px) {
-  .profile-heading {
-    top: 11px;
-    left: 35px;
-    right: 57%;
-    padding: 0px 10px;
-    width: initial;
-  }
+	.profile-heading {
+		top: 11px;
+		left: 35px;
+		right: 57%;
+		padding: 0px 10px;
+		width: initial;
+	}
 }

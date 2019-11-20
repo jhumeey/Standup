@@ -7,19 +7,19 @@ const Question = mongoose.model(
 			type: String,
 			required: true,
 			minlength: 4,
-			maxlength: 50
+			maxlength: 250
 		},
 		answers: {
 			type: [String],
 			required: true,
 			minlength: 1,
-			maxlength: 50
+			maxlength: 250
 		},
 		correctAnswer: {
 			type: String,
 			required: true,
 			minlength: 1,
-			maxlength: 50
+			maxlength: 250
 		},
 		activity_id: {
 			type: mongoose.Schema.Types.ObjectId,

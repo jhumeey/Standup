@@ -65,9 +65,7 @@
 										<td><%= event[key].eventactivities[element].activityType %></td>
 										<td><%= event[key].eventactivities[element].createdAt.toDateString() %></td>
 										<td class="links">
-											<a href="/activity/question/<%= event[key].eventactivities[element]._id %>">
-												<i class="fa fa-eye" aria-hidden="true"></i>
-											</a>
+											<a href="/activity/view/<%= event[key].eventactivities[element]._id %>"><i class="fa fa-eye" aria-hidden="true"></i></a>
 											<a href="/activity/edit/<%= event[key].eventactivities[element]._id %>">
 												<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 											</a>

@@ -10,9 +10,8 @@
 }
 
 .heading .fa {
-	margin: 0px 17px 27px 0px;
 	color: #21252985;
-	position: fixed;
+	position: absolute!important;
 }
 
 .noactive {

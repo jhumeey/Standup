@@ -9,5 +9,8 @@
     $("#danger-alert").fadeTo(2000, 500).slideUp(200, function () {
         $("#danger-alert").slideUp(200);
     });
-
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
 </script>

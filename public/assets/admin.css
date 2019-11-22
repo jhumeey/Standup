@@ -1,13 +1,34 @@
-@media (min-width: 1300px) and (max-width:2000px) {
-	.innerContainer {
-		position: relative;
-		background-color: #f8f8f8;
-		width: 85%;
-		box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-	}
-	.sidenav {
-		display: block;
-	}
+.innerContainer {
+	position: relative;
+	background-color: #f8f8f8;
+	width: 100%;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.sidenav {
+	display: block;
+}
+
+.heading .fa {
+	margin: 0px 17px 27px 0px;
+	color: #21252985;
+	position: fixed;
+}
+
+.noactive {
+	display: none;
+}
+
+.noactivediv {
+	display: none;
+}
+
+.options {
+	padding: 10px 20px;
+}
+
+.active {
+	display: block;
 }
 
 .fa.fa-pencil-square-o {
@@ -55,8 +76,8 @@
 	font-size: 26px;
 }
 
-nav {
-	width: 20%!important;
+.sidenav {
+	width: 20%;
 }
 
 .card h5 {
@@ -216,16 +237,19 @@ a:hover.toplink {
 	right: 10px;
 }
 
-@media (min-width: 200px) and (max-width: 700px) {
+@media (max-width: 700px) {
 	.innerContainer {
 		margin-left: 0;
-		width: 100%;
 	}
 	.content {
 		position: relative;
 	}
-	nav {
-		width: 30%!important;
+	.sidenav {
+		display: none;
+		min-width: 16rem;
+	}
+	.toggle-container {
+		display: inline-block;
 	}
 	.custom-responsivescreen-btn {
 		margin: 0px;
@@ -235,6 +259,9 @@ a:hover.toplink {
 		color: #0000007d!important;
 		font-size: 24px;
 	}
+	.custom-badge {
+		position: unset;
+	}
 	.w3-black {
 		background-color: transparent!important;
 		color: #000;
@@ -242,6 +269,9 @@ a:hover.toplink {
 	.heading h3 {
 		font-size: 22px;
 		margin: 0px 0px;
+	}
+	.events-container {
+		justify-content: center;
 	}
 	.responsive-topbar {
 		height: 32px;
@@ -255,9 +285,6 @@ a:hover.toplink {
 		right: 32px;
 		min-width: 105px;
 		top: 28px;
-	}
-	.sidenav {
-		display: none;
 	}
 }
 

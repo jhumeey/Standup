@@ -1,43 +1,37 @@
-<div class="w3-bar w3-top w3-large" style="z-index:4">
-	<button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();">
-		<i class="fa fa-bars"></i>  Menu</button>
-</div>
+<div id="sidebar-wrapper">
+	<ul class="sidebar-nav">
+		<li class="sidebar-brand">
+			<a class="logo" href="/">Standup</a>
+		</li>
+		<li>
+			<a href="/events">
+				<i class="fa fa-dashboard fa-fw"></i>
+				Dashboard
+			</a>
+		</li>
+		<li>
+			<a href="/users/profile">
+				<i class="fa fa-user fa-fw"></i>
+				User Profile
+			</a>
+		</li>
+		<li>
+			<a href="/userscores/">
+				<i class="fa fa-star fa-fw"></i>
+				User Scores
+			</a>
+		</li>
+		<li>
+			<a href="/checkins/usercheckins/">
+				<i class="fa fa-calendar-check-o"></i>
+				User Checkins
+			</a>
+		</li>
+		<li>
+			<a href="/users/logout"><i class="fa fa-sign-out fa-fw"></i>
+				Logout
+			</a>
+		</li>
 
-<nav class="sidenav w3-white w3-animate-left" style="z-index:3; width: 20%;" id="mySidebar"><br>
-	<div class="w3-container w3-row">
-		<div>
-			<h3 class="logo-heading"><a class="logo" href="/">Standup</a></h3>
-		</div>
-	</div>
-	<hr>
-	<div class="w3-bar-block">
-		<a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black"
-			onclick="w3_close()" title="close menu">
-			<i class="fa fa-remove fa-fw"></i>  
-			Close Menu
-		</a>
-		<a href="/events" class="w3-bar-item w3-button w3-padding alink">
-			<i class="fa fa-dashboard fa-fw"></i> 
-			Dashboard
-		</a>
-		<a href="/users/profile" class="w3-bar-item w3-button w3-padding alink">
-			<i class="fa fa-user fa-fw"></i>  
-			User Profile
-		</a>
-		<a href="/userscores/" class="w3-bar-item w3-button w3-padding alink">
-			<i class="fa fa-star fa-fw"></i> 
-			User Scores
-		</a>
-		<a href="/checkins/usercheckins/" class="w3-bar-item w3-button w3-padding alink">
-			<i class="fa fa-star fa-fw"></i> 
-			User Checkins
-		</a>
-		<a href="/users/logout" class="w3-bar-item w3-button w3-padding alink"><i class="fa fa-sign-out fa-fw"></i> 
-			Logout
-		</a>
-		<br>
-	</div>
-</nav>
-<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer"
-	title="close side menu" id="myOverlay">
+	</ul>
 </div>

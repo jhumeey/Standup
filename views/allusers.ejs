@@ -12,11 +12,14 @@
 
 	<body>
 		<% include partials/flashmessage %>
-		<div class="mainContainer">
+		<div class="mainContainer" id="wrapper">
 			<div class="content">
 				<% include partials/admin/sidebar %>
 				<div class="innerContainer">
 					<div class="heading">
+						<a href="#" class="btn btn-default" id="menu-toggle">
+							<i class="fa fa-bars fa-fw"></i>
+						</a>
 						<h3>All Users</h3>
 						<a class="toplink" href="/users/create">Create User</a>
 					</div>

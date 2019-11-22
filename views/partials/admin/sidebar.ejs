@@ -1,44 +1,37 @@
-<div class="w3-bar w3-top  w3-large responsive-topbar" style="z-index:4">
-	<button class="custom-responsivescreen-btn w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();">
-		<i class="fa fa-bars"></i>
-	</button>
-</div>
-<nav class="sidenav w3-white w3-animate-left" style="z-index:3; width:20%;" id="mySidebar"><br>
-	<div class="w3-container w3-row">
-		<div class="w3-col s8 w3-bar">
-			<h3><a class="logo" href="/">Standup</a></h3>
-		</div>
-	</div>
-	<hr>
-	<div class="w3-bar-block">
-		<a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black"
-			onclick="w3_close()" title="close menu">
-			<i class="fa fa-remove fa-fw"></i> 
-			Close Menu
-		</a>
-		<a href="/admin/dashboard" class="w3-bar-item w3-button w3-padding alink">
-			<i class="fa fa-dashboard fa-fw"></i> 
-			Dashboard
-		</a>
-		<a href="/users/all" class="w3-bar-item w3-button w3-padding alink">
-			<i class="fa fa-user fa-fw"></i> 
-			Users
-		</a>
-		<a href="/checkins/all/" class="w3-bar-item w3-button w3-padding alink">
-			<i class="fa fa-star fa-fw"></i> 
-			Checkins
-		</a>
-		<a href="/events/all" class="w3-bar-item w3-button w3-padding alink">
+<div id="sidebar-wrapper">
+	<ul class="sidebar-nav">
+		<li class="sidebar-brand">
+			<a class="logo" href="/">Standup</a>
+		</li>
+		<li>
+			<a href="/admin/dashboard">
+				<i class="fa fa-dashboard fa-fw"></i> 
+				Dashboard
+			</a>
+		</li>
+		<li>
+			<a href="/users/all">
+				<i class="fa fa-user fa-fw"></i> 
+				Users
+			</a>
+		</li>
+		<li>
+			<a href="/checkins/all/">
+				<i class="fa fa-calendar-check-o"></i> 
+				Checkins
+			</a>
+		</li>
+		<li>
+		<a href="/events/all">
 			<i class="fa fa-calendar fa-fw"></i> 
 			Events
 		</a>
-		<a href="/users/logout" class="w3-bar-item w3-button w3-padding alink">
-			<i class="fa fa-sign-out fa-fw"></i> 
-			Logout
-		</a>
-		<br>
-	</div>
-</nav>
-<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer"
-	title="close side m" id="myOverlay">
+		</li>
+		<li>
+			<a href="/users/logout"><i class="fa fa-sign-out fa-fw"></i>
+				Logout
+			</a>
+		</li>
+
+	</ul>
 </div>

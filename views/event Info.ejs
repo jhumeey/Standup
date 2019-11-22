@@ -5,21 +5,18 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<% include partials/links %>
-		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
-		<style>
-			.checkin-text {
-				font-size: 15px !important;
-
-			}
-		</style>
+		<link href="/assets/table.css" rel="stylesheet" />
 	</head>
 	<body>
 		<% include partials/flashmessage%>
-		<div class="mainContainer">
+		<div class="mainContainer" id="wrapper">
 			<div class="content">
 				<% include partials/sidebar %>
 				<div class="innerContainer">
 					<div class="heading">
+						<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">
+							<i class="fa fa-bars fa-fw"></i>
+						</a>
 						<h3>Event Details</h3>
 					</div>
 					<% for (var key in eventDetails) { %>
@@ -52,12 +49,9 @@
 							</div>
 						</div>
 					<% } %>
-					<div class="card">
-						<div class="card-header">
-							Activities
-						</div>
-						
-						<table class="card-table table">
+					<div class="tableContainer table-responsive">
+						<h5>Activities</h5>
+						<table class="card-table table" id="table">
 							<thead>
 								<tr>
 									<th scope="col">Activity Name</th>

@@ -103,7 +103,6 @@ html, body {
 }
 
 .profile-heading {
-	position: absolute;
 	color: #fff;
 	background-color: #4caf50fa;
 	border-radius: 5px;
@@ -112,41 +111,33 @@ html, body {
 	left: 40px;
 	right: 60px;
 	padding: 0px 10px;
-	width: 41%;
+	width: 100%;
 }
 
-@media (min-width: 200px) and (max-width: 700px) {
-	.edit-profile {
-		width: 94%;
-		margin: 3%;
+.profile-heading h3 {
+	margin: 0px 0px 0px 3px!important;
+	padding-top: 20px;
+}
+
+.custom-card {
+	text-align: center;
+}
+
+.custom-card img {
+	width: 58%!important;
+}
+
+@media (max-width: 700px) {
+	.formContainer {
+		width: unset!important;
 	}
-	.user-details {
-		width: 94%!important;
-		margin: 3%;
+	.custom-card {
+		width: unset!important;
 	}
 	.profile-container {
 		flex-direction: column-reverse;
 	}
-	.profile-heading {
-		height: unset;
-		top: unset;
-		left: 40px;
-		margin-top: -78px;
-		right: 45px;
-		padding: 0px 10px;
-		width: initial;
-	}
 	.innerContainer {
 		height: fit-content;
-	}
-}
-
-@media (min-width: 710px) and (max-width: 1200px) {
-	.profile-heading {
-		top: 11px;
-		left: 35px;
-		right: 57%;
-		padding: 0px 10px;
-		width: initial;
 	}
 }

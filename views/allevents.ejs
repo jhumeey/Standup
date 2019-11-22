@@ -7,68 +7,19 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<% include partials/links %>
 		<link rel="stylesheet" type="text/css" href="/assets/table.css" />
-		<style>
-			.inner-container {
-				background-color: #ffffff;
-				/* box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
-				width: 100%;
-				margin: 5px;
-				display: flex;
-				flex-direction: row;
-				flex-wrap: wrap;
-				height: 100%;
-			}
-
-			.inner-container a {
-				text-decoration: none;
-			}
-
-			.inner-container h3 {
-				padding: 32px 10px 10px;
-			}
-
-			.event-container {
-				display: flex;
-				flex-direction: column;
-				width: 85%;
-				height: 100%;
-			}
-
-			.event-heading {
-				position: relative;
-			}
-
-			a.create {
-				text-decoration: none;
-				text-align: center;
-				position: absolute;
-				right: 5px;
-				background-color: #4caf50fa;
-				color: #ffffff;
-				border-radius: 5px;
-				font: 20px;
-				width: 150px;
-				padding: 10px;
-				top: 39px;
-			}
-
-			a:hover.create {
-				text-decoration: none;
-				background-color: #ffffff;
-				color: #4caf50fa;
-			}
-		</style>
 	</head>
 
 	<body>
 		<% include partials/flashmessage %>
-		<div class="mainContainer">
+		<div class="mainContainer" id="wrapper">
 			<div class="content">
 				<% include partials/admin/sidebar %>
 
 				<div class="innerContainer">
 					<div class="heading">
-
+						<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">
+							<i class="fa fa-bars fa-fw"></i>
+						</a>
 						<h3>All Events</h3>
 						<a class="toplink" href="/events/create ">Create Event</a>
 					</div>

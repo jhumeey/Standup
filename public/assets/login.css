@@ -108,3 +108,14 @@ html, body {
 		margin-top: 20%;
 	}
 }
+
+@media (min-width:660px) and (max-width:900px) {
+	.form-row {
+		width: 50%;
+		margin-left: 25%!important;
+	}
+	input[type=submit] {
+		width: 50%!important;
+		margin-left: 25%!important;
+	}
+}

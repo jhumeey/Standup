@@ -41,7 +41,7 @@
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="description">Event Date</label>
-									<input type="date" class="form-control" name="eventDate"  required/>
+									<input type="date" id="date" class="form-control"  name="eventDate" value="" required/>
 								</div>
 
 								<div class="form-group col-md-6">
@@ -54,7 +54,7 @@
 								</div>
 								
 							</div>
-							
+							<input type="hidden" id="event_date" name="event_id" value="<%= event.eventDate %>" />
 							<input type="hidden" id="event id" name="event_id" value="<%= event._id %>" />
 							<input type="submit" value="Submit">
 						</form>
@@ -64,6 +64,12 @@
 			</div>
 		</div>
 		<% include partials/scripts %>
+		<script>
+			let firstdate = document.getElementById("event_date").value;
+			let sort = new Date(firstdate);
+			let formatted_date = sort.getFullYear() +"-" + ((sort.getMonth() + 1) < 10 ? '0' : '') + (sort.getMonth() + 1) +"-" + ((sort.getDate() ) < 10 ? '0' : '')+ (sort.getDate());
+			document.getElementById("date").value = formatted_date
+		</script>
 	</body>
 
 </html>

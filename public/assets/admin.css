@@ -237,6 +237,38 @@ a:hover.toplink {
 	right: 10px;
 }
 
+.events-container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.events {
+	width: 30%;
+	margin: 1%;
+	color: #000000;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	height: 300px;
+}
+
+.link {
+	text-decoration: none;
+	text-align: center;
+	background-color: #4caf50fa;
+	color: #ffffff;
+	border-radius: 5px;
+	font: 20px;
+	width: 150px;
+	padding: 10px;
+}
+
+.link:hover {
+	text-decoration: none;
+	background-color: #ffffff;
+	color: #4caf50fa;
+}
+
 @media (max-width: 700px) {
 	.innerContainer {
 		margin-left: 0;

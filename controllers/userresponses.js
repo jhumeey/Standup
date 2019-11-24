@@ -26,25 +26,23 @@ exports.submitUserresponses = async (req, res) => {
     let query = { _id: { $in: convertedIds } }
     const questions = await Question.find(query);
     for (let i = 0; i < questions.length; i++) {
-        console.log(questions[i].correctAnswer, answers[i]);
         if (questions[i].correctAnswer === answers[i]) {
             score = score + 10;
         } else {
-            console.log("Wrong");
+            score = score;
         }
     }
     try {
-        let userscore = {
-            score: score,
-            activity_id: convertedIds[0],
-            user_id: req.session.user._id,
-            activity_name: activity_name
-        };
-        userscore = await Userscores.findOneAndUpdate({ $and: [{ user_id: req.session.user._id }, { activity_id: activity_id }] } , userscore,  function (err) {
+        // let newscore = {
+        //     score: score,
+        //     activity_name: activity_name
+        // }
+        await Userscores.findOneAndUpdate({ user_id: req.session.user._id, activity_id: activity_id }, {$set: {score: score, activity_name: activity_name }}, { new: true }, function (err) {
             if (err) {
                 console.log(err);
             }
-            res.render("showscore", { userscore })
+            // console.log(newscore, score)
+            res.render("showscore", { score})
         });  
     } catch (error) {
         console.log(error);

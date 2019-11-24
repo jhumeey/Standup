@@ -1,5 +1,3 @@
-
-
 *, *::before, *::after {
 	box-sizing: border-box;
 }
@@ -30,7 +28,6 @@ html, body {
 	display: inline-block;
 	padding: 10px 50px;
 	padding-top: 0;
-	/* text-decoration: none; */
 	font-weight: 700;
 	font-size: 35px;
 }
@@ -56,6 +53,9 @@ html, body {
 
 .intro-container {
 	padding: 47px;
+	position: absolute;
+	width: 100%;
+	left: 2rem;
 }
 
 .intro-container p {
@@ -63,7 +63,7 @@ html, body {
 }
 
 .intro-text-heading {
-	font-size: 40px;
+	font-size: 50px;
 }
 
 @media (min-width: 200px) and (max-width: 700px) {
@@ -97,4 +97,8 @@ html, body {
 	.intro-container p {
 		padding: 10px;
 	}
+}
+
+@media (min-width: 800px) and (max-width: 900px) {
+	
 }

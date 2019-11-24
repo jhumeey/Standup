@@ -2,6 +2,7 @@
 	position: relative;
 	background-color: #f8f8f8;
 	width: 100%;
+	overflow: scroll;
 	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
@@ -212,16 +213,17 @@
 
 a.toplink {
 	text-decoration: none;
+	margin-right: 4rem;
 	text-align: center;
-	position: absolute;
-	right: 5px;
 	background-color: #4caf50fa;
 	color: #ffffff;
 	border-radius: 5px;
 	font: 20px;
 	width: 150px;
+	height: 3rem;
+	margin-top: 2rem;
+	margin-right: 1rem;
 	padding: 10px;
-	top: 39px;
 }
 
 a:hover.toplink {
@@ -302,9 +304,6 @@ a:hover.toplink {
 		margin: 0px 0px;
 		padding: 37px 29px;
 	}
-	.events-container {
-		justify-content: center;
-	}
 	.responsive-topbar {
 		height: 32px;
 		width: 18%!important;
@@ -324,6 +323,8 @@ a:hover.toplink {
 	.innerContainer {
 		margin-left: 0%;
 		width: 100%;
+		height: 100vh;
+		overflow: scroll;
 	}
 	nav {
 		width: 30%!important;

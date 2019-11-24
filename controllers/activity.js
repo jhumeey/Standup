@@ -2,6 +2,7 @@ const { Activity } = require("../models/activity");
 const { Activity_type } = require("../models/activitytype");
 const { Question } = require("../models/questions");
 const { Userscores } = require("../models/userscores");
+const { User } = require("../models/users");
 const mongoose = require("mongoose");
 var ObjectId = mongoose.Types.ObjectId;
 
@@ -26,16 +27,19 @@ exports.getActivityById = async (req, res) => {
 exports.startActivity = async (req, res) => {
     try {
         let activityId = req.params.id;
+        let user = req.session.user;
         let userId = req.session.user._id;
-        let userscore = await Userscores.findOne({  $and: [{ user_id: userId }, { activity_id: activityId}] } );
+        let userscore = await Userscores.findOne({user_id: userId, activity_id: activityId } );
         if (userscore) {
+            console.log(user);
             req.flash("error", { message: "You have accessed this activity already" });
             res.redirect(301, "/activity/details/" + activityId);
         } else {
-            let userscore = new Userscores({
+            user.activityStatus = true;
+            let newuserscore = new Userscores({
                 score: "0", user_id: userId, activity_id: activityId
             });
-            userscore.save();
+            newuserscore.save();
             Question.aggregate(
                 [
                     { "$match": { "activity_id": ObjectId(activityId) } },

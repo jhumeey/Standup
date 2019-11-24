@@ -31,6 +31,10 @@ const User = mongoose.model(
 		},
 		event_id: {
 			type: [String]
+		},
+		activityStatus: {
+			type: Boolean,
+			default: false,
 		}
 
 	},

@@ -35,7 +35,7 @@
                         <h3>User Score</h3>
 
                     </div>
-                    <input type="hidden" name="userscore" id="userscore" value="<%= userscore.score %>">
+                    <input type="hidden" name="userscore" id="userscore" value="<%= score %>">
                 </div>
             </div>
             <% include partials/scripts %>
@@ -47,7 +47,7 @@
                     icon: 'info',
                     confirmButtonColor: "#4caf50fa"
                 }).then(function () {
-                    location.href = "/events"
+                    location.href = "/userscores"
                 })
             </script>
     </body>

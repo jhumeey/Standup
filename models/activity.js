@@ -32,7 +32,7 @@ const Activity = mongoose.model(
 		},
 		createdBy: {
 			type: String
-		}
+		}, 
 	},
 		{
 			timestamps: true

@@ -160,6 +160,7 @@ exports.getEventDetails = async (req, res) => {
 				checkin_counter = result;
 			}
 		)
+		
 		Event.aggregate(
 			[
 				{ "$match": { "_id": ObjectId(eventId) } },
@@ -220,27 +221,14 @@ exports.createEventsCheckins = async (req, res) => {
 		checkin = await checkin.save();
 		await User.findByIdAndUpdate(req.body.user_id, { $push: { event_id: req.body.event_id } });
 		req.flash("success", { message: "Checked-in Sucessfully" });
-		res.redirect("/events/details/" + req.body.event_id);
+		res.redirect(302, "/events/details/" + req.body.event_id);
 	} catch (error) {
 		console.log(error);
 		req.flash("success", { message: "Sorry, Cannot complete request, please contact administrator" });
-		res.redirect("/events/details/" + req.body.event_id);
+		res.redirect(302, "/events/details/" + req.body.event_id);
 	}
 }
-exports.getEventCheckins = async (req, res) => {
-	try {
-		Check_in.aggregate(
-			[
-				{ $group: { _id: null, myCount: { $sum: 1 } } },
-				{ $project: { _id: 0 } }
-			], function (err, result) {
 
-			}
-		)
-	} catch (error) {
-		console.log(error.message);
-	}
-}
 exports.editEvent = async (req, res) => {
 	try {
 		const body = {

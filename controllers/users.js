@@ -76,12 +76,12 @@ exports.loginUser = async (req, res) => {
 	try {
 		let user = await User.findOne({ email: req.body.email });
 		if (!user) {
-			req.flash("error", { message: "Invalid email" });
+			req.flash("error", { message: "Invalid email or password" });
 			res.redirect("/users/login");
 		} else {
 			const validPassword = await bcrypt.compare(req.body.password, user.password);
 			if (!validPassword) {
-				req.flash("error", { message: "Invalid password." });
+				req.flash("error", { message: "Invalid email or password." });
 				res.redirect("/users/login");
 			} else if (user.role.toLowerCase() == "admin") {
 				req.session.user = user;
@@ -94,7 +94,7 @@ exports.loginUser = async (req, res) => {
 
 	} catch (error) {
 		console.log(error);
-		req.flash("error", { message: "Sorry, you cannot login, contact the administrator." });
+		req.flash("error", { message: "Invalid credentials, kindly, contact the administrator." });
 		res.redirect("/users/login");
 	}
 

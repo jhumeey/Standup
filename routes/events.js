@@ -24,8 +24,6 @@ router.get("/events/details/:id", redirectLogin, eventController.getEventDetails
 
 router.post("/events/checkin", eventController.createEventsCheckins);
 
-router.get("/events/checkins", redirectLogin, eventController.getEventCheckins );
-
 router.post("/events/edit/:id",  Validation.eventValidationRules(), Validation.editValidateEvent, eventController.editEvent);
 
 router.get("/events/delete/:id", redirectLogin, eventController.deleteEvent);

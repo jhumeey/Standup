@@ -68,7 +68,7 @@
 										<td><%= eventDetails[key].activitydetails[element].activityType %></td>
 										<td><%= eventDetails[key].activitydetails[element].description %></td>
 										<td><%= eventDetails[key].activitydetails[element].createdBy %></td>
-										<td>
+										<td style= "width: 12rem;">
 											<a class="secondary-link" href="/activity/details/<%=eventDetails[key].activitydetails[element]._id %>">
 												View Activity
 											</a>
@@ -82,5 +82,8 @@
 			</div>
 		</div>
 		<% include partials/scripts %>
+		<!-- <script>
+			document.location.reload(true);
+		</script> -->
 	</body>
 </html>

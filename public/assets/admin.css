@@ -271,11 +271,19 @@ a:hover.toplink {
 }
 
 @media (max-width: 700px) {
+	html, body {
+		height: 100%;
+	}
+	#wrapper {
+		height: 100%;
+	}
 	.innerContainer {
 		margin-left: 0;
+		height: 100%
 	}
 	.content {
 		position: relative;
+		height: 100%;
 	}
 	.sidenav {
 		display: none;

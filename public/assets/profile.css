@@ -139,7 +139,4 @@ html, body {
 	.profile-container {
 		flex-direction: column-reverse;
 	}
-	.innerContainer {
-		height: fit-content;
-	}
 }

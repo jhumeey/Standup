@@ -1,11 +1,11 @@
 <% if (typeof(error) !== 'undefined' && error.length > 0) { %>
-    <div class="alert alert-danger" id="danger-alert">
+    <div class="alert alert-danger" id="danger-alert" style="position:absolute; right: 5px; top: 5px; width: fit-content;">
         <li><%= error[0].message %></li> 
         <br>
     </div>
 <% } %>
 <% if (typeof(success) !== 'undefined' && success.length > 0) { %>
-    <div class="alert alert-success" id="success-alert">
+    <div class="alert alert-success" id="success-alert" style="position:absolute; left: 5px; width: 30%; top: 5px;">
         <li><%= success[0].message %></li> 
         <br>
     </div>

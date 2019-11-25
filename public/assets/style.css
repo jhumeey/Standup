@@ -78,7 +78,7 @@ html, body {
 	.wrapper {
 		text-align: center;
 		height: 100%;
-		background-size: 100%;
+		background-size: cover;
 		overflow: scroll;
 	}
 	.intro-container {

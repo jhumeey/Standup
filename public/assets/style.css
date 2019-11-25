@@ -63,6 +63,7 @@ html, body {
 	padding-left: 5rem;
 	width: 55%;
 }
+
 .intro-container a {
 	width: 200px;
 }
@@ -82,10 +83,19 @@ html, body {
 		width: unset;
 		left: unset;
 	}
+	.intro-text-heading {
+		width: 100%;
+		padding-left: unset;
+	}
+	.intro-container p {
+		padding-left: unset;
+		width: 100%;
+	}
 	.logo-link {
 		display: inline-block;
 		padding: 10px 50px;
 		padding-top: 0;
+		margin-left: unset;
 		font-weight: 700;
 		font-size: 35px;
 	}
@@ -103,6 +113,7 @@ html, body {
 		background-color: #000;
 		border-radius: 5px;
 		width: 150px;
+		margin-left: unset;
 		padding: 10px;
 	}
 	.intro-container p {

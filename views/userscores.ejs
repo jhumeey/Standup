@@ -15,20 +15,27 @@
 				<% include partials/sidebar %>
 
 				<div class="innerContainer">
-					<% if(!userscore.length) { %>
+					<% include partials/flashmessage %>
 					<div class="heading">
-					<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">
-						<i class="fa fa-bars fa-fw"></i>
-					</a>
-						<h3>Sorry, there is no data to display</h3>
+						<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">
+							<i class="fa fa-bars fa-fw" style="position: fixed;"></i>
+						</a>
+						<h3>User Scores</h3>
 					</div>
+					<% if(!userscore.length) { %>
+						<div class="card">
+                        <div class="card-header s-custom-card-header">
+                            Activity
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title s-custom-card-title">You have not taken any Quiz</h4>
+							<button class="link" onclick="window.location.href='/events'">
+								Take A Quiz Now
+							</button>
+                        </div>
+                    </div>
 					<% } else { %>
-						<div class="heading">
-							<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">
-								<i class="fa fa-bars fa-fw" style="position: fixed;"></i>
-							</a>
-							<h3>User Scores</h3>
-						</div>
+						
 						<div class="tableContainer table-responsive">
 							<table id="table" class="table">
 								<tr>

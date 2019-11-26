@@ -8,11 +8,11 @@
 		<link href="/assets/table.css" rel="stylesheet" />
 	</head>
 	<body>
-		<% include partials/flashmessage%>
 		<div class="mainContainer" id="wrapper">
 			<div class="content">
 				<% include partials/sidebar %>
 				<div class="innerContainer">
+					<% include partials/flashmessage%>
 					<div class="heading">
 						<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">
 							<i class="fa fa-bars fa-fw"></i>
@@ -21,17 +21,17 @@
 					</div>
 					<% for (var key in eventDetails) { %>
 						<div class="card" style="position: relative;">
-							<div class="card-header">
+							<div class="card-header s-custom-card-header">
 								Event
 							</div>
 							<div class="card-body">
-								<h5 class="card-title custom-card-header"><%= eventDetails[key].name %></h5>
-								<h4 class="custom-badge">Number of Checkins:
+								<h5 class="card-title s-custom-card-title"><%= eventDetails[key].name %></h5>
+								<h4 class="custom-badge text-white">Number of people checked-in:
 									<% if (checkin_counter == 0) { %>
-										<span class="badge badge-primary">0 </span>
+										<span class="badge">0 </span>
 									<% } else { %>
 										<% for (var key in checkin_counter) { %>
-											<span class="badge badge-primary"><%= checkin_counter[key].myCount %></span>
+											<span class="badge"><%= checkin_counter[key].myCount %></span>
 										<% } %>
 									<% } %>
 								</h4>
@@ -40,7 +40,7 @@
 									<h5 class="checkin-text">You are checked-in</h5>
 								<% } else { %>
 									<form method="post" action="/events/checkin">
-										<input type="submit" value="Check-in" style="margin-left: -6px;">
+										<button type="submit" class="link" style="margin-left: -6px;">Check-in</button>
 										<input type="hidden" name="user_id" value="<%= userDetails._id %>">
 										<input type="hidden" name="event_id" value="<%= eventDetails[key]._id %>">
 										<input type="hidden" name="checkin_Date" value="<%= Date.now() %>">
@@ -69,9 +69,8 @@
 										<td><%= eventDetails[key].activitydetails[element].description %></td>
 										<td><%= eventDetails[key].activitydetails[element].createdBy %></td>
 										<td style= "width: 12rem;">
-											<a class="secondary-link" href="/activity/details/<%=eventDetails[key].activitydetails[element]._id %>">
-												View Activity
-											</a>
+											<button class="secondary-link" onclick="window.location.href='/activity/details/<%=eventDetails[key].activitydetails[element]._id %>'"> View
+												Activity</button>
 										</td>
 									</tr>
 								<% } %>

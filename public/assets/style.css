@@ -8,10 +8,9 @@ html, body {
 	height: 100%;
 	width: 100%;
 	font-family: 'Raleway', sans-serif!important;
-	background-color: #eee;
 }
 
-.wrapper {
+.s-wrapper {
 	height: 100%;
 	width: 100%;
 	overflow: auto;
@@ -19,94 +18,107 @@ html, body {
 	position: relative;
 	z-index: 1;
 	background-color: #ffffff;
-	background: linear-gradient(to bottom, #5555539e, #464849), url("https://images.unsplash.com/photo-1508873699372-7aeab60b44ab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80");
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
 }
 
-.logo-link {
+.s-logo-brand {
+	margin-left: 3rem;
+}
+
+.s-logo-link {
 	display: inline-block;
 	padding: 10px 0px;
-	margin-left: 5rem;
 	padding-top: 0;
 	font-weight: 700;
 	font-size: 35px;
 }
 
-.logo-link a {
+.s-logo-link a {
 	text-decoration: none;
-	color: #000000;
+	color: #0A4359;
 }
 
-.logo-link a:hover {
+.s-logo-link a:hover {
 	text-decoration: none;
 }
 
-#myBtn {
-	text-decoration: none;
+.s-intro-login .btn {
 	text-align: center;
-	color: #ffffff;
-	background-color: #000;
+	font-size: 20px;
+	color: #fff;
+	background-color: #0A4359;
+	;
+	border: none;
 	border-radius: 5px;
 	padding: 10px;
-	margin-left: 5rem;
+	width: 200px;
+	height: 50px;
 }
 
-.intro-container {
-	position: absolute;
+.s-intro-container {
 	width: 100%;
 	height: fit-content;
+	padding-left: 3rem;
+	display: flex;
+	flex-direction: row;
 }
 
-.intro-container p {
+.s-intro-image img {
+	width: 100%;
+}
+
+.s-intro-container p {
+	color: #4F4F4F;
 	padding: 10px 0px;
-	padding-left: 5rem;
-	width: 55%;
 }
 
-.intro-container a {
-	width: 200px;
+.s-intro-text-heading {
+	font-size: 2.6rem;
 }
 
-.intro-text-heading {
-	font-size: 50px;
-	width: 55%;
-	padding-left: 5rem;
+.s-intro-container-body {
+	padding: 81px 0px 50px;
+	width: 100%;
+	max-width: 45rem;
+	display: flex;
+	flex-direction: column;
+	text-align: left;
 }
 
-@media (min-width: 200px) and (max-width: 700px) {
-	.wrapper {
-		text-align: center;
+@media (max-width: 640px) {
+	.s-wrapper {
 		height: 100%;
 		background-size: 100% 100%;
 		overflow: auto;
 	}
-	.intro-container {
-		width: unset;
-		left: unset;
+	.s-intro-container {
+		flex-direction: column-reverse;
+		padding: 20px;
 	}
-	.intro-text-heading {
+	.s-intro-container-body {
+		align-items: center;
+		text-align: justify;
+	}
+	.s-intro-text-heading {
 		width: 100%;
 		padding-left: unset;
+		text-align: left;
+		font-size: 2rem;
 	}
-	.intro-container p {
+	.s-intro-container p {
 		padding-left: unset;
 		width: 100%;
 	}
-	.logo-link {
+	.s-logo-link {
 		display: inline-block;
-		padding: 10px 50px;
 		padding-top: 0;
 		margin-left: unset;
 		font-weight: 700;
 		font-size: 35px;
 	}
-	.logo-link a {
+	.s-logo-link a {
 		text-decoration: none;
-		color: #000;
 	}
-	.logo-link a:hover {
+	.s-logo-link a:hover {
 		text-decoration: none;
 	}
 	#myBtn {
@@ -119,7 +131,13 @@ html, body {
 		margin-left: unset;
 		padding: 10px;
 	}
-	.intro-container p {
+	.s-intro-container p {
 		padding: 10px;
+	}
+}
+
+@media (max-width: 1007px) {
+	.s-intro-container-body {
+		padding: 0px 0px 50px;
 	}
 }

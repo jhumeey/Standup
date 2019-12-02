@@ -2,7 +2,6 @@ const { Activity } = require("../models/activity");
 const { Activity_type } = require("../models/activitytype");
 const { Question } = require("../models/questions");
 const { Userscores } = require("../models/userscores");
-const { User } = require("../models/users");
 const { Check_in } = require("../models/checkin");
 const mongoose = require("mongoose");
 var ObjectId = mongoose.Types.ObjectId;

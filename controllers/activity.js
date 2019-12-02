@@ -3,6 +3,7 @@ const { Activity_type } = require("../models/activitytype");
 const { Question } = require("../models/questions");
 const { Userscores } = require("../models/userscores");
 const { User } = require("../models/users");
+const { Check_in } = require("../models/checkin");
 const mongoose = require("mongoose");
 var ObjectId = mongoose.Types.ObjectId;
 
@@ -17,64 +18,59 @@ exports.getAllActivities = async (req, res) => {
 }
 exports.getActivityById = async (req, res) => {
     try {
+        const userId = req.session.user._id;
         const activity = await Activity.findById(req.params.id);
-        res.render("actvty details", { activity });
+        const activityId = req.params.id;
+        const activityStatus = await Userscores.findOne({ user_id: userId, activity_id: activityId });
+        const eventId = activity.event_id;
+        const checkinStatus = await Check_in.findOne({ user_id: userId, event_id: eventId });
+        res.render("actvty details", { activity, activityStatus, checkinStatus, eventId});
     } catch (error) {
+        console.log(error);
         req.flash("error", { message: "Sorry, could not get activity" });
-        res.redirect("/activity/all/");
+        res.redirect("/events");
     }
 }
 exports.startActivity = async (req, res) => {
+    const userId = req.session.user._id;
     try {
-        let activityId = req.params.id;
-        let user = req.session.user;
-        let userId = req.session.user._id;
-        let userscore = await Userscores.findOne({user_id: userId, activity_id: activityId } );
-        if (userscore) {
-            console.log(user);
-            req.flash("error", { message: "You have accessed this activity already" });
-            res.redirect(301, "/activity/details/" + activityId);
-        } else {
-            user.activityStatus = true;
-            let newuserscore = new Userscores({
-                score: "0", user_id: userId, activity_id: activityId
-            });
-            newuserscore.save();
-            Question.aggregate(
-                [
-                    { "$match": { "activity_id": ObjectId(activityId) } },
-                    {
-                        $lookup: {
-                            from: "Activities",
-                            localField: "activity_id",
-                            foreignField: "_id",
-                            as: "activitydetails"
-                        },
+        let userscore = new Userscores({
+            score: "0", user_id: userId, activity_id: activityId
+        });
+        userscore.save();
+        Question.aggregate(
+            [
+                { "$match": { "activity_id": ObjectId(activityId) } },
+                {
+                    $lookup: {
+                        from: "Activities",
+                        localField: "activity_id",
+                        foreignField: "_id",
+                        as: "activitydetails"
                     },
-                    {
-                        $replaceRoot: {
-                            newRoot: {
-                                $mergeObjects: [
-                                    { $arrayElemAt: ["$activitydetails", 0] }, "$$ROOT"
-                                ]
-                            }
-                        }
-                    },
-                    {
-                        $project: {
-                            __v: 0,
+                },
+                {
+                    $replaceRoot: {
+                        newRoot: {
+                            $mergeObjects: [
+                                { $arrayElemAt: ["$activitydetails", 0] }, "$$ROOT"
+                            ]
                         }
                     }
-                ],
-                function (err, questions) {
-                    if (err) {
-                        console.log(err.message)
+                },
+                {
+                    $project: {
+                        __v: 0,
                     }
-                    res.render("startquiz", { questions })
                 }
-            )
-        }
-
+            ],
+            function (err, questions) {
+                if (err) {
+                    console.log(err.message)
+                }
+                res.render("startquiz", { questions })
+            }
+        )
     } catch (error) {
         console.log(error.message);
     }
@@ -82,14 +78,15 @@ exports.startActivity = async (req, res) => {
 exports.viewActivity = async (req, res) => {
     try {
         const activity = await Activity.findById(req.params.id);
-        res.render("activity details", { activity });
+        const question = await Question.find({ activity_id: req.params.id });
+        res.render("activity details", { activity, question});
     } catch (error) {
         console.log(error.message);
     }
 }
 exports.getCreateQuestionPageForActivity = async (req, res) => {
     try {
-        let activityId = req.params.id;
+        const activityId = req.params.id;
         res.render("question", { activityId });
     } catch (error) {
         console.log(error.message)
@@ -113,7 +110,7 @@ exports.CreateQuestionForActivity = async (req, res) => {
 }
 exports.getEditActivityPage = async (req, res) => {
     try {
-        let activityTypes = await Activity_type.find()
+        const activityTypes = await Activity_type.find()
         const activity = await Activity.findById(req.params.id);
         res.render("edit activity", { activity, activityTypes });
     } catch (error) {
@@ -145,12 +142,12 @@ exports.editActivityQuestion = async (req, res) => {
         };
 
         await Question.findByIdAndUpdate(req.params.id, body, function (err, question) {
-            let activity_id = question.activity_id;
+            const activity_id = question.activity_id;
             if (err) {
                 console.log(err);
             }
             req.flash("success", { message: "Question edited succesfully" });
-            res.redirect("/activity/question/" + activity_id);
+            res.redirect("/activity/view/" + activity_id);
         });
     } catch (error) {
         console.log(error.message);
@@ -159,13 +156,13 @@ exports.editActivityQuestion = async (req, res) => {
 }
 exports.deleteActivityQuestion = async (req, res) => {
     await Question.findByIdAndRemove(req.params.id, function (err, question) {
-        let activity_id = question.activity_id;
+        const activity_id = question.activity_id;
         if (err) {
             req.flash("error", { message: " Sorry Cannot Delete Question" });
             console.log(err);
         }
         req.flash("success", { message: " Question Deleted Succesfully" });
-        res.redirect("/activity/question/" + activity_id);
+        res.redirect("/activity/view/" + activity_id);
     });
 }
 exports.editActivity = async (req, res) => {

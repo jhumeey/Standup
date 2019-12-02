@@ -84,6 +84,7 @@ html, body {
 	background: #023059;
 	border: none;
 	line-height: normal;
+	height: 40px;
 }
 
 .s-login-form .btn:hover, .s-login-form .btn:focus {

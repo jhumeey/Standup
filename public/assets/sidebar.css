@@ -2,11 +2,9 @@ html, body, h1, h2, h3, h4, h5 {
 	font-family: 'Raleway', sans-serif!important
 }
 
-
 body {
 	overflow-x: hidden;
 }
-
 
 #wrapper {
 	padding-left: 0;
@@ -50,11 +48,17 @@ body {
 	margin-right: -250px;
 }
 
-.btn-default {
+.toggle {
 	position: absolute;
-	left: -70px;
-	top: 30px;
-	font-size: 26px!important;
+	left: 4px;
+	top: 35px;
+	font-size: 32px!important;
+}
+
+.toggle:hover {
+	text-decoration: none;
+	background-color: #ffffff;
+	color: #21252985;
 }
 
 .sidebar-nav {

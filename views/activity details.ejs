@@ -16,13 +16,12 @@
 				<div class="innerContainer">
 					<% include partials/flashmessage %>
 					<div class="heading">
-						<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">
-							<i class="fa fa-bars fa-fw"></i>
-						</a>
+						<i class="fa fa-bars fa-fw toggle" id="menu-toggle"></i>
 						<h3>View Activity</h3>
 						<a class="toplink" href="/activity/createquestion/<%= activity._id %>">Create Question</a>
 					</div>
 					<div class="tableContainer table-responsive">
+						<h3>Activity</h3>
 						<table id="table" class="card-table table">
 							<tr>
 								<th>Name</th>
@@ -37,10 +36,8 @@
 								<td><%= activity.instructions %></td>
 								<td><%= activity.description %></td>
 								<td><%= activity.activityType %></td>
-								<td><%= activity.createdAt %></td>
+								<td><%= activity.createdAt.toDateString() %></td>
 								<td class="links">
-									<a href="/activity/question/<%= activity._id %>/"><i class="fa fa-eye"
-											aria-hidden="true"></i></a>
 									<a href="/activity/edit/<%= activity._id %>">
 										<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 									</a>
@@ -52,6 +49,48 @@
 							</tr>
 						</table>
 					</div>
+
+					<% if(!question.length) { %>
+						<div class="card">
+							<div class="card-header s-custom-card-header">
+								Questions
+							</div>
+							<div class="card-body">
+								<h4 class="card-title s-custom-card-title">There is no question for this activity</h4>
+								<button class="link" onclick="window.location.href='/events/all'">
+									Create an Event
+								</button>
+							</div>
+						</div>
+					<% } else { %>
+						<div class="tableContainer table-responsive">
+							<h3>Questions And Answers</h3>
+							<table id="table" class="card-table table">
+								<tr>
+									<th> Question </th>
+									<th>Answers</th>
+									<th>Correct Answer</th>
+									<th>Actions</th>
+								</tr>
+								<% for (var key in question) { %>
+								<tr>
+									<td><%= question[key].question %></td>
+									<td><%= question[key].answers %></td>
+									<td><%= question[key].correctAnswer %></td>
+									<td class="links">
+										<a href="/activity/editquestion/<%= question[key]._id %>">
+											<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+										</a>
+										<a href="/activity/deletequestion/<%= question[key]._id %>"
+											onclick="return confirm('Are you sure you want to delete this question?')">
+											<i class="fa fa-trash" aria-hidden="true"></i>
+										</a>
+									</td>
+								</tr>
+								<% } %>
+							</table>
+						</div>
+					<% } %>
 				</div>
 			</div>
 		</div>

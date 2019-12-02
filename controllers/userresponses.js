@@ -15,15 +15,14 @@ exports.submitUserresponses = async (req, res) => {
 
     });
     response = await response.save();
-    let questionIds = req.body.question_id;
-    console.log(questionIds)
-    let answers = req.body.answer;
-    let activity_id = req.body.activity_id;
-    let activity_details = await Activity.find({ _id: activity_id });
-    let activity_name = activity_details[0].name;
-    let convertedIds = questionIds.map(s => mongoose.Types.ObjectId(s));
+    const questionIds = req.body.question_id;
+    const answers = req.body.answer;
+    const activity_id = req.body.activity_id;
+    const activity_details = await Activity.find({ _id: activity_id });
+    const activity_name = activity_details[0].name;
+    const convertedIds = questionIds.map(s => mongoose.Types.ObjectId(s));
     let score = 0;
-    let query = { _id: { $in: convertedIds } }
+    const query = { _id: { $in: convertedIds } }
     const questions = await Question.find(query);
     for (let i = 0; i < questions.length; i++) {
         if (questions[i].correctAnswer === answers[i]) {
@@ -33,15 +32,10 @@ exports.submitUserresponses = async (req, res) => {
         }
     }
     try {
-        // let newscore = {
-        //     score: score,
-        //     activity_name: activity_name
-        // }
         await Userscores.findOneAndUpdate({ user_id: req.session.user._id, activity_id: activity_id }, {$set: {score: score, activity_name: activity_name }}, { new: true }, function (err) {
             if (err) {
                 console.log(err);
             }
-            // console.log(newscore, score)
             res.render("showscore", { score})
         });  
     } catch (error) {

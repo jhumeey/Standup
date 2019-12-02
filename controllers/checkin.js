@@ -55,7 +55,7 @@ exports.getAllCheckins = async (req, res) => {
 
 exports.getUserCheckins = async (req, res) => {
     try {
-        let user_id = req.session.user._id;
+        const user_id = req.session.user._id;
         Check_in.aggregate(
             [
                 { "$match": { "user_id": ObjectId(user_id) } },
@@ -89,9 +89,6 @@ exports.getUserCheckins = async (req, res) => {
                 res.render("usercheckins", { checkins });
             }
         )
-
-
-
 
     } catch (error) {
         console.log(error.message);

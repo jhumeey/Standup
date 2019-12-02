@@ -37,8 +37,8 @@ exports.postCreateEvent = async (req, res) => {
 }
 exports.getActiveEvents = async (req, res) => {
 	try {
-		let user = req.session.user;
-		let userId = user._id;
+		const user = req.session.user;
+		const userId = user._id;
 		const userDetails = await User.findById(userId);
 		const active_events = await Event.find({ status: "active" }).sort();
 		res.render("events", { active_events, userDetails });
@@ -60,7 +60,7 @@ exports.createEvent = async (req, res) => {
 
 exports.getEventByID = async (req, res) => {
 	try {
-		let event_id = req.params.id;
+		const event_id = req.params.id;
 		Event.aggregate(
 			[
 				{ "$match": { "_id": ObjectId(event_id) } },
@@ -110,8 +110,8 @@ exports.editEventPage = async (req, res) => {
 }
 exports.createActivityPage = async (req, res) => {
 	try {
-		let eventId = req.params.id;
-		let activityTypes = await Activity_type.find({ "activity": { $exists: true } })
+		const eventId = req.params.id;
+		const activityTypes = await Activity_type.find({ "activity": { $exists: true } })
 		res.render("create activity", { eventId, activityTypes });
 	} catch (error) {
 		req.flash("error", { message: "Sorry, You cannot create an event" })
@@ -120,7 +120,7 @@ exports.createActivityPage = async (req, res) => {
 	}
 }
 exports.createEventActivity = async (req, res) => {
-	let user_name = req.session.user.firstname;
+	const user_name = req.session.user.firstname;
 	try {
 		let activity = new Activity({
 			name: req.body.name,
@@ -142,9 +142,9 @@ exports.createEventActivity = async (req, res) => {
 
 exports.getEventDetails = async (req, res) => {
 	try {
-		let eventId = req.params.id;
-		let user = req.session.user;
-		let userId = user._id;
+		const eventId = req.params.id;
+		const user = req.session.user;
+		const userId = user._id;
 		let checkin_counter;
 		const userDetails = await User.findById(userId);
 		Check_in.aggregate(

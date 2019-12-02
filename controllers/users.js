@@ -5,7 +5,7 @@ const _ = require("lodash");
 
 exports.getAllUsers = async (req, res) => {
 	try {
-		let users = await User.find();
+		const users = await User.find();
 		if (users) {
 			res.render("allusers", { users, deleteHandler: "deleteUser();" });
 		}
@@ -23,7 +23,7 @@ exports.getAllUsers = async (req, res) => {
 
 exports.createUserPage = async (req, res) => {
 	try {
-		let departments = await Department.find();
+		const departments = await Department.find();
 		res.render("create user", { departments });
 	} catch (error) {
 		req.flash("error", { message: "Sorry Cannot get the page you are looking for" });
@@ -74,7 +74,7 @@ exports.loginUserPage = (req, res) => {
 }
 exports.loginUser = async (req, res) => {
 	try {
-		let user = await User.findOne({ email: req.body.email });
+		const user = await User.findOne({ email: req.body.email });
 		if (!user) {
 			req.flash("error", { message: "Invalid email or password" });
 			res.redirect("/users/login");
@@ -101,9 +101,9 @@ exports.loginUser = async (req, res) => {
 }
 exports.getUserProfile = async (req, res) => {
 	try {
-		let user = req.session.user;
-		userId = user._id;
-		let user_details = await User.findById(userId);
+		const user = req.session.user;
+		const userId = user._id;
+		const user_details = await User.findById(userId);
 		res.render("profile", { user_details });
 	} catch (error) {
 		console.log(error);
@@ -137,7 +137,7 @@ exports.updateUserByUser = async (req, res) => {
 }
 exports.getEditUserDetailsPage = async (req, res) => {
 	try {
-		let departments = await Department.find();
+		const departments = await Department.find();
 		const user = await User.findByIdAndUpdate(req.params.id);
 		res.render("edit", { user, departments });
 	} catch (error) {

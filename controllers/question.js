@@ -2,9 +2,9 @@ const { Question } = require("../models/questions");
 
 exports.getCreateQuestionPage = async (req, res) => {
     try {
-        let quiz_id = req.params.id;
-        let quiz = await Quiz.findById(req.params.id);
-        let event_id = quiz.event_id;
+        const quiz_id = req.params.id;
+        const quiz = await Quiz.findById(req.params.id);
+        const event_id = quiz.event_id;
         res.render("activity", { quiz_id, event_id });
     } catch (error) {
         console.log(error);
@@ -12,9 +12,9 @@ exports.getCreateQuestionPage = async (req, res) => {
 }
 exports.getQuestionById = async (req, res) => {
     try {
-        let query = { quiz_id: req.params.id };
+        const query = { quiz_id: req.params.id };
         const question = await Question.find(query);
-        let user = req.session.user;
+        const user = req.session.user;
         res.render("startquiz", { question, quiz_id: req.params.id, user, clickHandler: "next();", startHandler: "start();", onchangeHandler: "onChange();" });
 
     } catch (error) {
@@ -38,7 +38,7 @@ exports.editQuestion = async (req, res) => {
             correctAnswer: req.body.correctAnswer
         };
         await Question.findByIdAndUpdate(req.params.id, body, function (err, question) {
-            let quiz_id = question.quiz_id;
+            const quiz_id = question.quiz_id;
             if (err) {
                 console.log(err);
             }
@@ -64,8 +64,8 @@ exports.deleteQuestion = async (req, res) => {
 
 exports.getAllQuestions = async (req, res) => {
     try {
-        let quizId = req.params.id;
-        let query = { quiz_id: quizId };
+        const quizId = req.params.id;
+        const query = { quiz_id: quizId };
         const questions = await Question.find(query).sort();
         res.render("questions", { questions });
     } catch (error) {

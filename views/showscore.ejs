@@ -29,11 +29,8 @@
                 <div class="innerContainer">
                     <% include partials/flashmessage %>
                     <div class="heading">
-                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">
-                            <i class="fa fa-bars fa-fw"></i>
-                        </a>
+                        <i class="fa fa-bars fa-fw toggle" id="menu-toggle"></i>
                         <h3>User Score</h3>
-
                     </div>
                     <input type="hidden" name="userscore" id="userscore" value="<%= score %>">
                 </div>
@@ -43,7 +40,7 @@
                 sessionStorage.setItem("Page2Visited", "True");
                 let score = document.getElementById("userscore").value;
                 Swal.fire({
-                    title: 'Your Score is: ' + score,
+                    title: 'Your Score is: ' + score + 'out of 100',
                     icon: 'info',
                     confirmButtonColor: "#023059"
                 }).then(function () {

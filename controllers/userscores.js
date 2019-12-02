@@ -4,8 +4,8 @@ var ObjectId = mongoose.Types.ObjectId;
 
 exports.getUsersScores = async (req, res) => {
 	try {
-		let user = req.session.user;
-		let user_id = user._id;
+		const user = req.session.user;
+		const user_id = user._id;
 		Userscores.aggregate(
 			[
 				{ "$match": { "user_id": ObjectId(user_id) } },

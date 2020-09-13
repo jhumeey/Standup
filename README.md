@@ -3,7 +3,7 @@
 This is the source code for the standup project built for managing employee's attendance and taking a short quiz during monthly standups.
 
 ## Landing Page
-![Image of Yaktocat](https://ibb.co/dLkF5Fc)
+![Landing Page of Website](https://ibb.co/dLkF5Fc)
 
 ### App's URL
 https://reliancehmo-standup.herokuapp.com/

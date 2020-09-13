@@ -58,6 +58,7 @@ exports.registerUser = async (req, res) => {
 		res.redirect("/users/all");
 	} catch (error) {
 		req.flash("error", { message: "error saving user" });
+
 		console.log(`Error saving user: ${error.message}`);
 	}
 }
